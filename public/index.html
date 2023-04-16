@@ -27,24 +27,78 @@
     <title>Witch Way - a game from Coffee Ferrets</title>
 
     <script type="text/javascript" src="timer.js"></script>
-
+  <style>
+    menuButon{
+      display: inline;
+    }
+  </style>
   </head>
-  <body onload="odliczanie()">
-    <div id="odliczanieDoZTGK">
-    </div>
-
+  <body onload="odliczanie()" style=" color: darkgrey; scroll-behavior: smooth ">
+  <h1><div id="odliczanieDoZTGK" style="text-align: center; background-color: #282c34; margin: 0; padding: 0">
+  </div></h1>
 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<!--    <svg>-->
+<!--      <rect x="0" y="0" width="200" height="200" fill="red" />-->
+<!--    </svg>-->
+  <div  style="width:auto ;height:100px;background-color: #282c34; "></div>
+    <a href="FAQ.html">
+      <menuButton>
+        <button style = "background-color: crimson;
+        height: 60px;
+        width: 100px;
+        font-size: 32px;
+        margin: 20px;
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+        position: absolute;
+        top: 30px;
+        right: 200px;
+
+        ">FAQ</button>
+      </menuButton>
+    </a>
+    <a href="DevLog.html">
+      <menuButton>
+        <button style = "background-color: crimson;
+        height: 60px;
+        width: 130px;
+        font-size: 32px;
+        margin: 20px;
+        position: absolute;
+        top: 30px;
+        right: 0px;
+        ">DevLog</button>
+      </menuButton>
+    </a>
+
+
+    <img src="tlo1.png" style = "width: auto;
+         height: 1047px;
+         margin: auto;
+          position: relative;
+          ">
+
+    <a href="#scroll">
+      <button style = "background-color: crimson;
+        height: 100px;
+        width: 175px;
+        font-size: 32px;
+        position: absolute;
+        left:650px;
+
+        top: 600px;">
+        Watch Trailer
+      </button>
+    </a>
+  <div  style="width:auto ;height:100px;background-color: #282c34; "></div>
+  <div  style="width:auto ;height:100px;background-color: #282c34; text-align: center; font-size: 32px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci architecto aspernatur cupiditate est impedit in iusto, odit perferendis provident, repellendus ut veniam voluptates. Animi molestias, odit qui recusandae sed voluptatibus.</div>
+  <div  style="width:auto ;height:200px;background-color: #282c34; "></div>
+  <div  style="width:auto ;height:800px;background-color: tomato; "></div>
+  <video id="scroll" controls src="Intro.mp4" width="900" style="position: relative; left: 300px; top: -700px"></video>
+
+  <div  style="width:auto ;height:300px;background-color: green; "></div>
+
   </body>
 </html>
