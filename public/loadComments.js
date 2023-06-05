@@ -9,7 +9,7 @@ document.getElementById("LoadButton").onclick = function () {
             allText = allText.split("\n").join("<br>");
         }
 
-        document.getElementById('komentarze').innerHTML = allText;
+        document.getElementById('tresc_komentarzy').innerHTML = allText;
     }
     txtFile.open("GET", 'comments.txt', true);
     txtFile.send(null);
