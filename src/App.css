@@ -12,7 +12,8 @@ body {
     font-style: normal;
     font-weight: 700;
 }
-.Logo{
+
+.Logo {
     position: absolute;
     width: 250px;
     height: 300px;
@@ -20,25 +21,26 @@ body {
     top: -10px;
 }
 
-Witch.duzyNapis{
+Witch.duzyNapis {
     background-color: black;
     position: absolute;
     left: 250px;
     top: 88px;
 }
 
-Way.duzyNapis{
+Way.duzyNapis {
     background-color: black;
     position: absolute;
     left: 250px;
     top: 138px;
 }
+
 .menuButton {
     color: white;
     font-size: 32px;
     fill: black;
     text-decoration: none;
-  text-align: center;
+    text-align: center;
     background-color: black;
     border-style: none;
     font-family: "Bookman Old Style";
@@ -52,17 +54,67 @@ FAQ.menuButton {
     left: 500px;
 }
 
-DevLog.menuButton{
-  position: absolute;
-  top: 100px;
-  left: 700px;
+DevLog.menuButton {
+    position: absolute;
+    top: 100px;
+    left: 700px;
 }
 
-Settings.menuButton{
+Settings.menuButton {
     position: absolute;
     top: 50px;
     right: 100px;
 }
+
+/*#################################WitchWay################################*/
+
+.tlo {
+    position: absolute;
+    width: auto;
+    height: 1080px;
+    z-index: -10;
+
+}
+
+#flora {
+    top: 42px;
+}
+
+.contener{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+
+WitchWay.duzyNapis {
+    position: absolute;
+    font-size: 100px;
+    top: 540px;
+}
+
+.Button {
+    position: relative;
+    top: 600px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    font-size: 32px;
+
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 10px;
+    width: 250px;
+    height: 75px;
+}
+
+#Watch{
+    position: relative;
+    top:10px;
+    color: white;
+}
+
+/*#################################AmazingAdventure#################################*/
+
 
 
 
