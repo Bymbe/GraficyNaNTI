@@ -70,7 +70,7 @@ Settings.menuButton {
 
 .tlo {
     position: absolute;
-    width: auto;
+    width: 100%;
     height: 1080px;
     z-index: -10;
 
@@ -80,7 +80,7 @@ Settings.menuButton {
     top: 42px;
 }
 
-.contener{
+.contener {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -101,21 +101,24 @@ WitchWay.Napis {
     align-content: center;
     font-size: 32px;
 
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     width: 250px;
     height: 75px;
 }
 
-#Watch{
+#Watch {
     position: relative;
-    top:10px;
+    top: 10px;
     color: white;
+    font-family: "Bookman Old Style";
+    font-style: normal;
 }
+
 
 /*#################################AmazingAdventure#################################*/
 
-Amazing.Napis{
+Amazing.Napis {
     position: absolute;
     top: 1200px;
     font-size: 60px;
@@ -123,19 +126,77 @@ Amazing.Napis{
     color: black;
 }
 
-InAWorld.Napis{
+InAWorld.Napis {
     position: absolute;
-    top:1350px;
+    top: 1350px;
     font-size: 48px;
     right: 20px;
     color: black;
     width: 700px;
 }
 
+/*#################################WatchTrailer#################################*/
+Trailer.Napis {
+    position: absolute;
+    top: 1750px;
+    font-size: 48px;
+    right: 50px;
+}
 
+video {
+    position: absolute;
+    top: 1850px;
+    left: 12.5%;
+    border-radius: 20px;
+    padding: 25px;
+    background-color: rgba(217, 217, 217, 0.3);
+}
 
+/*#################################AddToWhishList#################################*/
+AddToWishlist.Napis {
+    position: absolute;
+    top: 2600px;
+    font-size: 72px;
+    left: 50px;
+    width: 450px;
+    text-align: left;
+    color: black;
+}
 
+BeTheFirst.Napis {
+    position: absolute;
+    top: 2950px;
+    font-size: 28px;
+    left: 50px;
+    color: black;
+}
 
+#Add {
+    position: relative;
+    top: 50px;
+    color: white;
+    font-family: "Bookman Old Style";
+    font-style: normal;
+    text-decoration: none;
 
+}
 
+a:link{text-decoration: none}
 
+/*#################################Stopka#################################*/
+Develop.Napis{
+    position: absolute;
+    top: 3250px;
+    left:50px;
+}
+
+AllRights.Napis{
+    position: relative;
+    top: 3300px;
+    left: 33%;
+}
+Cookie.Napis{
+    position: absolute;
+    top: 3400px;
+    right: 10%;
+}
