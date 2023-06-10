@@ -2,7 +2,7 @@ body {
     background-color: #282828;
 }
 
-.duzyNapis {
+.Napis {
     color: white;
     text-align: center;
     margin: 0;
@@ -21,14 +21,14 @@ body {
     top: -10px;
 }
 
-Witch.duzyNapis {
+Witch.Napis {
     background-color: black;
     position: absolute;
     left: 250px;
     top: 88px;
 }
 
-Way.duzyNapis {
+Way.Napis {
     background-color: black;
     position: absolute;
     left: 250px;
@@ -87,7 +87,7 @@ Settings.menuButton {
 
 }
 
-WitchWay.duzyNapis {
+WitchWay.Napis {
     position: absolute;
     font-size: 100px;
     top: 540px;
@@ -115,7 +115,22 @@ WitchWay.duzyNapis {
 
 /*#################################AmazingAdventure#################################*/
 
+Amazing.Napis{
+    position: absolute;
+    top: 1200px;
+    font-size: 60px;
+    right: 50px;
+    color: black;
+}
 
+InAWorld.Napis{
+    position: absolute;
+    top:1350px;
+    font-size: 48px;
+    right: 20px;
+    color: black;
+    width: 700px;
+}
 
 
 
