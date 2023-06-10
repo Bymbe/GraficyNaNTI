@@ -3,8 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Karta FAQ</title>
+    <link rel="stylesheet" href="../src/App.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta
+            name="description"
+            content="Web site created using create-react-app"
+    />
+
 </head>
+<style>
+    body {
+        background-color: #282828;
+        font-family: "Bookman Old Style";
+    }
+
+    .Napis {
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-size: 36px;
+        font-family: "Bookman Old Style";
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    .Logo {
+        position: absolute;
+        width: 250px;
+        height: 300px;
+        left: 23px;
+        top: -10px;
+    }
+
+    Witch.Napis {
+        background-color: black;
+        position: absolute;
+        left: 250px;
+        top: 88px;
+    }
+
+    Way.Napis {
+        background-color: black;
+        position: absolute;
+        left: 250px;
+        top: 138px;
+    }
+
+    .menuButton {
+        color: white;
+        font-size: 32px;
+        fill: black;
+        text-decoration: none;
+        text-align: center;
+        background-color: black;
+        border-style: none;
+        font-family: "Bookman Old Style";
+        font-style: normal;
+        font-weight: 700;
+    }
+
+    FAQ.menuButton {
+        position: absolute;
+        top: 100px;
+        left: 500px;
+    }
+
+    DevLog.menuButton {
+        position: absolute;
+        top: 100px;
+        left: 700px;
+    }
+
+    Settings.menuButton {
+        position: absolute;
+        top: 50px;
+        right: 100px;
+    }
+</style>
 <body>
-  FAQ
+<!-- #################################Naglowek#################################-->
+
+<Naglowek>
+    <div style="display: block; width:100% ;height:180px;background-color: black; margin: 0"></div>
+    <img src="Graphics/ŻABA-LOGO.png" class="Logo">
+    <p>
+        <Witch class="Napis">Witch</Witch>
+    </p>
+    <p>
+        <Way class="Napis">Way</Way>
+    </p>
+    <a href="FAQ.html">
+        <FAQ class="menuButton">FAQ</FAQ>
+    </a>
+    <a href="DevLog.html">
+        <DevLog class="menuButton">DevLog</DevLog>
+    </a>
+    <a>
+        <Settings class="menuButton"><br>Accessibility</br>settings</Settings>
+    </a></Naglowek>
 </body>
 </html>
