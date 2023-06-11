@@ -27,8 +27,67 @@ document.getElementById("largeFont").onclick = function () {
     }
     console.log("zmiana rozmiaru czcionki");
 
-    if(isFontLarge === true) document.getElementById("largeFont").innerHTML = "(WŁ) Większa czcionka";
-    if(isFontLarge === false) document.getElementById("largeFont").innerHTML = "(WYŁ) Większa czcionka";
+    if (isFontLarge === true) document.getElementById("largeFont").innerHTML = "(WŁ) Większa czcionka";
+    if (isFontLarge === false) document.getElementById("largeFont").innerHTML = "(WYŁ) Większa czcionka";
+}
+
+
+// WYSOKI KONTRAST
+
+var isReadableFontOn = false;
+var napisResize = document.getElementsByClassName("Napis");
+var buttonResize = document.getElementsByClassName("menuButton");
+
+document.getElementById("readableFont").onclick = function () {
+    if (isReadableFontOn === false) {
+        for (var i = 0; i < napisResize.length; i++) {
+            napisResize[i].style.fontFamily = "Arial";
+
+            //SPRAWDZENIE CZY ORYGINALNY TEKST JEST BIAŁY CZY CZARNY
+            if (napisResize[i].style.color = "white") {
+                napisResize[i].style.color = "#000001";
+            } else if (napisResize[i].style.color = "black") {
+                napisResize[i].style.color = "black";
+            }
+            napisResize[i].style.backgroundColor = "yellow";
+        }
+        for (var i = 0; i < buttonResize.length; i++) {
+            buttonResize[i].style.fontFamily = "Arial";
+            buttonResize[i].style.color = "black";
+            buttonResize[i].style.backgroundColor = "yellow";
+        }
+
+        document.getElementById("odliczanieDoZTGK").style.fontFamily = "Arial";
+        document.getElementById("odliczanieDoZTGK").style.color = "black";
+        document.getElementById("odliczanieDoZTGK").style.backgroundColor = "yellow";
+
+        isReadableFontOn = true;
+        document.getElementById("readableFont").innerHTML = "(WŁ) Tekst z wysokim kontrastem";
+    } else {
+        for (var i = 0; i < napisResize.length; i++) {
+            napisResize[i].style.fontFamily = "Bookman Old Style";
+            //SPRAWDZENIE CZY ORYGINALNY TEKST JEST BIAŁY CZY CZARNY
+            if (napisResize[i].style.color = "#000001") {
+                napisResize[i].style.color = "white";
+            } else if (napisResize[i].style.color = "black") {
+                napisResize[i].style.color = "black";
+            }
+            napisResize[i].style.backgroundColor = "";
+        }
+        for (var i = 0; i < buttonResize.length; i++) {
+            buttonResize[i].style.fontFamily = "Bookman Old Style";
+            buttonResize[i].style.color = "white";
+            buttonResize[i].style.backgroundColor = "";
+        }
+
+        document.getElementById("odliczanieDoZTGK").style.fontFamily = "Bookman Old Style";
+        document.getElementById("odliczanieDoZTGK").style.color = "white";
+        document.getElementById("odliczanieDoZTGK").style.backgroundColor = "";
+
+        isReadableFontOn = false;
+        document.getElementById("readableFont").innerHTML = "(WYŁ) Tekst z wysokim kontrastem";
+    }
+    console.log("zmiana czcionki");
 }
 
 // TEXT TO SPEECH
@@ -63,7 +122,6 @@ document.onmouseover = function () {
             msg.text = NapisTTS[i].innerHTML;
             msg.rate = 1.5;
             window.speechSynthesis.speak(msg);
-            console.log("2");
         }
     }
 }
