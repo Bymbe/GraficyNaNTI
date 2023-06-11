@@ -1,36 +1,34 @@
 // WIĘKSZA CZCIONKA
+var isFontLarge = false;
 document.getElementById("largeFont").onclick = function () {
     //document.getElementById("abc").style.fontSize = "x-large";
 
-    if (document.getElementById("largeFont").innerHTML === "(WYŁ) Większa czcionka")
-        document.getElementById("largeFont").innerHTML = "(WŁ) Większa czcionka";
-    else document.getElementById("largeFont").innerHTML = "(WYŁ) Większa czcionka";
-
-
     var Napis =
         document.getElementsByClassName("Napis");
-    if (Napis[0].style.fontSize != "xxx-large") {
-        for (var i = 0; i < Napis.length; i++) {
-            Napis[i].style.fontSize = "xxx-large";
-        }
-    } else {
-        for (var i = 0; i < Napis.length; i++) {
-            Napis[i].style.fontSize = "x-large";
-        }
-    }
-
     var menuButton =
         document.getElementsByClassName("menuButton");
-    if (menuButton[0].style.fontSize != "xxx-large") {
-        for (var i = 0; i < menuButton.length; i++) {
-            menuButton[i].style.fontSize = "xxx-large";
+
+    if (isFontLarge === false) {
+        for (var i = 0; i < Napis.length; i++) {
+            Napis[i].style.fontSize = "3.0rem";
         }
+        for (var i = 0; i < menuButton.length; i++) {
+            menuButton[i].style.fontSize = "3.0rem";
+        }
+        isFontLarge = true;
     } else {
-        for (var i = 0; i < menuButton.length; i++) {
-            menuButton[i].style.fontSize = "x-large";
+        for (var i = 0; i < Napis.length; i++) {
+            Napis[i].style.fontSize = "2.5rem";
         }
+        for (var i = 0; i < menuButton.length; i++) {
+            menuButton[i].style.fontSize = "2.5rem";
+        }
+        isFontLarge = false;
     }
     console.log("zmiana rozmiaru czcionki");
+
+    if(isFontLarge === true) document.getElementById("largeFont").innerHTML = "(WŁ) Większa czcionka";
+    if(isFontLarge === false) document.getElementById("largeFont").innerHTML = "(WYŁ) Większa czcionka";
 }
 
 // TEXT TO SPEECH
@@ -41,7 +39,10 @@ document.getElementById("textToSpeech").onclick = function () {
 
     if (document.getElementById("textToSpeech").innerHTML === "(WYŁ) Czytanie tekstu na głos")
         document.getElementById("textToSpeech").innerHTML = "(WŁ) Czytanie tekstu na głos";
-    else document.getElementById("textToSpeech").innerHTML = "(WYŁ) Czytanie tekstu na głos";
+    else {
+        document.getElementById("textToSpeech").innerHTML = "(WYŁ) Czytanie tekstu na głos";
+        speechSynthesis.cancel();
+    }
 }
 
 const e1 = document.getElementById("textToSpeech");
@@ -60,6 +61,7 @@ document.onmouseover = function () {
         for (var i = 0; i < NapisTTS.length; i++) {
             var msg = new SpeechSynthesisUtterance();
             msg.text = NapisTTS[i].innerHTML;
+            msg.rate = 1.5;
             window.speechSynthesis.speak(msg);
             console.log("2");
         }
