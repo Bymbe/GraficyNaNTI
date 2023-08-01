@@ -2,7 +2,7 @@ function odliczanie() {
     //data ztgk 29.06.2023 9"00
     //nie wiem jaka jest dokladnie data ale dajmy na to ta co wyzej
 
-    var ztgkDate = new Date(2023,5,29,9,0,0,0).getTime();
+    var ztgkDate = new Date(2024,5,29,9,0,0,0).getTime();
     var todayDate = new Date().getTime();
     var remainingTime = ztgkDate - todayDate;
 
