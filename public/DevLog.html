@@ -135,50 +135,140 @@
 
 
 <p>
-<body>
-    <label id="devLogs">Devlog #1: Lorem ipsum dolor
-        sit amet, consectetur adipisicing elit. Adipisci architecto aspernatur cupiditate est impedit in iusto, odit
-        perferendis provident, repellendus ut veniam voluptates.</label><br><br>
-
-    <input type="text" id="T" maxlength="500" placeholder="Tresc"><br>
-
-    <input type="text" id="pass" maxlength="10" placeholder="Hasło"><br>
-    <button type="button" id="AddDevLog">Dodaj</button>
-    <script src="addDevLog.js"></script>
-    <br><br><br><br>
+    <body>
+        <label id="devLogs">Devlog #1: Lorem ipsum dolor
+            sit amet, consectetur adipisicing elit. Adipisci architecto aspernatur cupiditate est impedit in iusto, odit
+            perferendis provident, repellendus ut veniam voluptates.</label><br><br>
+    <!--    <input type="text" id="pass" maxlength="10" placeholder="Hasło"><br>-->
+        <br><br><br><br>
     <!--Dodawanie zdjecia-->
 
+    <input type="text" id="Tresc" maxlength="500" placeholder="Treść"><br>
 
-<input type="file" id="file-selector">
-<p id="status"></p>
-<div>
-    <img id="output">
-</div>
-<script>
-    const status = document.getElementById('status');
-    const output = document.getElementById('output');
-    if (window.FileList && window.File && window.FileReader) {
-        document.getElementById('file-selector').addEventListener('change', event => {
-            output.src = '';
-            status.textContent = '';
-            const file = event.target.files[0];
-            if (!file.type) {
-                status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
-                return;
+        <body>
+            <script>
+                function elementFromHTML(html){
+                    const template = document.createElement("template");
+
+                    template.innerHTML=html.trim();
+
+                    return template.content.firstElementChild;
+                }
+            </script>
+        </body>
+
+
+    <script>
+            const myList = elementFromHTML(`
+                <label id="DL"></label><br>
+                `)
+    </script>
+
+
+
+    <body>
+        <input type="file" id="file-selector">
+        <p id="status"></p>
+
+        <div>
+            <img id="outImage">
+        </div>
+
+<!--        <button type="button" id="AddDevLog">Dodaj</button>-->
+<!--        <script src="AddDevlog.js"></script>-->
+
+        <script>
+            // var tresc = document.getElementById('Tresc').value  ;
+            // document.getElementById('DL').innerHTML = tresc;
+            document.getElementById('file-selector').onchange = function (evt) {
+                var tgt = evt.target || window.event.srcElement,
+                    files = tgt.files;
+
+                // FileReader support
+                if (FileReader && files && files.length) {
+                    var fr = new FileReader();
+                    fr.onload = function () {
+                        document.getElementById('outImage').src = fr.result;
+                    }
+                    fr.readAsDataURL(files[0]);
+                }
+
+                // Not supported
+                else {
+                    // fallback -- perhaps submit the input to an iframe and temporarily store
+                    // them on the server until the user's session ends.
+                }
+                // document.body.appendChild(myList)
             }
-            if (!file.type.match('image.*')) {
-                status.textContent = 'Error: The selected file does not appear to be an image.'
-                return;
-            }
-            const reader = new FileReader();
-            reader.addEventListener('load', event => {
-                output.src = event.target.result;
-            });
-            reader.readAsDataURL(file);
-        });
-    }
-</script>
-</body>
+
+
+
+            // const status = document.getElementById('status');
+            // const output = document.getElementById('output');
+            // if (window.FileList && window.File && window.FileReader) {
+            //     document.getElementById('file-selector').addEventListener('change', event => {
+            //         output.src = ' ';
+            //         status.textContent = ' ';
+            //         const file = event.target.files[0];
+            //         if (!file.type) {
+            //             status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+            //             return;
+            //         }
+            //         if (!file.type.match('image.*')) {
+            //             status.textContent = 'Error: The selected file does not appear to be an image.'
+            //             return;
+            //         }
+            //         const reader = new FileReader();
+            //         reader.addEventListener('load', event => {
+            //             output.src = event.target.result;
+            //         });
+            //         reader.readAsDataURL(file);
+            //     });
+
+
+
+
+            //document.getElementById('output').innerHTML = document.getElementById('file-selector').src
+            // const status = document.getElementById('status');
+            // const output = document.getElementById('output');
+            // if (window.FileList && window.File && window.FileReader) {
+            //     document.getElementById('file-selector').addEventListener('change', event => {
+            //         output.src = '';
+            //         status.textContent = '';
+            //         const file = event.target.files[0];
+            //         if (!file.type) {
+            //             status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+            //             return;
+            //         }
+            //         if (!file.type.match('image.*')) {
+            //             status.textContent = 'Error: The selected file does not appear to be an image.'
+            //             return;
+            //         }
+            //         const reader = new FileReader();
+            //         reader.addEventListener('load', event => {
+            //             output.src = event.target.result;
+            //         });
+            //         reader.readAsDataURL(file);
+            //     });
+            // }
+
+        </script>
+
+
+
+        </body>
+
+
+
+
+
+    </body>
+</p>
+
+
+
+
+
 
 <!--    <input type="file" id="AddImage" onChange={handleChange} />-->
 <!--    <label id="IM"></label><br>-->
@@ -186,22 +276,29 @@
 
 
 
-    <br><br><br><br>
+<!--    <br><br><br><br>-->
+<!--    <br><br><br><br>-->
+<!--    <br><br><br><br>-->
+<!--    <br><br><br><br>-->
+<!--    <br><br><br><br>-->
+<!--    <br><br><br><br>-->
+<!--    <br><br><br><br>-->
+<!--    <br><br><br><br>-->
+<!--<p>-->
+<!--    <input type="text" id="authorText" maxlength="30" placeholder="Twoja nazwa"><br>-->
+<!--    <input type="text" id="commentText" maxlength="500" placeholder="Napisz komentarz"><br>-->
+<!--    <button type="button" id="SendButton">Wyślij</button>-->
+<!--    <br><br>-->
+<!--    <script src="textInput.js"></script>-->
 
-    <input type="text" id="authorText" maxlength="30" placeholder="Twoja nazwa"><br>
-    <input type="text" id="commentText" maxlength="500" placeholder="Napisz komentarz"><br>
-    <button type="button" id="SendButton">Wyślij</button>
-    <br><br>
-    <script src="textInput.js"></script>
+<!--    <label id="errorMsg"></label><br>-->
+<!--    <label id="komentarze">Komentarze: </label><br>-->
+<!--    <button type="button" id="LoadButton">Załaduj Komentarze</button>-->
+<!--    <br><br>-->
+<!--    <script src="loadComments.js"></script>-->
 
-    <label id="errorMsg"></label><br>
-    <label id="komentarze">Komentarze: </label><br>
-    <button type="button" id="LoadButton">Załaduj Komentarze</button>
-    <br><br>
-    <script src="loadComments.js"></script>
-
-    <label id="tresc_komentarzy"></label><br>
-</p>
+<!--    <label id="tresc_komentarzy"></label><br>-->
+<!--</p>-->
 
 <!-- #################################Stopka#################################-->
 
