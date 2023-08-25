@@ -107,26 +107,26 @@
 </duzyNapis>
 <!-- #################################Naglowek#################################-->
 
-<Naglowek>
-    <div style="position: absolute; display: block;top: 50px;left: 0px;  width:100% ;height:180px;background-color: black; margin: 0"></div>
+<!--<Naglowek>-->
+<!--    <div style="position: absolute; display: block;top: 50px;left: 0px;  width:100% ;height:180px;background-color: black; margin: 0"></div>-->
 
-    <img src="Graphics/ŻABA-LOGO.png" class="Logo">
-    <p>
-        <Witch class="Napis">Witch</Witch>
-    </p>
-    <p>
-        <Way class="Napis">Way</Way>
-    </p>
-    <a href="FAQ.html">
-        <FAQ class="menuButton">FAQ</FAQ>
-    </a>
-    <a href="DevLog.html">
-        <DevLog class="menuButton">DevLog</DevLog>
-    </a>
-    <a>
-        <Settings class="menuButton"><br>Accessibility</br>settings</Settings>
-    </a></Naglowek>
-<div style="position: absolute; display: block;top: 230px;left: 0px;  width:100% ;height:2000px;background-color: #B2A07A; margin: 0; z-index: -1"></div>
+<!--    <img src="Graphics/ŻABA-LOGO.png" class="Logo">-->
+<!--    <p>-->
+<!--        <Witch class="Napis">Witch</Witch>-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <Way class="Napis">Way</Way>-->
+<!--    </p>-->
+<!--    <a href="FAQ.html">-->
+<!--        <FAQ class="menuButton">FAQ</FAQ>-->
+<!--    </a>-->
+<!--    <a href="DevLog.html">-->
+<!--        <DevLog class="menuButton">DevLog</DevLog>-->
+<!--    </a>-->
+<!--    <a>-->
+<!--        <Settings class="menuButton"><br>Accessibility</br>settings</Settings>-->
+<!--    </a></Naglowek>-->
+<!--<div style="position: absolute; display: block;top: 230px;left: 0px;  width:100% ;height:2000px;background-color: #B2A07A; margin: 0; z-index: -1"></div>-->
 
 
 
@@ -158,48 +158,68 @@
         </body>
 
 
-    <script>
-            const myList = elementFromHTML(`
-                <label id="DL"></label><br>
-                `)
-    </script>
+
 
 
 
     <body>
-        <input type="file" id="file-selector">
-        <p id="status"></p>
+<!--        <input type="file" id="file-selector">-->
+<!--        <p id="status"></p>-->
+<!--        <div>-->
+<!--            <img id="outImage">-->
+<!--        </div>-->
 
-        <div>
-            <img id="outImage">
-        </div>
+    <script>
+        const myList = elementFromHTML(`
+                    <img id="outImage" src="logo192.png">
 
-<!--        <button type="button" id="AddDevLog">Dodaj</button>-->
+                    `)
+
+    </script>
+
+
+        <button type="button" id="AddDevLog">Dodaj</button>
 <!--        <script src="AddDevlog.js"></script>-->
+    <script>
+        document.getElementById("AddDevLog").onclick = function (int) {
+            document.body.appendChild(myList)
+        }
+    </script>
+
+
+
+
+
 
         <script>
-            // var tresc = document.getElementById('Tresc').value  ;
-            // document.getElementById('DL').innerHTML = tresc;
-            document.getElementById('file-selector').onchange = function (evt) {
-                var tgt = evt.target || window.event.srcElement,
-                    files = tgt.files;
 
-                // FileReader support
-                if (FileReader && files && files.length) {
-                    var fr = new FileReader();
-                    fr.onload = function () {
-                        document.getElementById('outImage').src = fr.result;
-                    }
-                    fr.readAsDataURL(files[0]);
-                }
 
-                // Not supported
-                else {
-                    // fallback -- perhaps submit the input to an iframe and temporarily store
-                    // them on the server until the user's session ends.
-                }
-                // document.body.appendChild(myList)
-            }
+
+//                // var tresc = document.getElementById('Tresc').value;
+//                // document.getElementById('DL').innerHTML = tresc;
+//
+//                document.getElementById('file-selector').onchange = function (evt) {
+//                    var tgt = evt.target || window.event.srcElement,
+//                        files = tgt.files;
+//
+//                    // FileReader support
+//                    if (FileReader && files && files.length) {
+//                        var fr = new FileReader();
+//                        fr.onload = function () {
+//                            document.getElementById('outImage').src = fr.result;
+//                        }
+//                        fr.readAsDataURL(files[0]);
+//                    }
+//
+//                    // Not supported
+//                    else {
+//                        // fallback -- perhaps submit the input to an iframe and temporarily store
+//                        // them on the server until the user's session ends.
+//                    }
+//                    document.body.appendChild(myList)
+//                }
+
+
 
 
 
@@ -226,31 +246,6 @@
             //     });
 
 
-
-
-            //document.getElementById('output').innerHTML = document.getElementById('file-selector').src
-            // const status = document.getElementById('status');
-            // const output = document.getElementById('output');
-            // if (window.FileList && window.File && window.FileReader) {
-            //     document.getElementById('file-selector').addEventListener('change', event => {
-            //         output.src = '';
-            //         status.textContent = '';
-            //         const file = event.target.files[0];
-            //         if (!file.type) {
-            //             status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
-            //             return;
-            //         }
-            //         if (!file.type.match('image.*')) {
-            //             status.textContent = 'Error: The selected file does not appear to be an image.'
-            //             return;
-            //         }
-            //         const reader = new FileReader();
-            //         reader.addEventListener('load', event => {
-            //             output.src = event.target.result;
-            //         });
-            //         reader.readAsDataURL(file);
-            //     });
-            // }
 
         </script>
 
@@ -302,15 +297,15 @@
 
 <!-- #################################Stopka#################################-->
 
-<div style="position: absolute; display: block;top: 2230px; left:0px; width:100% ;height:500px;background-color: rgb(28,28,28); margin: 0"></div>
-<DevelopDEV class="Napis">Developed by</DevelopDEV>
-<img src="Graphics/Logo.png" style="position: absolute;
-top: 2330px;
-width: 275px;
-height: 250px;
-left:50px;">
-<AllRightsDEV class="Napis">All Rights Reserved © 2022-2023</AllRightsDEV>
-<CookieDEV class="Napis">Cookies Policy<br>Privacy Policy<br>User Agreement</CookieDEV>
+<!--<div style="position: absolute; display: block;top: 2230px; left:0px; width:100% ;height:500px;background-color: rgb(28,28,28); margin: 0"></div>-->
+<!--<DevelopDEV class="Napis">Developed by</DevelopDEV>-->
+<!--<img src="Graphics/Logo.png" style="position: absolute;-->
+<!--top: 2330px;-->
+<!--width: 275px;-->
+<!--height: 250px;-->
+<!--left:50px;">-->
+<!--<AllRightsDEV class="Napis">All Rights Reserved © 2022-2023</AllRightsDEV>-->
+<!--<CookieDEV class="Napis">Cookies Policy<br>Privacy Policy<br>User Agreement</CookieDEV>-->
 
 
 
