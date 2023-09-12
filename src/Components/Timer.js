@@ -7,13 +7,10 @@ function Timer(props) {
     const [ileMinut, setIleMinut] = useState()
     const [ileSekund, setIleSekund] = useState()
 
-
     const sizeFlag = props.fontSize
     const colorFlag = props.color
     const speachFlag = props.speach
     console.log(speachFlag)
-
-
 
     var ztgkDate = new Date(2024, 5, 29, 9, 0, 0, 0).getTime();
     var todayDate = new Date().getTime();
@@ -25,8 +22,6 @@ function Timer(props) {
         setTimeout(() => setIleMinut(Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60))), 1000);
         setTimeout(() => setIleSekund(Math.floor((remainingTime % (1000 * 60)) / 1000)), 1000)
     }, [ileDni, ileGodzin, ileMinut, ileSekund])
-
-
 
     const styl = (x,y) =>({
         fontSize: (x) ? '50px' : '30px',
@@ -46,7 +41,6 @@ function Timer(props) {
     }
 
     return (
-        // <div className={Style.styl}>
         <div className ={Style.Timer} style={styl(sizeFlag, colorFlag)} id="ZTGK" onMouseEnter={() => handleHover("ZTGK")}>
             Do ZTGK zostało: {ileDni} dni, {ileGodzin} godzin, {ileMinut} minut, {ileSekund} sekund
         </div>

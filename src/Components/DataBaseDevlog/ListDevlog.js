@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {collection, getDocs, doc, deleteDoc, addDoc} from 'firebase/firestore'
 import {db} from "../../DataBase/init-firebase";
 import Style from "../../styles/ListDevlog.module.css"
-import Zamek from "../../Assets/Zamek.png";
 export default function ListDevlog(props) {
 
     const [devLogs, setDevLogs] = useState([])
@@ -97,7 +96,6 @@ export default function ListDevlog(props) {
 
     return (
         <div className={Style.ListDevlog}>
-            {/*<button onClick={() => getDevLogs()}>Refresh Devlogs</button>*/}
             <ul>
                 {devLogs.map(devlog => (
                     <li key={devlog.id}>

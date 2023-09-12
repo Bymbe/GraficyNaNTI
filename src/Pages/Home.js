@@ -53,7 +53,6 @@ function Home(props) {
         ref.current?.scrollIntoView({ behavior: 'smooth' });
     };
 
-
     return (
         <div className={Style.home}>
             <div className={Style.HomeContent}>
@@ -77,7 +76,7 @@ function Home(props) {
                 <div className={Style.Wishlist} style={{backgroundImage : `url(${Uczenie})`}}>
                     <h1 style={stylDuze(sizeFlag, colorFlag)}  id="AddToSteam" onMouseEnter={() => handleHover("AddToSteam")}>Add to <br/> wishlist on <br/>Steam</h1>
                     <p style={stylMale(sizeFlag, colorFlag)}  id="BeTheF" onMouseEnter={() => handleHover("BeTheF")}>Be the first one to play WitchWay on premiere day!</p>
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+                    <a href="https://store.steampowered.com/app/1172620/Sea_of_Thieves_2023_Edition/">
                         <div>
                             <p id="Watch" style={stylButton(sizeFlag, colorFlag)}  id="AddToW" onMouseEnter={() => handleHover("AddToW")}>ADD TO WISHLIST</p>
                         </div>

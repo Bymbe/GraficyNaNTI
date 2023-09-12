@@ -1,7 +1,5 @@
 import React from 'react'
 import ListComments from "../Components/DataBaseFAQ/ListComments";
-import AddComment from "../Components/DataBaseFAQ/AddComment";
-import EditComments from "../Components/DataBaseFAQ/EditComments";
 import Style from "../styles/FAQ.module.css"
 import Zamek from "../Assets/Zamek.png";
 
@@ -28,14 +26,11 @@ function FAQ(props) {
         }
     }
 
-
     return (
         <div className={Style.FAQ}>
             <h4 style={styl(sizeFlag, colorFlag)}  id="Frekuently" onMouseEnter={() => handleHover("Frekuently")}>FREQUENTLY ASKED QUESTIONS</h4>
             <div className={Style.Comments} style={{backgroundImage : `url(${Zamek})`}}>
                 <ListComments fontSize={sizeFlag} color={colorFlag} speach={speachFlag}/>
-                {/*<AddComment/>*/}
-                {/*<EditComments/>*/}
             </div>
         </div>
     )

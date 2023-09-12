@@ -104,7 +104,6 @@ function ListComments(props) {
     })
 
     const styleTextArea = (x) => ({
-        // fontSize: (x) ? '32px' : '16px',
         width: (x) ? '75%' : '85%',
         left: (x) ? '90px' : '0px',
         fontSize: (x) ? '32px' : '16px'
@@ -145,13 +144,10 @@ function ListComments(props) {
                                     <textarea style={styleTextArea(sizeFlag)} id='Answer' type='text' value={answer}
                                            onChange={e => setAnswer(e.target.value)}></textarea>
                                     <button  className={Style.SubmitAnswer}  type="submit" style={stylButtonAnswer(sizeFlag, colorFlag)}  id="AddAnswerButton" onMouseEnter={() => handleHover("AddAnswerButton")}>Submit answer</button>
-
                                 </form>
                             </li>
                         )
                     }
-
-
                 })}
             </ul>
             <div className={Style.AddComment}>
@@ -162,7 +158,6 @@ function ListComments(props) {
                         <textarea style={styleTextArea(sizeFlag)} id='Nickname' type='text' value={nickName}
                                onChange={e => setNickName(e.target.value)}></textarea>
                     </div>
-
                     <div style={stylJasne(sizeFlag, colorFlag)}>
                         <label htmlFor="Question" style={stylJasne(sizeFlag, colorFlag)}  id="QuestionToBeAsked" onMouseEnter={() => handleHover("QuestionToBeAsked")}>Question: </label>
                         <textarea style={styleTextArea(sizeFlag)} id='Question' type='text' value={question}
@@ -172,21 +167,7 @@ function ListComments(props) {
                 </form>
             </div>
         </div>
-
-
     )
 }
 
 export default ListComments
-
-// <ul>
-// {comments.map(comment => (
-//         <li key={comment.id}>
-//             <button onClick={() => deleteComment(comment.id)} >Delete</button>
-//             <p className={Style.Nick}>{comment.data.Nickname}</p>
-//             <p className={Style.Comment}>Question: {comment.data.Question}</p>
-//             <p className={Style.Answer}> Answer: {comment.data.Answer}</p>
-//
-//         </li>
-//     ))}
-// </ul>
