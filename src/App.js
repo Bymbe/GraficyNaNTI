@@ -1,6 +1,7 @@
 import './App.css';
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
 import ONas from "./Pages/ONas";
 import Karmy from "./Pages/Karmy";
@@ -24,6 +25,7 @@ function App() {
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
         </Routes>
+        <Footer/>
       </Router>
     </div>
   );
