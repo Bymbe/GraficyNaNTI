@@ -21,7 +21,7 @@ function Navbar() {
                 <li><Link to="Pomoc" className="Link">Pomoc</Link></li>
             </div>
             <div className="navbar-right">
-                <Link to="Konto"><img className="Navbar-icons" src={Konto}/></Link>
+                <Link to="Register"><img className="Navbar-icons" src={Konto}/></Link>
                 <Link to="Koszyk"><img className="Navbar-icons" src={Koszyk}/></Link>
 
             </div>

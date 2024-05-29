@@ -9,12 +9,14 @@ import Konto from "./Pages/Konto";
 import Koszyk from "./Pages/Koszyk";
 import Opinie from "./Pages/Opinie";
 import Pomoc from "./Pages/Pomoc";
+import Register from "./Pages/Register";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Navbar/>
+
 
         <Routes>
             <Route path="/" element={<Home />} />
@@ -24,6 +26,7 @@ function App() {
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
+            <Route path="/Register" element={<Register />} />
         </Routes>
         <Footer/>
       </Router>
