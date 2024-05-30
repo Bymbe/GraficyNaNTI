@@ -1,10 +1,44 @@
-import React from "react";
+import React, {useState} from "react";
 import Logo from "../Assets/Logo.svg";
 import Koszyk from "../Assets/Koszyk.svg";
 import Konto from "../Assets/Konto.svg";
 import { Link } from "react-router-dom"
+import Popup from 'reactjs-popup';
+import {doc, getDoc} from "firebase/firestore";
+import {db} from "../DataBase/init-firebase";
 
-function Navbar() {
+function Navbar(props) {
+
+    const [Login, setLogin] = useState('');
+    const [Password, setPassword] = useState("");
+    const [Zalogowano, setZalogowano] = useState(false);
+
+    const Logowanie = async () => {
+        if (Login.trim() === '' || Password.trim() === '') {
+            alert('Nazwa kolekcji nie może być pusta.');
+            return;
+        }
+        try{
+            const DaneRef = doc(db, Login, "Dane");
+            const dane = await getDoc(DaneRef);
+            if(Password !== dane.data().Hasło){
+                //console.log(dane.data().Hasło);
+                alert('Błędne hasło')
+            }
+            else {
+                alert('Logowanie powiodło się')
+                setZalogowano(true);
+                props.handleCallBackLogin(Login);
+                props.handleCallBackZalogowo(Zalogowano);
+            }
+        }catch (error){
+            console.error("Błąd przy logowaniu ", error);
+            alert('Błąd przy logowaniu');
+        }
+
+    }
+
+
     return (
         <div className="navbar">
             <div className="navbar-left">
@@ -21,7 +55,25 @@ function Navbar() {
                 <li><Link to="Pomoc" className="Link">Pomoc</Link></li>
             </div>
             <div className="navbar-right">
-                <Link to="Register"><img className="Navbar-icons" src={Konto}/></Link>
+                {Zalogowano ? (<Link to="Konto"><img className="Navbar-icons" src={Konto}/></Link>) : (
+                    <Popup trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">
+                        <div className="navbar-popup">
+                            <h1>Logowanie</h1>
+                            <div className="navbar-popup-logowanie">
+                                <textArea rows="1" type="text" value={Login} placeholder="Login"
+                                          onChange={(e) => setLogin(e.target.value)}/>
+                                <textArea rows="1" type="text" value={Password} placeholder="Hasło"
+                                          onChange={(e) => setPassword(e.target.value)}/>
+                                <button onClick={Logowanie}>Zaloguj</button>
+                            </div>
+                            <div className="navbar-popup-rejestracja">
+                                <div></div>
+                                <h2>Zarejestruje się <Link to="Register" id="Popup-Register-Link">tutaj</Link> </h2>
+                            </div>
+                        </div>
+                    </Popup>
+                )
+                };
                 <Link to="Koszyk"><img className="Navbar-icons" src={Koszyk}/></Link>
 
             </div>

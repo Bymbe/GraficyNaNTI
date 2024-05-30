@@ -10,23 +10,37 @@ import Koszyk from "./Pages/Koszyk";
 import Opinie from "./Pages/Opinie";
 import Pomoc from "./Pages/Pomoc";
 import Register from "./Pages/Register";
+import {useState} from "react";
 
 function App() {
+    const [Zalogowano, setZalogowano] = useState(false);
+    const [Login, setLogin] = useState('');
+
+    function CallBackZalogowano (data){
+        setZalogowano(data);
+    }
+
+    function CallBackLogin (data){
+        setLogin(data);
+    }
+
+
   return (
     <div className="App">
       <Router>
-        <Navbar/>
+        <Navbar Login={Login} Zalogowano={Zalogowano} handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin} />
 
 
         <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Home" element={<Home />} />
             <Route path="/Karmy" element={<Karmy />} />
-            <Route path="/Konto" element={<Konto />} />
+            <Route path="/Konto" element={<Konto Login={Login} handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/> } />
             <Route path="/Koszyk" element={<Koszyk />} />
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
-            <Route path="/Register" element={<Register />} />
+            <Route path="/Register" element={<Register handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/>} />
         </Routes>
         <Footer/>
       </Router>

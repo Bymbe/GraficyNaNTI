@@ -1,10 +1,11 @@
 import React from 'react'
 import App from "../App";
 
-function Konto() {
+function Konto(props) {
+    const loginName = props.Login;
     return (
         <div>
-            Konto
+            Login: {props.Login}
         </div>
     )
 }

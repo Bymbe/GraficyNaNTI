@@ -71,6 +71,97 @@ code {
 .navbar-right img{
   display: inline-block;
   padding: 0px 10px 0px 10px;
+
+}
+
+.navbar-right img:hover{
+  cursor: pointer;
+}
+
+.navbar-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F6F1CB;
+  border-radius: 10px;
+  width: 250px;
+  height: 250px;
+  font-family: "Anek Gujarati", sans-serif;
+}
+
+.navbar-popup h1 {
+  font-size: 24px;
+  color: #5E3A1F;
+
+}
+
+.navbar-popup-logowanie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.navbar-popup-logowanie textarea{
+  position: relative;
+  display: block;
+  margin-top: 5px;
+  padding: 5px;
+  height: 15px;
+  border-radius: 5px;
+  border-width: 3px ;
+  border-color: #5E3A1F;
+
+
+  resize: none;
+}
+textarea:focus, input:focus{
+  outline: none;
+}
+
+
+.navbar-popup button{
+  position: relative;
+  top: 10px;
+  background-color: #5E3A1F;
+  border: none;
+  color: #F6F1CB;
+  font-size: 16px;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+
+}
+
+.navbar-popup button:hover {
+  cursor: pointer;
+}
+
+.navbar-popup-rejestracja{
+  /*background-color: #5E3A1F;
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 50px;
+  position: relative;
+  top: 30px;*/
+}
+
+.navbar-popup-rejestracja div {
+  height: 4px;
+  background-color: #5E3A1F;
+  position: relative;
+  top: 20px;
+}
+
+.navbar-popup-rejestracja h2{
+  color: #5E3A1F;
+  font-size: 24px;
+}
+#Popup-Register-Link{
+  color: #CE9F54;
+  text-decoration: none;
 }
 
 
