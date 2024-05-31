@@ -60,15 +60,15 @@ function Navbar(props) {
                         <div className="navbar-popup">
                             <h1>Logowanie</h1>
                             <div className="navbar-popup-logowanie">
-                                <textArea rows="1" type="text" value={Login} placeholder="Login"
+                                <textarea rows="1" type="text" value={Login} placeholder="Login"
                                           onChange={(e) => setLogin(e.target.value)}/>
-                                <textArea rows="1" type="text" value={Password} placeholder="Hasło"
+                                <textarea rows="1" type="text" value={Password} placeholder="Hasło"
                                           onChange={(e) => setPassword(e.target.value)}/>
                                 <button onClick={Logowanie}>Zaloguj</button>
                             </div>
                             <div className="navbar-popup-rejestracja">
                                 <div></div>
-                                <h2>Zarejestruje się <Link to="Register" id="Popup-Register-Link">tutaj</Link> </h2>
+                                <h2>Zarejestruj się <Link to="Register" id="Popup-Register-Link">tutaj</Link> </h2>
                             </div>
                         </div>
                     </Popup>

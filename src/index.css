@@ -19,6 +19,7 @@ code {
   background-color: #5E3A1F;
   height: 150px;
   width: 100%;
+  z-index: 1;
 }
 
 .navbar div {
@@ -26,13 +27,13 @@ code {
 }
 
 .Logo-navbar {
-  position: fixed;
+  position: absolute;
   left: 25px;
   top: 15px;
 }
 
 #PawsomeProvisions-Navbar {
-  position: fixed;
+  position: absolute;
   color: #F6F1CB;
   font-family: "Anek Gujarati", sans-serif;
   font-size: 36px;
@@ -63,7 +64,7 @@ code {
 }
 
 .navbar-right{
-  position: fixed;
+  position: absolute;
   right: 30px;
   top: 40px;
 }
@@ -71,6 +72,7 @@ code {
 .navbar-right img{
   display: inline-block;
   padding: 0px 10px 0px 10px;
+
 
 }
 
@@ -82,11 +84,13 @@ code {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #F6F1CB;
+  background-color: #CE9F54;
   border-radius: 10px;
   width: 250px;
   height: 250px;
   font-family: "Anek Gujarati", sans-serif;
+  border-width: 5px;
+  border-color: #5E3A1F;
 }
 
 .navbar-popup h1 {
@@ -160,7 +164,7 @@ textarea:focus, input:focus{
   font-size: 24px;
 }
 #Popup-Register-Link{
-  color: #CE9F54;
+  color: #F6F1CB;
   text-decoration: none;
 }
 
@@ -203,7 +207,7 @@ textarea:focus, input:focus{
 }
 
 .Footer-Dane {
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: row;
   left: 400px;
@@ -246,16 +250,311 @@ textarea:focus, input:focus{
   background-color: #5E3A1F;
   height: 8px;
   position: relative;
-  bottom: -65px;
+
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+  top: 220px;
 }
 
 .Footer-Bottom h2 {
   font-size: 15px;
   position: relative;
   width: 400px;
-  bottom: -55px;
+  top: 220px;
   right: -80px;
+}
+/*########################################### FOOTER ###########################################*/
+.Register-Page{
+  background-color: #F6F1CB;
+  height: auto;
+  padding-top: 200px;
+  padding-bottom: 200px;
+}
+
+.Register-Page-BackgroundImages{
+
+  display: flex;
+  flex-direction: column;
+}
+
+.Register-Page-BackgroundImages img{
+  position: absolute;
+  z-index: 0;
+}
+
+.Register-Page-BackgroundImages img:first-child{
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 700px;
+  top: -200px;
+  opacity: 25%;
+}
+.Register-Page-BackgroundImages img:last-child{
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 700px;
+  bottom: -530px;
+  opacity: 25%;
+}
+
+.Register {
+  padding: 20px;
+  position: relative;
+  /*top: 100px;*/
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #CE9F54;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  height: auto;
+}
+.Register h1 {
+  position: relative;
+  top:-45px;
+  background-color: #5E3A1F;
+  font-size: 36px;
+  font-family: "Anek Gujarati", sans-serif;
+  width: 100%;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  color: #F6F1CB;
+}
+
+.Register div{
+  position: relative;
+  top: -20px;
+  display: inline-block;
+  /*width: 300px;*/
+  background-color: #5E3A1F;
+  width: fit-content;
+  padding: 10px;
+  vertical-align: center;
+
+
+}
+
+.Register div label{
+  display: inline-block;
+  position: relative;
+  background-color: #F6F1CB;
+
+  width: 150px;
+  height: 35px;
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  color: #5E3A1F;
+  border-radius: 5px 0 0 5px;
+
+
+
+}
+
+.Register div textarea{
+  display: inline-block;
+  position: relative;
+  top: 15px;
+  height: 30px;
+  border-radius: 0 5px 5px 0;
+  resize: none;
+  text-align: center;
+  line-height: 30px;
+
+}
+
+.Register button{
+  background-color: #5E3A1F;
+  border: none;
+  color: #F6F1CB;
+  font-size: 16px;
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+
+}
+/*########################################### KONTO ###########################################*/
+.Konto{
+  font-family: "Anek Gujarati", sans-serif;
+  color: #5E3A1F;
+  width: 100%;
+}
+.Konto-Dane{
+  background-color: #F6F1CB;
+  display: flex;
+  padding: 20px;
+  height: 500px;
+
+
+}
+
+.Konto-Dane img{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  top: -500px;
+  opacity: 50%;
+  scale: 0.5;
+  object-fit: cover;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.Konto-Dane h1{
+  z-index: 4;
+  position: relative;
+}
+
+.Konto-Left {
+  /*background-color: #5E3A1F;*/
+  position: relative;
+  top: 100px;
+  left: 50px;
+  text-align: left;
+  line-height: 30px;
+  display: flex;
+  flex-direction: column;
+  column-gap: 20px;
+  height: 300px;
+  width: 400px;
+}
+
+.Konto-Left h1{
+  text-align: center;
+}
+
+.Konto-Left h2 {
+  position: relative;
+  line-height: 0.1;
+  margin: 0;
+  /*background-color: #5E3A1F;*/
+}
+
+.Konto-Right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  top:100px;
+  right: 50px;
+  text-align: left;
+  line-height: 30px;
+  height: 300px;
+  gap: 30px;
+  width: 400px;
+
+}
+
+.Konto-Right h1{
+  text-align: center;
+}
+
+
+.Konto-Nagłówek{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Konto-Right h2 {
+  position: relative;
+
+  margin: 0;
+  /*background-color: #5E3A1F;*/
+}
+
+
+
+.Pupile{
+  position: relative;
+
+  padding-bottom: 20px;
+  z-index: 2;
+  height: 500px;
+  background: #CE9F54;
+}
+
+.Pupile h1{
+  background-color: #5E3A1F;
+  color: #F6F1CB;
+}
+
+.Pupile ul{
+  position: relative;
+
+  list-style: none;
+}
+
+.Pupile-Nagłówek {
+  background-color: #F6F1CB;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: 30px;
+  text-align: left;
+  padding: 10px 20px 10px 20px;
+  border-radius: 15px 15px 0px 0px;
+  margin-bottom: 0px;
+
+}
+
+.Pupiple-Informacje{
+
+  background-image: linear-gradient(to bottom, #CE9F54, #F6F1CB);
+  width: 80%;
+  position: relative;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px 20px 10px 20px;
+}
+
+.Pupiple-Informacje p {
+  text-align: left;
+}
+
+
+
+
+
+
+
+.Konto-Bottom{
+
+  position: relative;
+  height: 300px;
+  width: 100%;
+  background: #F6F1CB;
+  overflow: hidden;
+
+}
+
+.Konto-Bottom img {
+  position: relative;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  top: -650px;
+  opacity: 50%;
+  scale: 0.5;
+  object-fit: cover;
+  z-index: 0;
+  overflow: hidden;
+
 }
