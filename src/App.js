@@ -10,6 +10,7 @@ import Koszyk from "./Pages/Koszyk";
 import Opinie from "./Pages/Opinie";
 import Pomoc from "./Pages/Pomoc";
 import Register from "./Pages/Register";
+import AccessibilitySettings from "./Pages/accessibilitySettings"
 import {useState} from "react";
 
 function App() {
