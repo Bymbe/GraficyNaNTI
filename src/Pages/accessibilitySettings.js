@@ -1,6 +1,7 @@
 import React from "react";
 
 var isHighContrast = false;
+var isBiggerTextSize = false;
 
 document.addEventListener('keydown', function(event) {
     if (event.key === '1' || event.key === '!'){
@@ -36,18 +37,18 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// document.addEventListener('keydown', function(event) {
-//     if (event.key === '2' || event.key === '@'){
-//         console.log("zmiana wielkosci czcionki");
-//
-//         const root = document.documentElement;
-//         if(isHighContrast === false) {
-//             isHighContrast = true;
-//             root.style.setProperty('--cream', "#000000");
-//         } else {
-//             isHighContrast = false;
-//             root.style.setProperty('--cream', "#F6F1CB");
-//         }
-//
-//     }
-// });
+document.addEventListener('keydown', function(event) {
+    if (event.key === '2' || event.key === '@'){
+        console.log("zmiana wielkosci czcionki");
+
+        const root = document.documentElement;
+        if(isBiggerTextSize === false) {
+            isBiggerTextSize = true;
+            root.style.setProperty('--additionaltextsize', "5px");
+        } else {
+            isBiggerTextSize = false;
+            root.style.setProperty('--additionaltextsize', "0px");
+        }
+
+    }
+});
