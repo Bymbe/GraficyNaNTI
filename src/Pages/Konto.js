@@ -2,6 +2,10 @@ import React, {useEffect, useState} from 'react'
 import {db} from "../DataBase/init-firebase";
 import {collection, getDoc, getDocs,doc, deleteDoc, updateDoc, addDoc, setDoc} from "firebase/firestore";
 import Królik from "../Assets/kroliczek.png";
+import Strzałka from "../Assets/Strzałka.svg";
+import TypPies from "../Assets/Pies_EBIZNES.png"
+import TypKot from "../Assets/Kot-EBIZNES.png"
+import TypKrólik from "../Assets/Królik_EBIZNES.png"
 
 
 
@@ -63,6 +67,28 @@ const getData = async () => {
             alert("Dokument nie istnieje");
         }
 }
+
+const OpenDrawer = (PetID) => {
+    let element = document.getElementById(`Pet-Inf ${PetID}`);
+    let element2 = document.getElementById(`Szuflada ${PetID}`);
+    let element3 = document.getElementById(`Pet-Nagłówek ${PetID}`);
+    //console.log(element.style.height);
+    if(element.style.height === "0px"){
+
+        element.style.height = "300px";
+        element.style.padding = "10px 20px 10px 20px";
+        element2.style.rotate = "-90deg";
+        element3.style.borderRadius = "15px 15px 0px 0px";
+        element3.style.transitionDelay = "0s";
+    }
+    else{
+        element.style.height = "0px";
+        element.style.padding = "0px 20px 0px 20px";
+        element2.style.rotate = "0deg"
+        element3.style.borderRadius = "15px";
+        element3.style.transitionDelay = "0.5s";
+    }
+}
     return (
         <div className="Konto">
             <div className="Konto-Dane">
@@ -94,13 +120,42 @@ const getData = async () => {
             </div>
             <div className="Pupile">
                 <h1>Twoje Pupile</h1>
-                {/*<ul>
+                <ul>
 
-                    {Pets.map(pet => {
+                    <li key="Rex">
+                        <div className="Pupile-Nagłówek">
+                            <h2 id={`Pet-Nagłówek Rex`}>Rex</h2>
+                            <img className="Pupile-Guzik-Szuflada" id="Szuflada Rex" src={Strzałka} onClick={() => OpenDrawer("Rex")}/>
+                        </div>
+
+                        <div className="Pupiple-Informacje" id={`Pet-Inf Rex`} style={{height: 'fit-content'}}>
+                            {'Pies' === 'Pies' &&
+                                <img src={TypPies}/>
+                            }
+                            {'Pies' === 'Kot' &&
+                                <img src={TypKot}/>
+                            }
+                            {'Pies' === 'Królik' &&
+                                <img src={TypKrólik}/>
+                            }
+                            <p>Rasa: Test</p>
+                            <p>Płeć: Test</p>
+                            <p>Wiek: Test</p>
+                            <p>Waga: Test</p>
+                            <p>Dolegliwości: Test</p>
+                            <button>Zobacz karmy</button>
+                        </div>
+
+                    </li>
+                    {/*{Pets.map(pet => {
                         return (
                             <li key={pet.id}>
-                                <h2 className="Pupile-Nagłówek">{pet.id}</h2>
-                                <div className="Pupiple-Informacje">
+                                <div className="Pupile-Nagłówek">
+                                    <h2 >{pet.id}</h2>
+                                    <button onClick={OpenDrawer(`${pet.id}`)}><img/></button>
+                                </div>
+
+                                <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`} style={{height:'fit-content'}}>
                                     <p>Rasa: {pet.Rasa}</p>
                                     <p>Płeć: {pet.Płeć}</p>
                                     <p>Wiek: {pet.Wiek}</p>
@@ -111,8 +166,8 @@ const getData = async () => {
 
                             </li>
                         )
-                    })}
-                </ul>*/}
+                    })}*/}
+                </ul>
             </div>
             <div className="Konto-Bottom">
                 <img src={Królik}/>
@@ -120,5 +175,7 @@ const getData = async () => {
         </div>
     )
 }
+
+
 
 export default Konto;

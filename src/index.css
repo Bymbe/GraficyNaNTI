@@ -504,6 +504,7 @@ textarea:focus, input:focus{
   z-index: 2;
   height: 500px;
   background: #CE9F54;
+  height: fit-content;
 }
 
 .Pupile h1{
@@ -517,39 +518,77 @@ textarea:focus, input:focus{
   list-style: none;
 }
 
-.Pupile-Nagłówek {
+.Pupile-Guzik-Szuflada{
+  position: relative;
+  scale: 0.8;
+  bottom: 65px;
+  left: 320px;
+  rotate: 0deg;
+  transition: 0.5s;
+}
+
+.Pupile-Nagłówek h2{
   background-color: #F6F1CB;
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 60%;
   font-family: "Anek Gujarati", sans-serif;
   font-size: calc(30px + var(--additionaltextsize));
   text-align: left;
   padding: 10px 20px 10px 20px;
-  border-radius: 15px 15px 0px 0px;
+  /*transition-delay: 0.5s;*/
+
+  /*border-radius: 15px 15px 0px 0px;*/
   margin-bottom: 0px;
 
 }
 
 .Pupiple-Informacje{
 
-  background-image: linear-gradient(to bottom, #CE9F54, #F6F1CB);
-  width: 80%;
+  background-image: linear-gradient(to bottom, #e8bc76, #F6F1CB);
+
+  width: 60%;
   position: relative;
   margin-top: 0px;
   margin-left: auto;
   margin-right: auto;
-  padding: 10px 20px 10px 20px;
+  bottom: 75px;
+
+  /*padding: 10px 20px 10px 20px;*/
+  border-radius: 0 0 15px 15px;
+  transition-duration: 0.5s;
+  /*height: 0px;*/
+  overflow-y: hidden;
 }
 
 .Pupiple-Informacje p {
+  position: relative;
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 20px;
   text-align: left;
+  color: #5E3A1F;
 }
 
+.Pupiple-Informacje button{
+  position: absolute;
+  left: 20px;
+  background-color: #5E3A1F;
+  border: none;
+  border-radius: 5px;
+  padding: 7px 15px;
+  color: #F6F1CB;
+}
 
-
-
+.Pupiple-Informacje img {
+  position: absolute;
+  top: -300px;
+  right: -200px;
+  opacity: 0.5;
+  scale: 0.5;
+}
 
 
 
