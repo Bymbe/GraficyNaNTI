@@ -32,6 +32,7 @@ function Register(props) {
 
             await addDoc(collection(mainDocumentRef, "Zwierzęta"), {placeholderField: true});
             await addDoc(collection(mainDocumentRef, "Zamówienia"), {placeholderField: true});
+            await addDoc(collection(mainDocumentRef, "Koszyk"), {placeholderField: true});
 
             /*await setDoc(doc(db, Login, "Dane", "Zwierzęta", "Burek"), {Rasa: "Golden Retriver"}); // Dodawanie Pupila*/
             setZalogowano(true);

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {db} from "../DataBase/init-firebase";
-import {collection, getDoc, getDocs,doc, deleteDoc, updateDoc, addDoc, setDoc} from "firebase/firestore";
+import {collection, getDoc, getDocs,doc, deleteDoc, updateDoc, addDoc, setDoc, onSnapshot} from "firebase/firestore";
 import Królik from "../Assets/kroliczek.png";
 import Strzałka from "../Assets/Strzałka.svg";
 import TypPies from "../Assets/Pies_EBIZNES.png"
@@ -24,12 +24,26 @@ function Konto(props) {
     const [Pets, setPets] = useState([]);
 
     useEffect(() => {
+        console.log("UseEfect->getPets");
         getPets();
-    })
+    },[])
 
     const getPets = async () => {
         try {
             const DaneRef = await doc(db, props.Login, 'Dane');
+
+            const docSnap = await getDoc(DaneRef);
+
+            if(docSnap.exists()){
+                setName(docSnap.data().Imię)
+                setSurname(docSnap.data().Nazwisko)
+                setEmail(docSnap.data().E_Mail)
+                setTelephone(docSnap.data().Telefon);
+                setAdress(docSnap.data().Adres)
+                setTown(docSnap.data().Miasto)
+                setCountry(docSnap.data().Kraj)
+            }
+
             const petsCollecionRef = await collection(DaneRef,'Zwierzęta');
             const snapShot = await getDocs(petsCollecionRef);
             const documents = snapShot.docs.map(doc => ({
@@ -43,30 +57,6 @@ function Konto(props) {
         }
     }
 
-    useEffect( () => {
-        getData()
-    },[])
-
-
-const getData = async () => {
-        try{
-            const docRef = doc(db,props.Login, "Dane");
-            const docSnap = await getDoc(docRef);
-
-            if(docSnap.exists()){
-                setName(docSnap.data().Imię)
-                setSurname(docSnap.data().Nazwisko)
-                setEmail(docSnap.data().E_Mail)
-                setTelephone(docSnap.data().Telefon);
-                setAdress(docSnap.data().Adres)
-                setTown(docSnap.data().Miasto)
-                setCountry(docSnap.data().Kraj)
-            }
-
-        } catch (error){
-            alert("Dokument nie istnieje");
-        }
-}
 
 const OpenDrawer = (PetID) => {
     let element = document.getElementById(`Pet-Inf ${PetID}`);
@@ -122,7 +112,7 @@ const OpenDrawer = (PetID) => {
                 <h1>Twoje Pupile</h1>
                 <ul>
 
-                    <li key="Rex">
+                    {/*<li key="Rex">
                         <div className="Pupile-Nagłówek">
                             <h2 id={`Pet-Nagłówek Rex`}>Rex</h2>
                             <img className="Pupile-Guzik-Szuflada" id="Szuflada Rex" src={Strzałka} onClick={() => OpenDrawer("Rex")}/>
@@ -146,16 +136,26 @@ const OpenDrawer = (PetID) => {
                             <button>Zobacz karmy</button>
                         </div>
 
-                    </li>
-                    {/*{Pets.map(pet => {
+                    </li>*/}
+                    {Pets.map(pet => {
                         return (
                             <li key={pet.id}>
                                 <div className="Pupile-Nagłówek">
-                                    <h2 >{pet.id}</h2>
-                                    <button onClick={OpenDrawer(`${pet.id}`)}><img/></button>
+                                    <h2 id={`Pet-Nagłówek ${pet.id}`}>{pet.id}</h2>
+                                    <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka} onClick={() => OpenDrawer(`${pet.id}`)}/>
+
                                 </div>
 
-                                <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`} style={{height:'fit-content'}}>
+                                <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`}>
+                                    {pet.Typ === "Pies" &&
+                                        <img src={TypPies}/>
+                                    }
+                                    {pet.Typ === "Kot" &&
+                                        <img src={TypKot}/>
+                                    }
+                                    {pet.Typ === "Królik" &&
+                                        <img src={TypKrólik}/>
+                                    }
                                     <p>Rasa: {pet.Rasa}</p>
                                     <p>Płeć: {pet.Płeć}</p>
                                     <p>Wiek: {pet.Wiek}</p>
@@ -166,7 +166,7 @@ const OpenDrawer = (PetID) => {
 
                             </li>
                         )
-                    })}*/}
+                    })}
                 </ul>
             </div>
             <div className="Konto-Bottom">

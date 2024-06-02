@@ -522,7 +522,7 @@ textarea:focus, input:focus{
   position: relative;
   scale: 0.8;
   bottom: 65px;
-  left: 320px;
+  left: 28%;
   rotate: 0deg;
   transition: 0.5s;
 }
@@ -537,6 +537,7 @@ textarea:focus, input:focus{
   font-size: calc(30px + var(--additionaltextsize));
   text-align: left;
   padding: 10px 20px 10px 20px;
+  border-radius: 15px;
   /*transition-delay: 0.5s;*/
 
   /*border-radius: 15px 15px 0px 0px;*/
@@ -554,6 +555,8 @@ textarea:focus, input:focus{
   margin-left: auto;
   margin-right: auto;
   bottom: 75px;
+  height: 0px;
+  padding: 0px 20px 0px 20px;
 
   /*padding: 10px 20px 10px 20px;*/
   border-radius: 0 0 15px 15px;
