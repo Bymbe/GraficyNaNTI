@@ -1,6 +1,6 @@
 import React from 'react'
-import Pies from "../Assets/Pies.svg";
-import Kot from "../Assets/Kot.svg";
+import Pies from "../Assets/piesek.png";
+import Kot from "../Assets/kotek.png";
 import Logo from "../Assets/Logo-Footer.svg";
 import Twitter from "../Assets/Twitter.svg";
 
@@ -9,6 +9,7 @@ function Home() {
 
     return (
         <div className="Home">
+
             <div className="Home-Top">
                 <br/><br/><br/><br/>
                 <h1 id="HeaderMain-Home">Spersonalizowana karma dla Twojego pupila!</h1>
@@ -20,6 +21,7 @@ function Home() {
                 <div>
                     <button id="StartButton-Home">Zaczynamy!</button>
                 </div>
+                <img src={Pies}/>
             </div>
 
             <div className="Home-Middle">
@@ -27,8 +29,10 @@ function Home() {
                     <h1 id="Karmy-Home">Karmy sezonowe</h1>
                 </div>
                 <br/>
+                <div className="KarmyMainHome">
                 <div className="KarmyBottom-Home">
-                            <button className="KarmyButtons-Home">&lt;</button>
+                    <button className="KarmyButtonsL-Home">&lt;</button>
+                    <button className="KarmyButtonsR-Home">&gt;</button>
                     <div className="KarmyBoxy-Home">
                         <h1 id="NazwaKarmy-Home">"Nazwa Karmy"</h1>
                         <img src={Pies}/>
@@ -50,13 +54,18 @@ function Home() {
                         <button className="KarmyButtons2-Home">Czytaj więcej</button>
                         <button className="KarmyButtons3-Home">Zobacz!</button>
                     </div>
-                    <button className="KarmyButtons-Home">&gt;</button>
+                </div>
+
                 </div>
 
             </div>
             <div className="Home-Bottom">
+                <img src={Kot}/>
 
             </div>
+
+
+
         </div>
     )
 }

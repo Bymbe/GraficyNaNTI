@@ -634,30 +634,30 @@ textarea:focus, input:focus{
 
 }
 
+
+
 .Home-Top {
   color: #5E3A1F;
   width: 100%;
   height: 500px;
   margin: 0;
   text-align: center;
-}
-
-.Home-Top::before {
-  content: "";
-  position: absolute;
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat;
-  top: -50px;
-  right: 400px;
-  bottom: 0px;
-  left: 400px;
-  background-image: url('Assets/piesek.png');
-  opacity: 0.2;
-}
-.Home-Top::after {
   opacity: 1;
 }
+
+/*.Home-Top::before {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  background-size: contain;*/
+/*  background-position: center top;*/
+/*  background-repeat: no-repeat;*/
+/*  top: -50px;*/
+/*  right: 400px;*/
+/*  bottom: 0px;*/
+/*  left: 400px;*/
+/*  background-image: url('Assets/piesek.png');*/
+/*  opacity: 0.2;*/
+/*}*/
 
 #HeaderMain-Home{
   margin: 0px;
@@ -698,9 +698,22 @@ button {
   cursor: pointer;
   opacity: 1;
 }
-#HeaderMain-Home {
-  opacity: 1;
-}
+.Home-Top img {
+  width: 100%;
+   position: absolute;
+   left: 0;
+   right: 0;
+   margin-right: auto;
+   margin-left: auto;
+   top: -65vh;
+   opacity: 30%;
+   scale: 0.39;
+   object-fit: cover;
+   z-index: -1;
+   overflow: auto;
+
+ }
+
 
 .Home-Middle{
   color: #F6F1CB;
@@ -715,16 +728,31 @@ button {
 .KarmyBottom-Home div{
   display: inline-block;
 }
-.KarmyButtons-Home{
-  padding: 10px;
-  background-color: #5E3A1F;
-  margin-top: 10vh;
-  width: 40px;
-  color: #F6F1CB;
-  border: none;
-  border-radius: 5px;
+.KarmyButtonsL-Home, .KarmyButtonsR-Home{
+  width: 5vw;
+  height: 5vw;
+  position: absolute;
+  top: 750px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  opacity: 1;
+  z-index: 2;
+  /*padding: 10px;*/
+  /*background-color: #5E3A1F;*/
+  /*margin-top: 10vh;*/
+  /*width: 40px;*/
+  /*color: #F6F1CB;*/
+  /*border: none;*/
+  /*border-radius: 5px;*/
+  /*cursor: pointer;*/
+  /*opacity: 1;*/
+}
+.KarmyButtonsL-Home{
+  left: 10px;
+}
+.KarmyButtonsR-Home{
+  right: 10px;
 }
 
 #NazwaKarmy-Home {
@@ -735,7 +763,8 @@ button {
   width: 200px;
   bottom: 100px;
   box-sizing: inherit;
-  padding: 0px 5px 0px 5px;
+  /*padding: 0px 5px 0px 5px;*/
+  margin: auto;
 }
 .KarmyBoxy-Home h2 {
   display: grid;
@@ -765,7 +794,9 @@ button {
   opacity: 1;
 }
 .KarmyBoxy-Home {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   padding: 10px;
   text-align: center;
   width: 40vh;
@@ -785,17 +816,33 @@ button {
   height: 100vh;
 }
 
-.Home-Bottom::before {
-  content: "";
+.Home-Bottom img {
+  width: 100%;
   position: absolute;
-  background-size: contain;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  top: 10px;
-  right: 300px;
-  bottom: -50px;
-  left: 300px;
-  background-image: url('Assets/kotek.png');
-  opacity: 0.2;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  bottom: -79vh;
+  opacity: 30%;
+  scale: 0.39;
+  object-fit: cover;
+  z-index: 0;
+  overflow: auto;
 }
+
+/*.Home-Bottom::before {*/
+/*  content: "";*/
+/*  position: absolute;*/
+/*  background-size: contain;*/
+/*  background-position: center bottom;*/
+/*  background-repeat: no-repeat;*/
+/*  top: 10px;*/
+/*  right: 300px;*/
+/*  bottom: -50px;*/
+/*  left: 300px;*/
+/*  background-image: url('Assets/kotek.png');*/
+/*  opacity: 0.2;*/
+/*  z-index: 0;*/
+/*}*/
 
