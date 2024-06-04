@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Logo from "../Assets/Logo.svg";
 import Koszyk from "../Assets/Koszyk.svg";
 import Konto from "../Assets/Konto.svg";
-import Oczko from "../Assets/Oczko2.svg"
+import Oczko from "../Assets/Oko.svg"
 import { Link } from "react-router-dom"
 import Popup from 'reactjs-popup';
 import {doc, getDoc} from "firebase/firestore";
