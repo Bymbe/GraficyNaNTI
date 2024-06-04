@@ -28,7 +28,7 @@ code {
   background-color: #5E3A1F;
   height: 150px;
   width: 100%;
-  z-index: 1;
+  z-index: 4;
 }
 
 .navbar div {
@@ -231,6 +231,7 @@ textarea:focus, input:focus{
   font-family: "Anek Gujarati", sans-serif;
   color: var(--footertextcolor);
   position: relative;
+  z-index: 4;
 }
 .Footer-Top {
   background-color: #5E3A1F;
@@ -684,6 +685,8 @@ textarea:focus, input:focus{
   margin: 0;
   text-align: center;
   opacity: 1;
+  overflow: hidden;
+
 }
 
 /*.Home-Top::before {*/
@@ -935,6 +938,7 @@ button {
   background: #F6F1CB;
   opacity: 1;
   height: 70vh;
+  overflow: hidden;
 }
 
 .Home-Bottom img {
@@ -962,6 +966,7 @@ button {
   background: #F6F1CB;
   overflow: hidden;
   margin: 0;
+
 }
 
 .Koszyk-Top img {
@@ -976,7 +981,7 @@ button {
   object-fit: cover;
   z-index: 0;
   overflow: hidden;
-  top: -550px;
+  top: -700px;
 }
 
 .Koszyk-Content {
@@ -1006,9 +1011,11 @@ button {
 //margin-bottom: 50px;
   border-radius: 15px;
   margin-top: 70px;
+  min-height: 700px;
+
 }
 
-.Koszyk-Produkty h1:first-child{
+.Koszyk-Produkty .Produkty h1:first-child{
   color: #5E3A1F;
   position: relative;
   top: 50px;
@@ -1019,6 +1026,7 @@ button {
   list-style: none;
   position: relative;
   margin-top: 100px;
+  height: fit-content;
 }
 
 .Produkty li {
@@ -1033,11 +1041,12 @@ button {
   height: 100px;
   border-radius: 10px;
   line-height: 30px;
-  margin: 0px;
+
   padding: 0px;
   font-size: 20px;
   font-family: "Anek Gujarati", sans-serif;
   color: #5E3A1F;
+  margin-bottom: 20px;
 
 
 }
@@ -1075,17 +1084,18 @@ button {
   margin: 0;
   left: 0px;
   right: 0px;
+  cursor: pointer;
 }
 
 .Koszyk-Produkty-Ilość img:first-child{
   
   top: 15px;
-  rotate: -90deg;
+  rotate: 90deg;
 }
 
 .Koszyk-Produkty-Ilość img:last-child{
   bottom: 15px;
-  rotate: 90deg;
+  rotate: -90deg;
 }
 
 .Koszyk-Produkty-Ilość div{
@@ -1093,7 +1103,7 @@ button {
 
   left: 70px;*/
 
-  background: grey;
+  background: #ab9d93;
   width: 30px;
   height: 30px;
   text-align: center;
@@ -1127,8 +1137,106 @@ button {
   color: #5E3A1F;
 }
 
+.Metoda-Płatności {
+  //background: #aeff86;
+  width: 60%;
+  position: relative;
+  left: 30px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.Koszyk-Ikonki {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+
+}
+
+.Koszyk-Ikonki img{
+  margin-left: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.Koszyk-Podsumowanie {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
 
 
+  top: 100px;
+  right: 50px;
+  background-color: #F6F1CB;
+  padding: 10px;
+  padding-bottom: 40px;
+  border-radius: 15px;
+}
+
+.Koszyk-Podsumowanie div{
+  //background-color: #aeff86;
+  position: relative;
+  left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  line-height: 20px;
+  color: #5E3A1F;
+  font-family: "Anek Gujarati", sans-serif;
+  width: 400px;
+
+}
+
+.Koszyk-Podsumowanie div h2 {
+  text-align: left;
+  font-size: 26px;
+  width: 300px;
+}
+
+.Koszyk-Podsumowanie div div {
+  font-size: 20px;
+  position: relative;
+
+  width: 100px;
+}
+
+.Koszyk-Podsumowanie button{
+  width: 200px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Koszyk-Podsumowanie textarea{
+  width: 370px;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  resize: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #ab9d93;
+  height: 20px;
+  font-family: "Anek Gujarati", sans-serif;
+  color: #5E3A1F;
+  font-weight: bold;
+}
+
+.Koszyk-Kreska{
+  display: block;
+  height: 5px;
+  width: 90%;
+  background-color: #5E3A1F;
+  position: relative;
+  bottom: 20px;
+}
 
 .Koszyk-Bottom{
   position: relative;
@@ -1150,5 +1258,6 @@ button {
   object-fit: cover;
   z-index: 0;
   overflow: hidden;
-  bottom: -650px;
+  bottom: -900px;
 }
+

@@ -74,7 +74,7 @@ function Navbar(props) {
                         </div>
                     </Popup>
                 )
-                };
+                }
                 <Link to="Koszyk"><img className="Navbar-icons" src={Koszyk}/></Link>
 
                 <Popup trigger={<img className="Navbar-icons" src={Oczko} />} position="bottom center">

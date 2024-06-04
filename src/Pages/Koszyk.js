@@ -56,44 +56,65 @@ function Koszyk(props) {
                             <li key="Kwiaciara">
                                 <img src={Karma} className="Produkty-Karma"/>
                                 <h2>"Kwiaciara"</h2>
-                                <div className="Koszyk-Produkty-Ilość" >
+                                <div className="Koszyk-Produkty-Ilość">
                                     <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć +1*/}
-                                    <div id={`Karma-Ilość Kwiaciara`}>1</div> {/*Karma.Ilosć*/}
+                                    <div id={`Karma-Ilość Kwiaciara`}>1</div>{/*Karma.Ilosć*/}
                                     <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
 
                                 </div>
-                                <div id={`Cena Kwiaciara`} className="Produkty-Cena">49.99 zł</div> {/*Karma.Cena**Karma.Ilość*/}
+                                <div id={`Cena Kwiaciara`} className="Produkty-Cena">49.99 zł</div>
+                                {/*Karma.Cena**Karma.Ilość*/}
+                                <img src={Krzyżyk} className="Produkty-Krzyżyk"/> {/*Krzyżyk - usuń z bazy danych*/}
+                            </li>
+                            <li key="Kwiaciara">
+                                <img src={Karma} className="Produkty-Karma"/>
+                                <h2>"Kwiaciara"</h2>
+                                <div className="Koszyk-Produkty-Ilość">
+                                    <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć +1*/}
+                                    <div id={`Karma-Ilość Kwiaciara`}>1</div>
+                                    {/*Karma.Ilosć*/}
+                                    <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
+
+                                </div>
+                                <div id={`Cena Kwiaciara`} className="Produkty-Cena">49.99 zł</div>
+                                {/*Karma.Cena**Karma.Ilość*/}
                                 <img src={Krzyżyk} className="Produkty-Krzyżyk"/> {/*Krzyżyk - usuń z bazy danych*/}
                             </li>
                         </ul>
                     </div>
-
-                    <h1>Metoda płatności</h1>
-                    <div className="Koszyk-Ikonki">
-                        <img src={Blik}/>
-                        <img src={Przelewy}/>
-                        <img src={PayPal}/>
+                    <div className="Metoda-Płatności">
+                        <h1>Metoda płatności</h1>
+                        <div className="Koszyk-Ikonki">
+                            <img src={Blik}/>
+                            <img src={Przelewy}/>
+                            <img src={PayPal}/>
+                        </div>
                     </div>
                     <div className="Koszyk-Podsumowanie">
-                        <h1>Posumowanie</h1>
+                        <h1>Podsumowanie</h1>
                         <div>
                             <h2>Suma</h2>
-                            <div id="Koszyk-Suma"></div> {/*trzeba mieć zmienną suma którą raz sie będzie ustawiać */}
-
+                            <div id="Koszyk-Suma">49.99 zł</div>
+                            {/*trzeba mieć zmienną suma którą raz sie będzie ustawiać */}
                         </div>
                         <div>
                             <h2>Koszt dostawy</h2>
-                            <div id="Koszyk-KosztDostawy"></div>
+                            <div id="Koszyk-KosztDostawy">0.00 zł</div>
                         </div>
+                        <br/><br/>
                         <div>
                             <h2>Rabat</h2>
-                            <div id="Koszyk-Rabat"></div>
+                            <div id="Koszyk-Rabat">0.00 zł</div>
+
                         </div>
+                        <textarea rows="1"></textarea>
+                        <br/>
                         <div>
                             <h2>Do zapłaty</h2>
-                            <div id="Koszyk-DoZapłaty"></div>
+                            <div id="Koszyk-DoZapłaty">49.99 zł</div>
                         </div>
-                        <div></div> {/*kreseczka*/}
+                        <div className="Koszyk-Kreska"></div>
+                        {/*kreseczka*/}
                         <button>Zapłać</button>
                     </div>
                 </div>
