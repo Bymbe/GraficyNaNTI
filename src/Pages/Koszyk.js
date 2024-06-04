@@ -3,6 +3,13 @@ import {db} from "../DataBase/init-firebase";
 import {collection, doc, getDocs} from "firebase/firestore";
 import Pies from "../Assets/piesek.png";
 import Kot from "../Assets/kotek.png";
+import Karma from "../Assets/Karma.svg";
+import Krzyżyk from "../Assets/Krzyżyk.svg";
+import Strzałka from "../Assets/Strzałka.svg";
+import Blik from "../Assets/Blik.svg";
+import Przelewy from "../Assets/Przelew24.svg";
+import PayPal from "../Assets/PayPal.svg";
+
 
 function Koszyk(props) {
 
@@ -41,30 +48,31 @@ function Koszyk(props) {
         <div className="Koszyk">
             <div className="Koszyk-Top"><img src={Pies}/></div>
             <div className="Koszyk-Content">
-                <h1>Koszyk</h1>
+                <h1 id="Koszyk-Nagłówek">Koszyk</h1>
                 <div className="Koszyk-Produkty">
                     <div className="Produkty">
                         <h1>Produkty</h1>
                         <ul>
                             <li key="Kwiaciara">
-                                <img/>
+                                <img src={Karma} className="Produkty-Karma"/>
                                 <h2>"Kwiaciara"</h2>
-                                <div className="Koszyk-Produkty-Ilość">
-                                    <img/> {/*po kliknięciu ustaw w bazie danych wartosć +1*/}
-                                    <img/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
+                                <div className="Koszyk-Produkty-Ilość" >
+                                    <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć +1*/}
                                     <div id={`Karma-Ilość Kwiaciara`}>1</div> {/*Karma.Ilosć*/}
+                                    <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
+
                                 </div>
-                                <div id={`Cena Kwiaciara`}>49.99 zł</div> {/*Karma.Cena**Karma.Ilość*/}
-                                <img/> {/*Krzyżyk - usuń z bazy danych*/}
+                                <div id={`Cena Kwiaciara`} className="Produkty-Cena">49.99 zł</div> {/*Karma.Cena**Karma.Ilość*/}
+                                <img src={Krzyżyk} className="Produkty-Krzyżyk"/> {/*Krzyżyk - usuń z bazy danych*/}
                             </li>
                         </ul>
                     </div>
 
                     <h1>Metoda płatności</h1>
                     <div className="Koszyk-Ikonki">
-                        <img/>
-                        <img/>
-                        <img/>
+                        <img src={Blik}/>
+                        <img src={Przelewy}/>
+                        <img src={PayPal}/>
                     </div>
                     <div className="Koszyk-Podsumowanie">
                         <h1>Posumowanie</h1>

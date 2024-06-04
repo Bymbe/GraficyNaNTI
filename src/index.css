@@ -114,7 +114,7 @@ code {
   background-color: #CE9F54;
   border-radius: 10px;
   width: 250px;
-  height: 160px + var(--additionaltextsize);
+  height: calc(160px + var(--additionaltextsize));
   font-family: "Anek Gujarati", sans-serif;
   border-width: 5px;
   border-color: #5E3A1F;
@@ -450,6 +450,7 @@ textarea:focus, input:focus{
   width: 100%;
 }
 .Konto-Dane{
+  width: 100%;
   background-color: #F6F1CB;
   display: flex;
   padding: 20px;
@@ -459,12 +460,13 @@ textarea:focus, input:focus{
 }
 
 .Konto-Dane img{
+  width: 100%;
   position: absolute;
   left: 0;
   right: 0;
   margin-right: auto;
   margin-left: auto;
-  top: -500px;
+  top: -400px;
   opacity: 50%;
   scale: 0.5;
   object-fit: cover;
@@ -645,7 +647,8 @@ textarea:focus, input:focus{
 }
 
 .Konto-Bottom img {
-  position: relative;
+  width: 100%;
+  position: absolute;
   left: 0;
   right: 0;
   margin-right: auto;
@@ -658,7 +661,6 @@ textarea:focus, input:focus{
   overflow: hidden;
 
 }
-
 /*########################################### HOME ###########################################*/
 
 .Home{
@@ -885,3 +887,202 @@ button {
 /*  z-index: 0;*/
 /*}*/
 
+/*########################################### KOSZYK ###########################################*/
+
+.Koszyk-Top{
+  position: relative;
+  height: 200px;
+  width: 100%;
+  background: #F6F1CB;
+  overflow: hidden;
+  margin: 0;
+}
+
+.Koszyk-Top img {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  opacity: 50%;
+  scale: 0.5;
+  object-fit: cover;
+  z-index: 0;
+  overflow: hidden;
+  top: -550px;
+}
+
+.Koszyk-Content {
+  background: #CE9F54;
+  margin: 0px;
+  height: fit-content;
+  padding-bottom: 70px;
+
+}
+
+
+
+#Koszyk-Nagłówek{
+  font-family: "Anek Gujarati", sans-serif;
+  background: #5E3A1F;
+  color: #F6F1CB;
+  padding: 5px 0px 5px 0px;
+}
+
+.Koszyk-Produkty{
+  background-image: linear-gradient(to bottom, #F6F1CB, #D8CDA9);
+  width: 70%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+//margin-top: 50px;
+//margin-bottom: 50px;
+  border-radius: 15px;
+  margin-top: 70px;
+}
+
+.Koszyk-Produkty h1:first-child{
+  color: #5E3A1F;
+  position: relative;
+  top: 50px;
+  right: 200px;
+}
+
+.Produkty ul{
+  list-style: none;
+  position: relative;
+  margin-top: 100px;
+}
+
+.Produkty li {
+  background: #F6F1CB;
+  padding: 0px;
+  width: 60%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100px;
+  border-radius: 10px;
+  line-height: 30px;
+  margin: 0px;
+  padding: 0px;
+  font-size: 20px;
+  font-family: "Anek Gujarati", sans-serif;
+  color: #5E3A1F;
+
+
+}
+
+.Produkty li h2{
+  font-size: 26px;
+  position: relative;
+  right: 60px;
+}
+
+/*.Produkty li div {
+  position: relative;
+  font-size: 20px;
+  left: 40px;
+  color: purple;
+}*/
+
+.Koszyk-Produkty-Ilość {
+  position: relative;
+  //background-color: #aeff86;
+  left: 80px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+
+}
+
+.Koszyk-Produkty-Ilość img{
+  position: relative;
+  scale: 0.4;
+  display: block;
+  margin: 0;
+  left: 0px;
+  right: 0px;
+}
+
+.Koszyk-Produkty-Ilość img:first-child{
+  
+  top: 15px;
+  rotate: -90deg;
+}
+
+.Koszyk-Produkty-Ilość img:last-child{
+  bottom: 15px;
+  rotate: 90deg;
+}
+
+.Koszyk-Produkty-Ilość div{
+  /*position: relative;
+
+  left: 70px;*/
+
+  background: grey;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  padding: 3px;
+  padding-bottom: 0px;
+  border-radius: 3px;
+  margin: 0px;
+}
+
+.Produkty-Cena{
+  position: relative;
+  /*color: green;*/
+  left: 50px;
+}
+
+.Produkty-Karma{
+  position: relative;
+  right: 25px;
+}
+.Produkty-Krzyżyk{
+  position: relative;
+  left: 20px;
+}
+
+.Koszyk-Produkty-Ilość div{
+  font-size: 20px;
+}
+
+.Koszyk-Produkty h1{
+  color: #5E3A1F;
+}
+
+
+
+
+.Koszyk-Bottom{
+  position: relative;
+  height: 300px;
+  width: 100%;
+  background: #F6F1CB;
+  overflow: hidden;
+}
+
+.Koszyk-Bottom img{
+  width: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  opacity: 50%;
+  scale: 0.5;
+  object-fit: cover;
+  z-index: 0;
+  overflow: hidden;
+  bottom: -650px;
+}
