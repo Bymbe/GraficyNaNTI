@@ -1127,6 +1127,7 @@ button {
 .Produkty-Krzyżyk{
   position: relative;
   left: 20px;
+  cursor: pointer;
 }
 
 .Koszyk-Produkty-Ilość div{

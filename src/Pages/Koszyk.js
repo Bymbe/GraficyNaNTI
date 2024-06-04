@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {db} from "../DataBase/init-firebase";
-import {collection, doc, getDocs} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
 import Pies from "../Assets/piesek.png";
 import Kot from "../Assets/kotek.png";
 import Karma from "../Assets/Karma.svg";
@@ -15,6 +15,7 @@ function Koszyk(props) {
 
     const [Suma, setSuma] = React.useState(0);
     const [Payout, setPayout] = React.useState(0);
+
 
     const [Karmy, setKarmy] = React.useState([]);
 
@@ -40,9 +41,41 @@ function Koszyk(props) {
         }
     }
 
-    const setAmaount = async () => {
-
+    const setAmaount = async (znak, id, aktualnaIlość) => {
+        const KarmaRef = await doc(db, props.Login, 'Dane','Koszyk', id);
+        if(znak === '+'){
+            updateDoc(KarmaRef, {
+                Amount: aktualnaIlość+1
+            });
+        }
+        else{
+            updateDoc(KarmaRef, {
+                Amount: aktualnaIlość-1
+            });
+        }
+        getKoszyk();
     }
+
+    const deleteKarma = async (id) => {
+        const KarmaRef = await doc(db, props.Login, 'Dane','Koszyk', id);
+        deleteDoc(KarmaRef);
+        getKoszyk();
+    }
+
+    const updateSuma = async () => {
+        const suma = Karmy.reduce((acc, karma) => acc +(karma.Cena * karma.Amount), 0);
+        console.log(suma);
+        setSuma(suma);
+    }
+
+    useEffect(() => {
+        updateSuma()
+
+    }, [Karmy]);
+
+    useEffect(()=>{
+        setPayout(Suma);
+    }, [Suma])
 
     return (
         <div className="Koszyk">
@@ -53,33 +86,39 @@ function Koszyk(props) {
                     <div className="Produkty">
                         <h1>Produkty</h1>
                         <ul>
-                            <li key="Kwiaciara">
-                                <img src={Karma} className="Produkty-Karma"/>
-                                <h2>"Kwiaciara"</h2>
-                                <div className="Koszyk-Produkty-Ilość">
-                                    <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć +1*/}
-                                    <div id={`Karma-Ilość Kwiaciara`}>1</div>{/*Karma.Ilosć*/}
-                                    <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
+                            {Karmy.map(karma => {
 
-                                </div>
-                                <div id={`Cena Kwiaciara`} className="Produkty-Cena">49.99 zł</div>
-                                {/*Karma.Cena**Karma.Ilość*/}
-                                <img src={Krzyżyk} className="Produkty-Krzyżyk"/> {/*Krzyżyk - usuń z bazy danych*/}
-                            </li>
-                            <li key="Kwiaciara">
+                                return (
+                                    <li key={karma.id}>
+                                        <img src={Karma} className="Produkty-Karma"/>
+                                        <h2>{karma.id}</h2>
+                                        <div className="Koszyk-Produkty-Ilość">
+                                            <img src={Strzałka} onClick={() => {setAmaount('+',karma.id, karma.Amount)}}/>{/*po kliknięciu ustaw w bazie danych wartosć +1*/}
+                                            <div id={`Karma-Ilość ${karma.id}`}>{karma.Amount}</div> {/*Karma.Ilosć*/}
+                                            <img src={Strzałka} onClick={() => {setAmaount('-',karma.id, karma.Amount)}}/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
+                                        </div>
+                                        <div id={`Cena ${karma.id}`} className="Produkty-Cena">{karma.Cena} zł</div>
+                                        {/*Karma.Cena**Karma.Ilość*/}
+                                        <img src={Krzyżyk}
+                                             className="Produkty-Krzyżyk" onClick={() => {deleteKarma(karma.id)}}/> {/*Krzyżyk - usuń z bazy danych*/}
+                                    </li>
+                                )
+                            })}
+
+                            {/*<li key="Kwiaciara">
                                 <img src={Karma} className="Produkty-Karma"/>
                                 <h2>"Kwiaciara"</h2>
                                 <div className="Koszyk-Produkty-Ilość">
-                                    <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć +1*/}
+                                    <img src={Strzałka}/> po kliknięciu ustaw w bazie danych wartosć +1
                                     <div id={`Karma-Ilość Kwiaciara`}>1</div>
-                                    {/*Karma.Ilosć*/}
-                                    <img src={Strzałka}/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
+                                    Karma.Ilosć
+                                    <img src={Strzałka}/> po kliknięciu ustaw w bazie danych wartosć -1
 
                                 </div>
                                 <div id={`Cena Kwiaciara`} className="Produkty-Cena">49.99 zł</div>
-                                {/*Karma.Cena**Karma.Ilość*/}
-                                <img src={Krzyżyk} className="Produkty-Krzyżyk"/> {/*Krzyżyk - usuń z bazy danych*/}
-                            </li>
+                                Karma.Cena**Karma.Ilość
+                                <img src={Krzyżyk} className="Produkty-Krzyżyk"/> Krzyżyk - usuń z bazy danych
+                            </li>*/}
                         </ul>
                     </div>
                     <div className="Metoda-Płatności">
@@ -94,7 +133,7 @@ function Koszyk(props) {
                         <h1>Podsumowanie</h1>
                         <div>
                             <h2>Suma</h2>
-                            <div id="Koszyk-Suma">49.99 zł</div>
+                            <div id="Koszyk-Suma">{Suma}</div>
                             {/*trzeba mieć zmienną suma którą raz sie będzie ustawiać */}
                         </div>
                         <div>
@@ -111,7 +150,7 @@ function Koszyk(props) {
                         <br/>
                         <div>
                             <h2>Do zapłaty</h2>
-                            <div id="Koszyk-DoZapłaty">49.99 zł</div>
+                            <div id="Koszyk-DoZapłaty">{Payout} zł</div>
                         </div>
                         <div className="Koszyk-Kreska"></div>
                         {/*kreseczka*/}
