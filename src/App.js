@@ -37,7 +37,7 @@ function App() {
             <Route path="/Home" element={<Home />} />
             <Route path="/Karmy" element={<Karmy />} />
             <Route path="/Konto" element={<Konto Login={Login} handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/> } />
-            <Route path="/Koszyk" element={<Koszyk />} />
+            <Route path="/Koszyk" element={<Koszyk Login={Login}/>} />
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
