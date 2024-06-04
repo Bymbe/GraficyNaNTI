@@ -76,9 +76,69 @@ function Navbar(props) {
                 };
                 <Link to="Koszyk"><img className="Navbar-icons" src={Koszyk}/></Link>
 
+                <Popup trigger={<img className="Navbar-icons" src={Koszyk} />} position="bottom center">
+                    <div className="navbar-popup">
+                        <h1>Ustawienia dostępności</h1>
+                        <div>
+                            <button onClick={highContrast}>Większy kontrast</button>
+                        </div>
+                        <div>
+                            <button onClick={biggerFont}>Większy rozmiar tekstu</button>
+                        </div>
+
+
+                    </div>
+                </Popup>
+
             </div>
         </div>
     )
 }
+
+var isHighContrast = false;
+var isBiggerTextSize = false;
+function highContrast() {
+    console.log("zmiana kontrastu");
+
+    const root = document.documentElement;
+    if (isHighContrast === false) {
+        isHighContrast = true;
+        root.style.setProperty('--textcolor', "#000000");
+        root.style.setProperty('--footertextcolor', "#000000");
+        root.style.setProperty('--bgcolor', "#F0F00F");
+        root.style.setProperty('--registerbgcolor1', "#F0F00F");
+        root.style.setProperty('--registerbgcolor2', "#F0F00F");
+        root.style.setProperty('--registertextcolor', "#000000");
+
+        //root.style.setProperty('--registertextcolor', "#000000");
+        //root.style.setProperty('--registertextcolor', "#000000");
+        //root.style.setProperty('--registertextcolor', "#000000");
+    } else {
+        isHighContrast = false;
+        root.style.setProperty('--textcolor', "#F6F1CB");
+        root.style.setProperty('--footertextcolor', "#5E3A1F");
+        root.style.setProperty('--bgcolor', "null");
+        root.style.setProperty('--registerbgcolor1', "#5E3A1F");
+        root.style.setProperty('--registerbgcolor2', "#F6F1CB");
+        root.style.setProperty('--registertextcolor', "#5E3A1F");
+
+        //root.style.setProperty('--registertextcolor', "#000000");
+        //root.style.setProperty('--registertextcolor', "#000000");
+        //root.style.setProperty('--registertextcolor', "#000000");
+    }
+};
+
+function biggerFont() {
+    console.log("zmiana wielkosci czcionki");
+
+    const root = document.documentElement;
+    if(isBiggerTextSize === false) {
+        isBiggerTextSize = true;
+        root.style.setProperty('--additionaltextsize', "5px");
+    } else {
+        isBiggerTextSize = false;
+        root.style.setProperty('--additionaltextsize', "0px");
+    }
+};
 
 export default Navbar;

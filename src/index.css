@@ -108,7 +108,7 @@ code {
 .navbar-popup h1 {
   font-size: calc(24px + var(--additionaltextsize));
   color: #5E3A1F;
-
+  
 }
 
 .navbar-popup-logowanie {
