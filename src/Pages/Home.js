@@ -3,6 +3,7 @@ import Pies from "../Assets/piesek.png";
 import Kot from "../Assets/kotek.png";
 import Logo from "../Assets/Logo-Footer.svg";
 import Twitter from "../Assets/Twitter.svg";
+import {Link} from "react-router-dom";
 
 
 function Home() {
@@ -19,7 +20,10 @@ function Home() {
                     <input type="text" id="PetNameInput-Home" placeholder="Wpisz imię Twojego pupila"/>
                 </div>
                 <div>
-                    <button id="StartButton-Home">Zaczynamy!</button>
+                    <Link to="/Kwestionariusz">
+                        <button>Zaczynamy!</button>
+                    </Link>
+
                 </div>
                 <img src={Pies}/>
             </div>
