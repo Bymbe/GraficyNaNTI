@@ -105,10 +105,30 @@ code {
   border-color: #5E3A1F;
 }
 
+.navbar-popup2 {
+  position: relative;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #CE9F54;
+  border-radius: 10px;
+  width: 250px;
+  height: 160px + var(--additionaltextsize);
+  font-family: "Anek Gujarati", sans-serif;
+  border-width: 5px;
+  border-color: #5E3A1F;
+}
+
 .navbar-popup h1 {
   font-size: calc(24px + var(--additionaltextsize));
   color: #5E3A1F;
-  
+
+}
+.navbar-popup2 h1 {
+  font-size: calc(18px + var(--additionaltextsize));
+  color: #5E3A1F;
+
 }
 
 .navbar-popup-logowanie {
@@ -149,6 +169,25 @@ textarea:focus, input:focus{
   height: 30px;
   border-radius: 10px;
 
+}
+
+.navbar-popup2 button2{
+  position: relative;
+  top: 0px;
+  border: none;
+  color: var(--bgcolor);
+  background-color: var(--textcolor);
+  font-size: calc(16px + var(--additionaltextsize));
+  text-align: center;
+  width: 80px;
+  height: 30px;
+  border-radius: 8px;
+  padding: 5px;
+  line-height: 2.2;
+}
+
+.navbar-popup2 button2:hover {
+  cursor: pointer;
 }
 
 .navbar-popup button:hover {

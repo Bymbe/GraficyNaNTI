@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Logo from "../Assets/Logo.svg";
 import Koszyk from "../Assets/Koszyk.svg";
 import Konto from "../Assets/Konto.svg";
+import Oczko from "../Assets/Oczko2.svg"
 import { Link } from "react-router-dom"
 import Popup from 'reactjs-popup';
 import {doc, getDoc} from "firebase/firestore";
@@ -76,14 +77,14 @@ function Navbar(props) {
                 };
                 <Link to="Koszyk"><img className="Navbar-icons" src={Koszyk}/></Link>
 
-                <Popup trigger={<img className="Navbar-icons" src={Koszyk} />} position="bottom center">
-                    <div className="navbar-popup">
+                <Popup trigger={<img className="Navbar-icons" src={Oczko} />} position="bottom center">
+                    <div className="navbar-popup2">
                         <h1>Ustawienia dostępności</h1>
                         <div>
-                            <button onClick={highContrast}>Większy kontrast</button>
+                            <button2 onClick={highContrast}>Większy kontrast</button2>
                         </div>
                         <div>
-                            <button onClick={biggerFont}>Większy rozmiar tekstu</button>
+                            <button2 onClick={biggerFont}>Większy rozmiar tekstu</button2>
                         </div>
 
 
