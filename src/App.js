@@ -10,6 +10,7 @@ import Koszyk from "./Pages/Koszyk";
 import Opinie from "./Pages/Opinie";
 import Pomoc from "./Pages/Pomoc";
 import Register from "./Pages/Register";
+import Kwestionariusz  from "./Pages/Kwestionariusz";
 import AccessibilitySettings from "./Pages/accessibilitySettings"
 import {useState} from "react";
 
@@ -41,6 +42,7 @@ function App() {
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
+            <Route path="/Kwestionariusz" element={<Kwestionariusz />} />
             <Route path="/Register" element={<Register handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/>} />
         </Routes>
         <Footer/>
