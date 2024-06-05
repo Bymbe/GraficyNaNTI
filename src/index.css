@@ -1,11 +1,12 @@
 :root {
-  --textcolor: #F6F1CB;
-  --footertextcolor: #5E3A1F;
-  --bgcolor: null;
-  --registertextcolor: #5E3A1F;
-  --registerbgcolor1: #5E3A1F;
-  --registerbgcolor2: #F6F1CB;
   --additionaltextsize: 0px;
+
+  --textColorCreamy: #F6F1CB;
+  --textColorBrown: #5E3A1F;
+
+  --bgColorNull: null;
+  --bgColorCreamy: #F6F1CB;
+  --bgColorBrown: #5E3A1F;
 }
 
 body {
@@ -25,7 +26,7 @@ code {
 /*########################################### NAVBAR ###########################################*/
 .navbar {
   position: sticky;
-  background-color: #5E3A1F;
+  background-color: var(--bgColorBrown);
   height: 150px;
   width: 100%;
   z-index: 4;
@@ -43,8 +44,8 @@ code {
 
 #PawsomeProvisions-Navbar {
   position: absolute;
-  color: var(--textcolor);
-  background-color: var(--bgcolor);
+  color: var(--textColorCreamy);
+  background-color: var(--bgColorNull);
   font-family: "Anek Gujarati", sans-serif;
   font-size: calc(36px + var(--additionaltextsize));
   width: 60px;
@@ -63,16 +64,16 @@ code {
 .navbar-middle li {
   display: inline-block;
   padding: 20px;
-  color: var(--textcolor);
-  background-color: var(--bgcolor);
+  color: var(--textColorCreamy);
+  background-color: var(--bgColorNull);
   font-family: "Anek Gujarati", sans-serif;
   font-size: calc(36px + var(--additionaltextsize));
 }
 
 .Link{
   text-decoration: none;
-  color: var(--textcolor);
-  background-color: var(--bgcolor);
+  color: var(--textColorCreamy);
+  background-color: var(--bgColorNull);
 }
 
 .navbar-right{
@@ -122,12 +123,14 @@ code {
 
 .navbar-popup h1 {
   font-size: calc(24px + var(--additionaltextsize));
-  color: #5E3A1F;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorNull);
 
 }
 .navbar-popup2 h1 {
   font-size: calc(18px + var(--additionaltextsize));
-  color: #5E3A1F;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorNull);
 
 }
 
@@ -161,8 +164,8 @@ textarea:focus, input:focus{
   top: 10px;
   background-color: #5E3A1F;
   border: none;
-  color: var(--textcolor);
-  background-color: var(--bgcolor);
+  color: var(--textColorCreamy);
+  background-color: var(--bgColorNull);
   font-size: calc(16px + var(--additionaltextsize));
   text-align: center;
   width: 80px;
@@ -175,8 +178,8 @@ textarea:focus, input:focus{
   position: relative;
   top: 0px;
   border: none;
-  color: var(--bgcolor);
-  background-color: var(--textcolor);
+  color: var(--textColorBrown);
+  background-color: var(--bgColorCreamy);
   font-size: calc(16px + var(--additionaltextsize));
   text-align: center;
   width: 80px;
@@ -216,8 +219,8 @@ textarea:focus, input:focus{
   font-size: calc(24px + var(--additionaltextsize));
 }
 #Popup-Register-Link{
-  color: var(--textcolor);
-  background-color: var(--bgcolor);
+  color: var(--textColorCreamy);
+  background-color: var(--bgColorNull);
   text-decoration: none;
 }
 
@@ -229,7 +232,7 @@ textarea:focus, input:focus{
   width: 100%;
   height: 300px;
   font-family: "Anek Gujarati", sans-serif;
-  color: var(--footertextcolor);
+  color: var(--textColorBrown);
   position: relative;
   z-index: 4;
 }
@@ -258,7 +261,7 @@ textarea:focus, input:focus{
   width: 170px;
   line-height: 40px;
   font-size: calc(36px + var(--additionaltextsize));
-  background-color: var(--bgcolor);
+  background-color: var(--bgColorNull);
 }
 
 .Footer-Dane {
@@ -271,13 +274,13 @@ textarea:focus, input:focus{
 
 .Footer-Text{
  width: 280px;
-  background-color: var(--bgcolor);
+  background-color: var(--bgColorNull);
 }
 
 .Footer-Text h1{
   font-size: calc(24px + var(--additionaltextsize));
   text-align: left;
-  background-color: var(--bgcolor);
+  background-color: var(--bgColorNull);
 }
 
 .Footer-Text div{
@@ -296,7 +299,7 @@ textarea:focus, input:focus{
 
 .Footer-Socjale h1 {
   font-size: calc(24px + var(--additionaltextsize));
-  background-color: var(--bgcolor);
+  background-color: var(--bgColorNull);
 }
 
 .Footer-Socjale img {
@@ -321,7 +324,7 @@ textarea:focus, input:focus{
   width: 400px;
   top: 220px;
   right: -80px;
-  background-color: var(--bgcolor);
+  background-color: var(--bgColorNull);
 }
 /*########################################### FOOTER ###########################################*/
 .Register-Page{
@@ -378,7 +381,7 @@ textarea:focus, input:focus{
 .Register h1 {
   position: relative;
   top:-45px;
-  background-color: var(--registerbgcolor1);
+  background-color: var(--bgColorBrown);
   font-size: calc(36px + var(--additionaltextsize));
   font-family: "Anek Gujarati", sans-serif;
   width: 100%;
@@ -386,7 +389,7 @@ textarea:focus, input:focus{
   padding-left: 20px;
   padding-right: 20px;
   text-align: center;
-  color: var(--textcolor);
+  color: var(--textColorCreamy);
 }
 
 .Register div{
@@ -405,7 +408,7 @@ textarea:focus, input:focus{
 .Register div label{
   display: inline-block;
   position: relative;
-  background-color: var(--registerbgcolor2);
+  background-color: var(--bgColorCreamy);
 
   width: 150px;
   height: 35px;
@@ -414,7 +417,7 @@ textarea:focus, input:focus{
   padding-left: 20px;
   padding-right: 20px;
 
-  color: var(--registertextcolor);
+  color: var(--textColorBrown);
   border-radius: 5px 0 0 5px;
 
 
@@ -434,9 +437,9 @@ textarea:focus, input:focus{
 }
 
 .Register button{
-  background-color: var(--registerbgcolor1);
+  background-color: var(--bgColorBrown);
   border: none;
-  color: var(--textcolor);
+  color: var(--textColorCreamy);
   font-size: calc(16px + var(--additionaltextsize));
   text-align: center;
   width: 80px;
@@ -1488,3 +1491,12 @@ padding-right: 20px;
   color: #5E3A1F;
   text-align: left;
 }
+
+
+
+/*###################################### KWESTIONARIUSZ ###########################################*/
+
+.Kwestionariusz {
+  background-color: #ab9d93;
+}
+

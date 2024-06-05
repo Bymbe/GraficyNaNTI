@@ -2,8 +2,8 @@ import React from 'react'
 
 function Kwestionariusz() {
     return (
-        <div>
-            Kwestionariusz
+        <div className="Kwestionariusz">
+            Spersonalizowana karma dla twojego zwierzaka!
         </div>
     )
 }

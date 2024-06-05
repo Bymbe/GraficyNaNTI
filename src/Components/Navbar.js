@@ -104,28 +104,18 @@ function highContrast() {
     const root = document.documentElement;
     if (isHighContrast === false) {
         isHighContrast = true;
-        root.style.setProperty('--textcolor', "#000000");
-        root.style.setProperty('--footertextcolor', "#000000");
-        root.style.setProperty('--bgcolor', "#F0F00F");
-        root.style.setProperty('--registerbgcolor1', "#F0F00F");
-        root.style.setProperty('--registerbgcolor2', "#F0F00F");
-        root.style.setProperty('--registertextcolor', "#000000");
-
-        //root.style.setProperty('--registertextcolor', "#000000");
-        //root.style.setProperty('--registertextcolor', "#000000");
-        //root.style.setProperty('--registertextcolor', "#000000");
+        root.style.setProperty('--textColorCreamy', "#F0F00F");
+        root.style.setProperty('--textColorBrown', "#F0F00F");
+        root.style.setProperty('--bgColorNull', "#000000");
+        root.style.setProperty('--bgColorCreamy', "#000000");
+        root.style.setProperty('--bgColorBrown', "#000000");
     } else {
         isHighContrast = false;
-        root.style.setProperty('--textcolor', "#F6F1CB");
-        root.style.setProperty('--footertextcolor', "#5E3A1F");
-        root.style.setProperty('--bgcolor', "null");
-        root.style.setProperty('--registerbgcolor1', "#5E3A1F");
-        root.style.setProperty('--registerbgcolor2', "#F6F1CB");
-        root.style.setProperty('--registertextcolor', "#5E3A1F");
-
-        //root.style.setProperty('--registertextcolor', "#000000");
-        //root.style.setProperty('--registertextcolor', "#000000");
-        //root.style.setProperty('--registertextcolor', "#000000");
+        root.style.setProperty('--textColorCreamy', "#F6F1CB");
+        root.style.setProperty('--textColorBrown', "#5E3A1F");
+        root.style.setProperty('--bgColorNull', "null");
+        root.style.setProperty('--bgColorCreamy', "#F6F1CB");
+        root.style.setProperty('--bgColorBrown', "#5E3A1F");
     }
 };
 
