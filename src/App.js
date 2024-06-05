@@ -8,6 +8,7 @@ import Karmy from "./Pages/Karmy";
 import Konto from "./Pages/Konto";
 import Koszyk from "./Pages/Koszyk";
 import Opinie from "./Pages/Opinie";
+import Kwiaciara from "./Pages/Kwiaciara";
 import Pomoc from "./Pages/Pomoc";
 import Register from "./Pages/Register";
 import Kwestionariusz  from "./Pages/Kwestionariusz";
@@ -42,6 +43,7 @@ function App() {
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
+            <Route path="/Kwiaciara" element={<Kwiaciara />} />
             <Route path="/Kwestionariusz" element={<Kwestionariusz />} />
             <Route path="/Register" element={<Register handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/>} />
         </Routes>

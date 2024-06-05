@@ -20,13 +20,15 @@ function Home() {
                 <div>
                     <input type="text" id="PetNameInput-Home" placeholder="Wpisz imię Twojego pupila"/>
                 </div>
+
                 <div>
                     <Link to="/Kwestionariusz">
                         <button>Zaczynamy!</button>
                     </Link>
-
                 </div>
+
                 <img src={Pies}/>
+
             </div>
 
             <div className="Home-Middle">
@@ -103,10 +105,17 @@ function Home() {
                 </div>
 
             </div>
+
             <div className="Home-Bottom">
                 <img src={Kot}/>
 
             </div>
+
+
+            {/*<div className="Home-Bottom">*/}
+            {/*    <img src={Kot}/>*/}
+
+            {/*</div>*/}
 
 
         </div>
