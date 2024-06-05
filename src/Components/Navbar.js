@@ -109,6 +109,7 @@ function highContrast() {
         root.style.setProperty('--bgColorNull', "#000000");
         root.style.setProperty('--bgColorCreamy', "#000000");
         root.style.setProperty('--bgColorBrown', "#000000");
+        root.style.setProperty('--bgColorPeanutButter', "#000000");
     } else {
         isHighContrast = false;
         root.style.setProperty('--textColorCreamy', "#F6F1CB");
@@ -116,6 +117,7 @@ function highContrast() {
         root.style.setProperty('--bgColorNull', "null");
         root.style.setProperty('--bgColorCreamy', "#F6F1CB");
         root.style.setProperty('--bgColorBrown', "#5E3A1F");
+        root.style.setProperty('--bgColorPeanutButter', "#CE9F54");
     }
 };
 
