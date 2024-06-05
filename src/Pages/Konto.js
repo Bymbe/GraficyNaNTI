@@ -6,6 +6,7 @@ import Strzałka from "../Assets/Strzałka.svg";
 import TypPies from "../Assets/Pies_EBIZNES.png"
 import TypKot from "../Assets/Kot-EBIZNES.png"
 import TypKrólik from "../Assets/Królik_EBIZNES.png"
+import Ołówek from "../Assets/Ołówek.svg"
 
 
 
@@ -20,12 +21,20 @@ function Konto(props) {
     const [Adress, setAdress] = useState("");
     const [Town, setTown] = useState("");
     const [Country, setCountry] = useState("");
+    const [EditingPet, setEditingPet] = useState("");
 
     const [Pets, setPets] = useState([]);
+
+    const [RasaTemp, setRasaTemp] = useState("");
+    const [PłećTemp, setPłećTemp] = useState("");
+    const [WiekTemp, setWiekTemp] = useState("");
+    const [WagaTemp, setWagaTemp] = useState("");
+    const [DolegliwościTemp, setDolegliwościTemp] = useState("");
 
     useEffect(() => {
         console.log("UseEfect->getPets");
         getPets();
+
     },[])
 
     const getPets = async () => {
@@ -79,6 +88,48 @@ const OpenDrawer = (PetID) => {
         element3.style.transitionDelay = "0.5s";
     }
 }
+
+const EditPet = async (PetID) => {
+        if(PetID === EditingPet){
+            setEditingPet("");
+            getPets();
+        }
+        else {
+            try{
+                const docRef = await getDoc(doc(db, props.Login, 'Dane','Zwierzęta', PetID));
+                setRasaTemp(docRef.data().Rasa);
+                setPłećTemp(docRef.data().Płeć);
+                setWagaTemp(docRef.data().Waga);
+                setWiekTemp(docRef.data().Wiek);
+                setDolegliwościTemp(docRef.data().Dolegliwości);
+            }catch (err){
+                console.log(err);
+            }
+            setEditingPet(PetID);
+            getPets();
+        }
+}
+
+const UpdatePet = async (PetID) => {
+    try{
+        //const DaneRef = await doc(db, props.Login, 'Dane');
+        //const petsCollecionRef = await collection(DaneRef,'Zwierzęta');
+        await updateDoc(doc(db, props.Login, 'Dane','Zwierzęta', PetID), {
+            Rasa: RasaTemp, Płeć: PłećTemp, Waga: WagaTemp, Wiek: WiekTemp, Dolegliwości: DolegliwościTemp
+        });
+        setEditingPet("");
+        setRasaTemp("");
+        setPłećTemp("");
+        setWagaTemp("");
+        setWiekTemp("");
+        setDolegliwościTemp("");
+        getPets();
+
+
+    }catch(err) {
+        console.log(err);
+    }
+}
     return (
         <div className="Konto">
             <div className="Konto-Dane">
@@ -111,61 +162,78 @@ const OpenDrawer = (PetID) => {
             <div className="Pupile">
                 <h1>Twoje Pupile</h1>
                 <ul>
-
-                    {/*<li key="Rex">
-                        <div className="Pupile-Nagłówek">
-                            <h2 id={`Pet-Nagłówek Rex`}>Rex</h2>
-                            <img className="Pupile-Guzik-Szuflada" id="Szuflada Rex" src={Strzałka} onClick={() => OpenDrawer("Rex")}/>
-                        </div>
-
-                        <div className="Pupiple-Informacje" id={`Pet-Inf Rex`} style={{height: 'fit-content'}}>
-                            {'Pies' === 'Pies' &&
-                                <img src={TypPies}/>
-                            }
-                            {'Pies' === 'Kot' &&
-                                <img src={TypKot}/>
-                            }
-                            {'Pies' === 'Królik' &&
-                                <img src={TypKrólik}/>
-                            }
-                            <p>Rasa: Test</p>
-                            <p>Płeć: Test</p>
-                            <p>Wiek: Test</p>
-                            <p>Waga: Test</p>
-                            <p>Dolegliwości: Test</p>
-                            <button>Zobacz karmy</button>
-                        </div>
-
-                    </li>*/}
                     {Pets.map(pet => {
-                        return (
-                            <li key={pet.id}>
-                                <div className="Pupile-Nagłówek">
-                                    <h2 id={`Pet-Nagłówek ${pet.id}`}>{pet.id}</h2>
-                                    <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka} onClick={() => OpenDrawer(`${pet.id}`)}/>
+                        /*return (*/
+                            if(pet.id !== EditingPet) {
+                                return (<li key={pet.id}>
+                                    <div className="Pupile-Nagłówek">
+                                        <h2 id={`Pet-Nagłówek ${pet.id}`}>{pet.id}</h2>
+                                        <img className="Pupile-Ołówek" src={Ołówek} onClick={() => EditPet(pet.id)}/>
+                                        <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka}
+                                             onClick={() => OpenDrawer(`${pet.id}`)}/>
 
-                                </div>
+                                    </div>
 
-                                <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`}>
-                                    {pet.Typ === "Pies" &&
-                                        <img src={TypPies}/>
-                                    }
-                                    {pet.Typ === "Kot" &&
-                                        <img src={TypKot}/>
-                                    }
-                                    {pet.Typ === "Królik" &&
-                                        <img src={TypKrólik}/>
-                                    }
-                                    <p>Rasa: {pet.Rasa}</p>
-                                    <p>Płeć: {pet.Płeć}</p>
-                                    <p>Wiek: {pet.Wiek}</p>
-                                    <p>Waga: {pet.Waga}</p>
-                                    <p>Dolegliwości: {pet.Dolegliwości}</p>
-                                    <button>Zobacz karmy</button>
-                                </div>
+                                    <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`}>
+                                        {pet.Typ === "Pies" &&
+                                            <img src={TypPies}/>
+                                        }
+                                        {pet.Typ === "Kot" &&
+                                            <img src={TypKot}/>
+                                        }
+                                        {pet.Typ === "Królik" &&
+                                            <img src={TypKrólik}/>
+                                        }
 
-                            </li>
-                        )
+
+                                        <p>Rasa: {pet.Rasa}</p>
+                                        <p>Płeć: {pet.Płeć}</p>
+                                        <p>Wiek: {pet.Wiek}</p>
+                                        <p>Waga: {pet.Waga}</p>
+                                        <p>Dolegliwości: {pet.Dolegliwości}</p>
+                                        <button>Zobacz karmy</button>
+                                    </div>
+
+                                </li>)
+
+                            } else {
+                                return (<li key={pet.id}>
+                                    <div className="Pupile-Nagłówek">
+                                        <h2 id={`Pet-Nagłówek ${pet.id}`}>{pet.id}</h2>
+                                        <img className="Pupile-Ołówek" src={Ołówek} onClick={() => EditPet(pet.id)}/>
+                                        <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka}
+                                             onClick={() => OpenDrawer(`${pet.id}`)}/>
+
+                                    </div>
+
+                                    <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`}>
+                                        {pet.Typ === "Pies" &&
+                                            <img src={TypPies}/>
+                                        }
+                                        {pet.Typ === "Kot" &&
+                                            <img src={TypKot}/>
+                                        }
+                                        {pet.Typ === "Królik" &&
+                                            <img src={TypKrólik}/>
+                                        }
+                                        <p>Rasa: <textarea rows="1" value={RasaTemp}
+                                                           onChange={(e) => setRasaTemp(e.target.value)}></textarea></p>
+                                        <p>Płeć: <textarea rows="1" value={PłećTemp}
+                                                           onChange={(e) => setPłećTemp(e.target.value)}></textarea></p>
+                                        <p>Wiek: <textarea rows="1" value={WiekTemp}
+                                                           onChange={(e) => setWiekTemp(e.target.value)}></textarea></p>
+                                        <p>Waga: <textarea rows="1" value={WagaTemp}
+                                                           onChange={(e) => setWagaTemp(e.target.value)}></textarea></p>
+                                        <p>Dolegliwości: <textarea rows="1" value={DolegliwościTemp}
+                                                                   onChange={(e) => setDolegliwościTemp(e.target.value)}></textarea></p>
+                                        <button onClick={() => UpdatePet(`${pet.id}`)}>Zapisz</button>
+                                    </div>
+
+                                </li>)
+                            }
+                    /*)*/
+
+                    /*)*/
                     })}
                 </ul>
             </div>
@@ -175,7 +243,6 @@ const OpenDrawer = (PetID) => {
         </div>
     )
 }
-
 
 
 export default Konto;

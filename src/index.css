@@ -458,7 +458,8 @@ textarea:focus, input:focus{
   width: 100%;
   background-color: #F6F1CB;
   display: flex;
-  padding: 20px;
+  padding-top: 20px;
+  bottom: 20px;
   height: 500px;
 
 
@@ -568,9 +569,30 @@ textarea:focus, input:focus{
   position: relative;
   scale: 0.8;
   bottom: 65px;
-  left: 28%;
+  left: 45%;
   rotate: 0deg;
   transition: 0.5s;
+  z-index: 4;
+}
+
+.Pupile-Ołówek {
+  position: absolute;
+  top: 15px;
+  left: 50px;
+  transform: scaleX(-1);
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+
+  Z-index: 1;
+}
+
+.Pupile-Nagłówek {
+  position: relative;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 .Pupile-Nagłówek h2{
@@ -578,7 +600,8 @@ textarea:focus, input:focus{
   position: relative;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  left: -20px;
+  width: 100%;
   font-family: "Anek Gujarati", sans-serif;
   font-size: calc(30px + var(--additionaltextsize));
   text-align: left;
@@ -619,6 +642,23 @@ textarea:focus, input:focus{
   line-height: 20px;
   text-align: left;
   color: #5E3A1F;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Pupiple-Informacje textarea{
+  position: relative;
+  left: 10px;
+  resize: none;
+  line-height: 17px;
+  padding: 1px;
+  border-color: #5E3A1F;
+  color: #5E3A1F;
+  border-width: 2px;
+  border-radius: 3px;
+  font-family: "Anek Gujarati", sans-serif;
+  background-color: #F6F1CB;
 }
 
 .Pupiple-Informacje button{
