@@ -14,7 +14,7 @@ function Register(props) {
     const [Telephone, setTelephone] = useState("");
     const [Password, setPassword] = useState("");
     const [PasswordRepeated, setPasswordRepeated] = useState("");
-    const [Zalogowano, setZalogowano] = useState(false);
+    const [Zalogowano, setZalogowano] = useState(true);
 
 
     const CreateUser = async () => {
@@ -55,32 +55,32 @@ function Register(props) {
             <div className="Register">
                 <h1>Register</h1>
 
-                <div>
+                <div className="Register-Text-Area">
                     <label htmlFor="Login">Login:</label>
                     <textarea rows="1" type="text" value={Login} onChange={(e) => setLogin(e.target.value)}/>
                 </div>
-                <div>
+                <div className="Register-Text-Area">
                     <label htmlFor="Password">Password:</label>
                     <textarea rows="1" type="text" value={Password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
-                <div>
+                <div className="Register-Text-Area">
                     <label htmlFor="Password">Repeat Password:</label>
                     <textarea rows="1" type="text" value={PasswordRepeated}
                               onChange={(e) => setPasswordRepeated(e.target.value)}/>
                 </div>
-                <div>
+                <div className="Register-Text-Area">
                     <label htmlFor="EMail">E-mail:</label>
                     <textarea rows="1" type="text" value={Email} onChange={(e) => setEmail(e.target.value)}/>
                 </div>
-                <div>
+                <div className="Register-Text-Area">
                     <label htmlFor="Imię">Imię:</label>
                     <textarea rows="1" type="text" value={Name} onChange={(e) => setName(e.target.value)}/>
                 </div>
-                <div>
+                <div className="Register-Text-Area">
                     <label htmlFor="Nazwisko">Nazwisko:</label>
                     <textarea rows="1" type="text" value={Surname} onChange={(e) => setSurname(e.target.value)}/>
                 </div>
-                <div>
+                <div className="Register-Text-Area">
                     <label htmlFor="Tel">Telefon:</label>
                     <textarea rows="1" type="text" value={Telephone} onChange={(e) => setTelephone(e.target.value)}/>
                 </div>
@@ -89,7 +89,7 @@ function Register(props) {
                 <button onClick={CreateUser}>Register</button>
 
                 {Zalogowano ? (
-                    <div>
+                    <div className="Register-Popup">
                         <h1>Zakładanie konta zakończyło się sukcesem!</h1>
                         <h2>Możesz teraz przejść do swojego profilu</h2>
                         <Link to="/Konto">

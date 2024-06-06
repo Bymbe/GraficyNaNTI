@@ -327,7 +327,7 @@ textarea:focus, input:focus{
   right: -80px;
   background-color: var(--bgColorNull);
 }
-/*########################################### FOOTER ###########################################*/
+/*########################################### REGISTER ###########################################*/
 .Register-Page{
   background-color: #F6F1CB;
   height: auto;
@@ -378,6 +378,7 @@ textarea:focus, input:focus{
   flex-direction: column;
   z-index: 1;
   height: auto;
+  border-radius: 30px;
 }
 .Register h1 {
   position: relative;
@@ -393,7 +394,7 @@ textarea:focus, input:focus{
   color: var(--textColorCreamy);
 }
 
-.Register div{
+.Register-Text-Area{
   position: relative;
   top: -20px;
   display: inline-block;
@@ -448,10 +449,45 @@ textarea:focus, input:focus{
   border-radius: 10px;
 
 }
+
+.Register-Popup {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-color: #F6F1CB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #5E3A1F;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #5E3A1F;
+  top: 200px;
+
+}
+
+.Register-Popup h1{
+  position: relative;
+  padding: 0;
+  width: 100%;
+  background-color: transparent;
+  color: #5E3A1F;
+  line-height: 40px;
+
+}
+
+.Register-Popup button{
+  width: 250px;
+  font-family: "Anek Gujarati", sans-serif;
+  line-height: 20px;
+}
+
 /*########################################### KONTO ###########################################*/
 .Konto{
   font-family: "Anek Gujarati", sans-serif;
-  color: #5E3A1F;
+  //color: #5E3A1F;
   width: 100%;
 }
 .Konto-Dane{
@@ -465,7 +501,7 @@ textarea:focus, input:focus{
 
 }
 
-.Konto-Dane img{
+#Konto-Królik-Top{
   width: 100%;
   position: absolute;
   left: 0;
@@ -537,12 +573,33 @@ textarea:focus, input:focus{
 
 .Konto-Right h2 {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
 
   margin: 0;
   /*background-color: #5E3A1F;*/
 }
 
+.Konto-Ołówek{
+  top: 10px;
+  left: 10px;
+  position: relative;
+  right: 0px;
+  cursor: pointer;
+}
 
+.Konto-Dane-TwójAdres textarea{
+  font-family: "Anek Gujarati", sans-serif;
+  resize: none;
+  position: relative;
+  line-height: 20px;
+  border: solid;
+  border-width: 2px;
+  border-color: #5E3A1F;
+  border-radius: 10px;
+}
 
 .Pupile{
   position: relative;
@@ -579,7 +636,7 @@ textarea:focus, input:focus{
   position: absolute;
   top: 15px;
   left: 50px;
-  transform: scaleX(-1);
+  //transform: scaleX(-1);
   cursor: pointer;
   margin: 0;
   padding: 0;

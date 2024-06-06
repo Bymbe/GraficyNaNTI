@@ -31,6 +31,8 @@ function Konto(props) {
     const [WagaTemp, setWagaTemp] = useState("");
     const [DolegliwościTemp, setDolegliwościTemp] = useState("");
 
+    const [EditAdressFlag, setEditAdressFlag] = useState(false);
+
     useEffect(() => {
         console.log("UseEfect->getPets");
         getPets();
@@ -49,7 +51,7 @@ function Konto(props) {
                 setEmail(docSnap.data().E_Mail)
                 setTelephone(docSnap.data().Telefon);
                 setAdress(docSnap.data().Adres)
-                setTown(docSnap.data().Miasto)
+                setTown(docSnap.data().KodPocztowy)
                 setCountry(docSnap.data().Kraj)
             }
 
@@ -130,10 +132,28 @@ const UpdatePet = async (PetID) => {
         console.log(err);
     }
 }
+
+const EditAdress =  async () => {
+        if(EditAdressFlag === false){
+            setEditAdressFlag(true)
+        }
+        else{
+            setEditAdressFlag(false);
+            try{
+                await updateDoc(doc(db, props.Login, 'Dane'), {
+                    Adres: Adress, KodPocztowy: Town, Kraj: Country
+                });
+
+            } catch (err){
+                console.log(err)
+            }
+        }
+        console.log(EditAdressFlag);
+}
     return (
         <div className="Konto">
             <div className="Konto-Dane">
-                <img src={Królik}/>
+                <img id="Konto-Królik-Top" src={Królik}/>
 
                 <div className="Konto-Left">
                     <div className="Konto-Dane-Konta">
@@ -146,16 +166,30 @@ const UpdatePet = async (PetID) => {
                 <h1 className="Konto-Nagłówek">Twoje dane</h1>
                 <div className="Konto-Right">
                     <div className="Konto-Dane-TwójAdres">
-                        <h1>Twój adres</h1>
-                        <h2>{Adress}</h2>
-                        <h2>{Town}</h2>
-                        <h2>{Country}</h2>
-                    </div>
+
+                        <h1>Twój adres <img className="Konto-Ołówek" src={Ołówek} onClick={() => EditAdress()}/></h1>
+                        {EditAdressFlag ? (
+                            <div><h2>Adres: <textarea rows="1" value={Adress}
+                                                      onChange={(e) => setAdress(e.target.value)}></textarea></h2>
+                                <h2> Kod pocztowy: <textarea rows="1" value={Town}
+                                                             onChange={(e) => setTown(e.target.value)}></textarea></h2>
+                                <h2>Kraj: <textarea rows="1" value={Country}
+                                                    onChange={(e) => setCountry(e.target.value)}></textarea></h2></div>
+
+
+
+
+                            ) : (<div><h2>Adres: {Adress}</h2>
+                    <h2> Kod pocztowy: {Town}</h2>
+                    <h2>Kraj: {Country}</h2></div>)
+                }
+
+            </div>
                     <div className="Konto-Dane-Wysyłka">
                         <h1>Adresy do wysyłki</h1>
-                        <h2>{Name} {Surname}</h2>
-                        <h2>{Adress}</h2>
-                        <h2>{Town}</h2>
+                        <h2> Imię i Nazwisko: {Name} {Surname}</h2>
+                        <h2>Adres: {Adress}</h2>
+                        <h2> Kod pocztowy: {Town}</h2>
                     </div>
                 </div>
             </div>
