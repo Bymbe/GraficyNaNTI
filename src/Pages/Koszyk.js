@@ -31,12 +31,14 @@ function Koszyk(props) {
     }, [])
 
     const getKoszyk = async () => {
+        console.log(props.Login)
         if(props.Zalogowano === true){
             try{
                 const DaneRef = await doc(db, props.Login, 'Dane');
 
                 const docSnap = await getDoc(DaneRef);
-                if(docSnap.data().Adres === "" || docSnap.data().KodPocztowy === "" || docSnap.data().Kraj === ""){
+                console.log(docSnap.data().KodPocztowy)
+                if(docSnap.data().Adres.trim() === "" || docSnap.data().KodPocztowy.trim() === "" || docSnap.data().Kraj.trim() === ""){
                     setUzupełnioneDane(false);
                 }
                 else{
@@ -212,7 +214,7 @@ function Koszyk(props) {
                             <h3 data-end="*">Akceptuję warunki regulaminu</h3>
                         </div>
 
-                        {UzupełnioneDane === false || props.Zalogowano === true &&
+                        {UzupełnioneDane === false && props.Zalogowano === true &&
                             <h4>Uzupełnij dane adresowe na swoim profilu, zanim będziesz mógł/a przejść dalej</h4>}
                         <button disabled={UzupełnioneDane ? false : true} onClick={() => Payment}>Zapłać</button>
                     </div>

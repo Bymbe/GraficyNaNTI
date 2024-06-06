@@ -30,7 +30,7 @@ function Navbar(props) {
                 alert('Logowanie powiodło się')
                 setZalogowano(true);
                 props.handleCallBackLogin(Login);
-                props.handleCallBackZalogowo(Zalogowano);
+                props.handleCallBackZalogowo(true);
             }
         }catch (error){
             console.error("Błąd przy logowaniu ", error);

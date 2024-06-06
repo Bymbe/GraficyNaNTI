@@ -35,6 +35,7 @@ function Konto(props) {
 
     useEffect(() => {
         console.log("UseEfect->getPets");
+        console.log(props.Login);
         getPets();
 
     },[])

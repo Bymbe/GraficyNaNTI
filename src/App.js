@@ -27,8 +27,9 @@ function App() {
         setLogin(data);
     }
 
-
+    console.log(Zalogowano)
   return (
+
     <div className="App">
       <Router>
         <Navbar Login={Login} Zalogowano={Zalogowano} handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin} />
@@ -39,7 +40,7 @@ function App() {
             <Route path="/Home" element={<Home />} />
             <Route path="/Karmy" element={<Karmy />} />
             <Route path="/Konto" element={<Konto Login={Login} handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/> } />
-            <Route path="/Koszyk" element={<Koszyk Login={Login}/>} />
+            <Route path="/Koszyk" element={<Koszyk Login={Login} Zalogowano={Zalogowano}/>} />
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
