@@ -56,7 +56,9 @@ function Navbar(props) {
                 <li><Link to="Pomoc" className="Link">Pomoc</Link></li>
             </div>
             <div className="navbar-right">
-                {Zalogowano ? (<Link to="Konto"><img className="Navbar-icons" src={Konto}/></Link>) : (
+                {Zalogowano ? (
+                    <Link to="Konto"><img className="Navbar-icons" src={Konto}/></Link>
+                ) : (
                     <Popup trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">
                         <div className="navbar-popup">
                             <h1>Logowanie</h1>

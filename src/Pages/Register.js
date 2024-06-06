@@ -14,14 +14,25 @@ function Register(props) {
     const [Telephone, setTelephone] = useState("");
     const [Password, setPassword] = useState("");
     const [PasswordRepeated, setPasswordRepeated] = useState("");
-    const [Zalogowano, setZalogowano] = useState(true);
+    const [Zalogowano, setZalogowano] = useState(false);
+    const [Regulamin, setRegulamin] = useState(false);
 
 
     const CreateUser = async () => {
+
+        if (Regulamin === false) {
+            alert('Zaznacz wszystkie wymagane pola')
+            return;
+        }
+
         if (Login.trim() === '' || Password.trim() === '' || Name.trim() === '' || Surname.trim() === ''|| Surname.trim() === '') {
             alert('Nazwa kolekcji nie może być pusta.');
             return;
         }
+
+
+
+
         if (Password !== PasswordRepeated) {
             alert('Hasła nie są takie same')
             return;
@@ -83,6 +94,10 @@ function Register(props) {
                 <div className="Register-Text-Area">
                     <label htmlFor="Tel">Telefon:</label>
                     <textarea rows="1" type="text" value={Telephone} onChange={(e) => setTelephone(e.target.value)}/>
+                </div>
+                <div className="Register-CheckBox-Area">
+                    <input type="checkbox" onChange={(e) => setRegulamin(!Regulamin)}/>
+                    <h3 data-end="*">Akceptuję warunki regulaminu</h3>
                 </div>
 
 

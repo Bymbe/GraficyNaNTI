@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {db} from "../DataBase/init-firebase";
-import {collection, deleteDoc, doc, getDocs, updateDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDoc, getDocs, updateDoc} from "firebase/firestore";
 import Pies from "../Assets/piesek.png";
 import Kot from "../Assets/kotek.png";
 import Karma from "../Assets/Karma.svg";
@@ -15,6 +15,12 @@ function Koszyk(props) {
 
     const [Suma, setSuma] = React.useState(0);
     const [Payout, setPayout] = React.useState(0);
+    const [UzupełnioneDane, setUzupełnioneDane] = React.useState(false);
+    const [Adress, setAdress] = useState("");
+    const [Town, setTown] = useState("");
+    const [Country, setCountry] = useState("");
+    const [Email, setEmail] = useState("");
+    const [Regulamin, setRegulamin] = useState(false);
 
 
     const [Karmy, setKarmy] = React.useState([]);
@@ -25,20 +31,32 @@ function Koszyk(props) {
     }, [])
 
     const getKoszyk = async () => {
-        try{
-            const DaneRef = await doc(db, props.Login, 'Dane');
-            const basketCollecionRef = await collection(DaneRef,'Koszyk');
+        if(props.Zalogowano === true){
+            try{
+                const DaneRef = await doc(db, props.Login, 'Dane');
 
-            const snapShot = await getDocs(basketCollecionRef);
-            const documents = snapShot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            setKarmy(documents);
-        }catch(err){
-            console.error("Bład przy pobieraniu kolekcji: ",err);
-            return [];
+                const docSnap = await getDoc(DaneRef);
+                if(docSnap.data().Adres === "" || docSnap.data().KodPocztowy === "" || docSnap.data().Kraj === ""){
+                    setUzupełnioneDane(false);
+                }
+                else{
+                    setUzupełnioneDane(true);
+                }
+
+                const basketCollecionRef = await collection(DaneRef,'Koszyk');
+
+                const snapShot = await getDocs(basketCollecionRef);
+                const documents = snapShot.docs.map(doc => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+                setKarmy(documents);
+            }catch(err){
+                console.error("Bład przy pobieraniu kolekcji: ",err);
+                return [];
+            }
         }
+
     }
 
     const setAmaount = async (znak, id, aktualnaIlość) => {
@@ -76,6 +94,21 @@ function Koszyk(props) {
     useEffect(()=>{
         setPayout(Suma);
     }, [Suma])
+
+    const Payment = () => {
+        if(props.Zalogowano !== true){
+            if(Adress === "" || Country === "" || Town === "" || Email === ""){
+                alert("Uzupełnij dane adresowe")
+            }
+            return;
+        }
+        if (Regulamin === false) {
+            alert('Zaznacz wszystkie wymagane pola')
+            return;
+        }
+        alert("Przejście do płatności")
+
+    }
 
     return (
         <div className="Koszyk">
@@ -131,30 +164,57 @@ function Koszyk(props) {
                     </div>
                     <div className="Koszyk-Podsumowanie">
                         <h1>Podsumowanie</h1>
-                        <div>
+                        <div className="Koszyk-Podsumowanie-Pole">
                             <h2>Suma</h2>
-                            <div id="Koszyk-Suma">{Suma}</div>
+                            <div id="Koszyk-Suma">{Suma} zł</div>
                             {/*trzeba mieć zmienną suma którą raz sie będzie ustawiać */}
                         </div>
-                        <div>
+                        <div className="Koszyk-Podsumowanie-Pole">
                             <h2>Koszt dostawy</h2>
                             <div id="Koszyk-KosztDostawy">0.00 zł</div>
                         </div>
-                        <br/><br/>
-                        <div>
+                        <br/>
+                        <div className="Koszyk-Podsumowanie-Pole">
                             <h2>Rabat</h2>
                             <div id="Koszyk-Rabat">0.00 zł</div>
 
                         </div>
-                        <textarea rows="1"></textarea>
+                        <textarea rows="1" className="Rabat" placeholder="Kod rabatowy"></textarea>
                         <br/>
-                        <div>
+                        <div className="Koszyk-Podsumowanie-Pole">
                             <h2>Do zapłaty</h2>
                             <div id="Koszyk-DoZapłaty">{Payout} zł</div>
                         </div>
                         <div className="Koszyk-Kreska"></div>
-                        {/*kreseczka*/}
-                        <button>Zapłać</button>
+                        {props.Zalogowano !== true ? (
+                            <div className="Koszyk-UzupełnijDane">
+                                <div>
+                                    <label>E-mail</label>
+                                    <textarea rows="1" onChange={(e) => setEmail(e.target.value)}></textarea>
+                                </div>
+                                <div>
+                                    <label>Adres</label>
+                                    <textarea rows="1" onChange={(e) => setAdress(e.target.value)}></textarea>
+                                </div>
+                                <div>
+                                    <label>Kod pocztowy</label>
+                                    <textarea rows="1" onChange={(e) => setTown(e.target.value)}></textarea>
+                                </div>
+                                <div>
+                                    <label>Kraj</label>
+                                    <textarea rows="1" onChange={(e) => setCountry(e.target.value)}></textarea>
+                                </div>
+                            </div>
+                        ) : (<div style={{display: "none"}}></div>)}
+
+                        <div className="Koszyk-CheckBox-Area">
+                            <input type="checkbox" onChange={(e) => setRegulamin(!Regulamin)}/>
+                            <h3 data-end="*">Akceptuję warunki regulaminu</h3>
+                        </div>
+
+                        {UzupełnioneDane === false || props.Zalogowano === true &&
+                            <h4>Uzupełnij dane adresowe na swoim profilu, zanim będziesz mógł/a przejść dalej</h4>}
+                        <button disabled={UzupełnioneDane ? false : true} onClick={() => Payment}>Zapłać</button>
                     </div>
                 </div>
 
