@@ -1900,3 +1900,139 @@ padding-right: 20px;
   border: 3px solid;
   border-color: var(--textColorBrown);
 }
+
+.Rejestr{
+  background-color: #F6F1CB;
+  z-index: 3;
+  /*position: absolute;*/
+  top: 2600px;
+  height: 850px;
+  /*left: 36.5%;*/
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+.RejestrPopup{
+  position: absolute;
+  /*padding-left: 10%;*/
+  width: 100%;
+  height: auto;
+  background-color: #F6F1CB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /*color: #5E3A1F;*/
+  /*border-radius: 15px;*/
+  /*border-style: solid;*/
+  /*border-width: 3px;*/
+  /*border-color: #5E3A1F;*/
+  /*margin: auto;*/
+}
+.RejestrPopup button {
+  margin: 10px;
+  margin-bottom: 30px;
+  width: 50%;
+  height: 150%;
+
+  font-size: 20px;
+  color: #5E3A1F;
+  background-color: #F6F1CB;
+  border: 3px solid;
+  border-color: var(--textColorBrown);
+}
+
+.Register1 h1{
+  background-color:#e8bc76;
+  width: 90%;
+  padding: 20px;
+  border-radius: 30px;
+  font-size: calc(40px + var(--additionaltextsize));
+
+
+}
+.Register1{
+    /*padding: 20px;*/
+    /*position: relative;*/
+    /*top: 100px;*/
+    margin-left: auto;
+    margin-right: auto;
+    /*background-color: #CE9F54;*/
+    width: 70%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 0;
+    height: auto;
+    border-radius: 30px;
+  background: #5E3A1F;
+}
+.Register-Text-AreaKW{
+  position: relative;
+  top: -20px;
+  display: inline-block;
+  /*width: 300px;*/
+  background-color: #5E3A1F;
+
+  width: 95%;
+  padding: 10px;
+  vertical-align: center;
+}
+.Register1 div label{
+  display: inline-block;
+  position: relative;
+  background-color: var(--bgColorCreamy);
+
+  width: 150px;
+  height: 35px;
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: calc(20px + var(--additionaltextsize));
+  padding-left: 20px;
+  padding-right: 20px;
+
+  color: var(--textColorBrown);
+  border-radius: 5px 0 0 5px;
+}
+
+.Register1 div textarea{
+  display: inline-block;
+  position: relative;
+  top: 15px;
+  height: 30px;
+  border-radius: 0 5px 5px 0;
+  resize: none;
+  text-align: center;
+  line-height: 30px;
+  width: 400px;
+
+}
+.Register-CheckBox-AreaKW{
+  position: relative;
+  top: -30px;
+  /*left: -80px;*/
+  width: 354px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: row;
+  padding: 0px 10px 0px 10px;
+  /*background-color:#5E3A1F ;*/
+
+
+
+  /*border-color: #5E3A1F;*/
+  font-family: "Anek Gujarati", sans-serif;
+  color: #F6F1CB;
+
+}
+
+.Register1-CheckBox-AreaKW h3::after{
+  content: attr(data-end);
+  color: red;
+
+}
+
