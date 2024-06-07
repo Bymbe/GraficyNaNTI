@@ -163,10 +163,9 @@ textarea:focus, input:focus{
 .navbar-popup button{
   position: relative;
   top: 10px;
-  background-color: #5E3A1F;
+  background-color: var(--bgColorBrown);
   border: none;
   color: var(--textColorCreamy);
-  background-color: var(--bgColorNull);
   font-size: calc(16px + var(--additionaltextsize));
   text-align: center;
   width: 80px;
@@ -216,7 +215,8 @@ textarea:focus, input:focus{
 }
 
 .navbar-popup-rejestracja h2{
-  color: #5E3A1F;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorNull);
   font-size: calc(24px + var(--additionaltextsize));
 }
 #Popup-Register-Link{
@@ -832,6 +832,8 @@ h1 + .Register-Text-Area{
   margin: 0px;
   padding: 10px;
   font-size: 50px;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorNull);
 }
 #Header-Home{
   margin: 20px;
@@ -840,6 +842,8 @@ h1 + .Register-Text-Area{
   margin-right: 250px;
   position: sticky;
   text-align: center;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorNull);
 }
 
 .Inputs-Home{
@@ -859,9 +863,9 @@ input[type="text"] {
 
 button {
   padding: 1vh;
-  background-color: #5E3A1F;
+  background-color: var(--bgColorBrown);
   width: 44vh;
-  color: #F6F1CB;
+  color: var(--textColorCreamy);
   border: none;
   border-radius: 1vh;
   cursor: pointer;
@@ -885,14 +889,14 @@ button {
 
 
 .Home-Middle{
-  color: #F6F1CB;
+  color: var(--textColorCreamy);
   width: 100%;
-  background: #CE9F54;
+  background: var(--bgColorPeanutButter);
   opacity: 1;
   height: 100%; /*600px;*/
 }
 .KarmyHeader-Home{
-  background: #5E3A1F;
+  background: var(--bgColorBrown);
 }
 .KarmyMain-Home{
   align-items: center;
@@ -960,7 +964,7 @@ button {
   /*padding: 10px;*/
   text-align: center;
   width: 90%;
-  border: 5px solid #F6F1CB;
+  border: 5px solid var(--textColorCreamy);
   border-radius: 5px;
   margin-left: 20px;
   /*margin-right: 40px;*/
@@ -1018,7 +1022,8 @@ button {
 /*}*/
 
 #NazwaKarmy-Home {
-  color: #5E3A1F;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorNull);
   font-size: 4vh;
 }
 .KarmyBoxy-Home img {
@@ -1030,14 +1035,14 @@ button {
 }
 .KarmyBoxy-Home h2 {
   display: grid;
-  color: #F6F1CB;
+  color: var(--textColorCreamy);
   font-size: 2vh;
   size: 10px;
 }
 
 .KarmyButtons2-Home{padding: 10px;
-  background-color: #F6F1CB;
-  color: #5E3A1F;
+  background-color: var(--bgColorCreamy);
+  color: var(--textColorBrown);
   /*margin-top: 50vh;*/
   width: 40vh;
   border: none;
@@ -1047,8 +1052,8 @@ button {
   margin-bottom: 10px;
 }
 .KarmyButtons3-Home{
-  background-color: #5E3A1F;
-  color: #F6F1CB;
+  background-color: var(--bgColorBrown);
+  color: var(--textColorCreamy);
   width: 40vh;
   border: none;
   border-radius: 5px;
