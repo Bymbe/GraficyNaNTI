@@ -18,6 +18,7 @@ import {useState} from "react";
 function App() {
     const [Zalogowano, setZalogowano] = useState(false);
     const [Login, setLogin] = useState('');
+    const [Karma, setKarma] = useState("Kwiaciara");
 
     function CallBackZalogowano (data){
         setZalogowano(data);
@@ -25,6 +26,10 @@ function App() {
 
     function CallBackLogin (data){
         setLogin(data);
+    }
+
+    function CallBackKarma (data) {
+        setKarma(data);
     }
 
     console.log(Zalogowano)
@@ -44,7 +49,7 @@ function App() {
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
-            <Route path="/Kwiaciara" element={<Kwiaciara />} />
+            <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />
             <Route path="/Kwestionariusz" element={<Kwestionariusz />} />
             <Route path="/Register" element={<Register handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/>} />
         </Routes>
