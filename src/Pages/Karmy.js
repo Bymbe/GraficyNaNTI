@@ -1,9 +1,40 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import App from "../App";
 import Karma from "../Assets/karma.png";
 import {Link} from "react-router-dom";
+import {collection, doc, getDoc, getDocs} from "firebase/firestore";
+import {db} from "../DataBase/init-firebase";
 
-function Karmy() {
+function Karmy(props) {
+
+    const [KarmyRef, setKarmyRef] = useState([]);
+
+    useEffect(() => {
+        getKarmy();
+
+    },[])
+
+    const getKarmy = async () => {
+        try{
+
+            const karmyCollectionRef = await collection(db, 'Karmy');
+            const snapShot = await getDocs(karmyCollectionRef);
+            const documents = snapShot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+            setKarmyRef(documents);
+
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+    const handleKarma =  (KarmaID) => {
+        console.log(KarmaID);
+        props.handleCallBackKarma(KarmaID);
+    }
+
     return (
         <div className="Karmy">
             <div className="Karmy-Header">
@@ -16,7 +47,25 @@ function Karmy() {
                 </div>
 
                 <div className={"flex-container"}>
-                    <div className="FlexBoxy-Karmy">
+
+                    {KarmyRef.map(karma => {
+                        return (
+                            <div className="FlexBoxy-Karmy">
+                                <h1 id="NazwaKarmy-Karmy">{karma.id}</h1>
+                                <img src={Karma}/>
+                                <h3>{karma.Cena} zł</h3>
+                                <h2>{karma.KrótkiOpis}</h2>
+                                <Link to="/Kwiaciara" onClick={() => handleKarma(karma.id)}>
+                                    <button className="KarmyButtons2-Karmy">Czytaj więcej</button>
+                                </Link>
+                                <button className="KarmyButtons3-Karmy" >Dodaj do koszyka</button>
+                            </div>
+                        )
+
+                    })}
+
+
+                   {/* <div className="FlexBoxy-Karmy">
                         <h1 id="NazwaKarmy-Karmy">"Kwiaciara"</h1>
                         <img src={Karma}/>
                         <h3>49,99 zł</h3>
@@ -126,7 +175,7 @@ function Karmy() {
                             <button className="KarmyButtons2-Karmy">Czytaj więcej</button>
                         </Link>
                         <button className="KarmyButtons3-Karmy">Dodaj do koszyka</button>
-                    </div>
+                    </div>*/}
 
 
                 </div>
