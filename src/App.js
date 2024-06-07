@@ -43,7 +43,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
-            <Route path="/Karmy" element={<Karmy handleCallBackKarma={CallBackKarma}/>} />
+            <Route path="/Karmy" element={<Karmy Login={Login} handleCallBackKarma={CallBackKarma}/>} />
             <Route path="/Konto" element={<Konto Login={Login} handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/> } />
             <Route path="/Koszyk" element={<Koszyk Login={Login} Zalogowano={Zalogowano}/>} />
             <Route path="/Opinie" element={<Opinie />} />

@@ -1185,6 +1185,7 @@ button {
   font-size: calc(26px + var(--additionaltextsize));
   position: relative;
   right: 60px;
+  width: 130px;
 }
 
 /*.Produkty li div {
@@ -1603,6 +1604,22 @@ background:#5E3A1F ;
   cursor: pointer;
   opacity: 1;
   margin-bottom: 10px;
+}
+
+.Karmy-Popup{
+  position: absolute;
+  z-index: 5;
+  background: #CE9F54;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  width: 500px;
+  padding: 40px;
+  border-style: solid;
+  border-color: var(--textColorBrown);
+  border-radius: 15px;
+  color: #5E3A1F;
 }
 
 /*########################################### KWIACIARA ###########################################*/

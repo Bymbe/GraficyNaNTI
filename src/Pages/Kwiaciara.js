@@ -18,6 +18,7 @@ function Kwiaciara(props) {
 
             const KarmaRef = await doc(db, 'Karmy', props.Karma);
             const snapShot = await getDoc(KarmaRef);
+
             setKarmaRef(snapShot.data());
 
         }catch(err){

@@ -9,6 +9,15 @@ function Kwestionariusz(props) {
     const [Dalej, setDalej] = useState(false);
     const [DodajDoKoszyka, setDodajDoKoszyka] = useState(false);
     const [Rejestracja, setRejestracja] = useState(false);
+    const [Name, setName] = useState("");
+    const [Surname, setSurname] = useState("");
+    const [Login, setLogin] = useState('');
+    const [Email, setEmail] = useState('');
+    const [Telephone, setTelephone] = useState("");
+    const [Password, setPassword] = useState("");
+    const [PasswordRepeated, setPasswordRepeated] = useState("");
+    const [Zalogowano, setZalogowano] = useState(false);
+    const [Regulamin, setRegulamin] = useState(false);
 
     const dalejFunction = async ()=> {
         setDalej(true);
@@ -28,17 +37,6 @@ function Kwestionariusz(props) {
         return;
     }
 
-    const [Name, setName] = useState("");
-    const [Surname, setSurname] = useState("");
-    const [Login, setLogin] = useState('');
-    const [Email, setEmail] = useState('');
-    const [Telephone, setTelephone] = useState("");
-    const [Password, setPassword] = useState("");
-    const [PasswordRepeated, setPasswordRepeated] = useState("");
-    const [Zalogowano, setZalogowano] = useState(false);
-    const [Regulamin, setRegulamin] = useState(false);
-
-
     const CreateUser = async () => {
 
         if (Regulamin === false) {
@@ -50,9 +48,6 @@ function Kwestionariusz(props) {
             alert('Nazwa kolekcji nie może być pusta.');
             return;
         }
-
-
-
 
         if (Password !== PasswordRepeated) {
             alert('Hasła nie są takie same')
@@ -85,6 +80,7 @@ function Kwestionariusz(props) {
 
 
     return (
+
         <div className="Kwestionariusz">
             <div className="Kwestionariusz-header">
                 SPERSONALIZOWANA KARMA DLA TWOJEGO PUPILA!
@@ -212,7 +208,12 @@ function Kwestionariusz(props) {
                             <Link to="/Kwiaciara">
                                 <button>Czytaj więcej</button>
                             </Link>
-                            <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
+                            {Zalogowano ? (<Link to="/Koszyk">
+                                <button>Dodaj do koszyka</button>
+                            </Link>) : (
+                                <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
+                            )}
+
                             <h1></h1>
 
 

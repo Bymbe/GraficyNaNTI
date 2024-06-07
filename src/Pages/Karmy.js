@@ -2,12 +2,13 @@ import React, {useEffect, useState} from 'react'
 import App from "../App";
 import Karma from "../Assets/karma.png";
 import {Link} from "react-router-dom";
-import {collection, doc, getDoc, getDocs} from "firebase/firestore";
+import {collection, doc, getDoc, getDocs, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../DataBase/init-firebase";
 
 function Karmy(props) {
 
     const [KarmyRef, setKarmyRef] = useState([]);
+    const [Popup, setPopup] = useState(true);
 
     useEffect(() => {
         getKarmy();
@@ -35,6 +36,28 @@ function Karmy(props) {
         props.handleCallBackKarma(KarmaID);
     }
 
+    const DodajDoKoszyka = async (KarmaID, KarmaCena) => {
+        setPopup(true);
+        try{
+            const KarmaRef = await doc(db, props.Login, 'Dane','Koszyk', KarmaID);
+            const snapShot = await getDoc(KarmaRef);
+            if(snapShot.exists()){
+                updateDoc(KarmaRef, {
+                    Amount: (snapShot.data().Amount +1 )
+                });
+
+            } else {
+                await setDoc(doc(db, props.Login, 'Dane','Koszyk',KarmaID), {Amount: 1, Cena: KarmaCena});
+            }
+
+
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+
+
     return (
         <div className="Karmy">
             <div className="Karmy-Header">
@@ -45,6 +68,13 @@ function Karmy(props) {
                 <div className="SearchingBar">
                     <h1 id="SB-Head">Filtry</h1>
                 </div>
+
+                {Popup ? (
+                    <div className="Karmy-Popup">
+                        <h1>Dodano do koszyka!</h1>
+                        <button onClick={() => setPopup(false)}>Kontynuuj</button>
+                    </div>
+                ) : (<div style={{display: "none"}}></div>)}
 
                 <div className={"flex-container"}>
 
@@ -58,14 +88,16 @@ function Karmy(props) {
                                 <Link to="/Kwiaciara" onClick={() => handleKarma(karma.id)}>
                                     <button className="KarmyButtons2-Karmy">Czytaj więcej</button>
                                 </Link>
-                                <button className="KarmyButtons3-Karmy" >Dodaj do koszyka</button>
+                                <button className="KarmyButtons3-Karmy" onClick={() => DodajDoKoszyka(karma.id, karma.Cena)}>Dodaj do koszyka</button>
                             </div>
                         )
 
                     })}
 
 
-                   {/* <div className="FlexBoxy-Karmy">
+
+
+                    {/* <div className="FlexBoxy-Karmy">
                         <h1 id="NazwaKarmy-Karmy">"Kwiaciara"</h1>
                         <img src={Karma}/>
                         <h3>49,99 zł</h3>
