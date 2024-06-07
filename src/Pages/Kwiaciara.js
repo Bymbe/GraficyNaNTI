@@ -26,8 +26,8 @@ function Kwiaciara() {
                         silnych mięśni i zdrowej kondycji.</h4>
                     <h4>PŁATKI NAGIETKA - Bogate w przeciwutleniacze, wspomagają zdrowie skóry i sierści oraz mają
                         właściwości przeciwzapalne.</h4>
-                    <h4>PŁATKI RUMIANKU - Działają kojąco na układ trawienny i wspierają zdrowy sen.
-                        Płatki lawendy - Znane z właściwości relaksujących, pomagają w redukcji stresu i niepokoju.</h4>
+                    <h4>PŁATKI RUMIANKU - Działają kojąco na układ trawienny i wspierają zdrowy sen.</h4>
+                    <h4>PŁATKI LAWENDY - Znane z właściwości relaksujących, pomagają w redukcji stresu i niepokoju.</h4>
                     <h4>OWOCE I WARZYWA - Źródło witamin, minerałów i błonnika dla wsparcia układu odpornościowego i
                         trawiennego.</h4>
                     <h3>Korzyści: </h3>

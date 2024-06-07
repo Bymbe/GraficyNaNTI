@@ -1,6 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
+import {Link} from "react-router-dom";
+import Karma from "../Assets/karma.png";
 
-function Kwestionariusz() {
+function Kwestionariusz(props) {
+
+    const [Dalej, setDalej] = useState(false);
+    const [DodajDoKoszyka, setDodajDoKoszyka] = useState(false);
+
+    const dalejFunction = async ()=> {
+        setDalej(true);
+        return;
+    }
+    const DodajDoKoszykaFunction = async ()=> {
+        setDodajDoKoszyka(true);
+        return;
+    }
+
     return (
         <div className="Kwestionariusz">
             <div className="Kwestionariusz-header">
@@ -116,8 +131,48 @@ function Kwestionariusz() {
                 <h10>Zboża</h10>
             </div>
             <div>
-                <button type="button">Dalej</button>
+                <button onClick={dalejFunction}>Dalej</button>
+                <div className="ProponowanaKarma">
+                    {Dalej ? (
+                        <div className="Karma-popup">
+                            <h1>Proponowana Karma</h1>
+
+                            <h4>"Kwiaciara"</h4>
+                            <img src={Karma}/>
+                            <h3>49,99 zł</h3>
+                            <h2>Super dobra karma z płatków kwiatów</h2>
+                            <Link to="/Kwiaciara">
+                                <button>Czytaj więcej</button>
+                            </Link>
+                            <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
+                            <h1></h1>
+
+
+                            {/*<h2>Możesz teraz przejść do swojego profilu</h2>*/}
+                            {/*<Link to="/Konto">*/}
+                            {/*    <button>Przejdź do Profilu</button>*/}
+                            {/*</Link>*/}
+                        </div>
+                    ) : (<div style={{display: "none"}}></div>)}
+                </div>
+
             </div>
+            <div className="DDK">
+                {DodajDoKoszyka ? (
+                    <div className="DodajDoKoszyka-Popup">
+                        <h1>Czy chcesz założyć konto?</h1>
+                        {/*<h2>Możesz teraz przejść do swojego profilu</h2>*/}
+                        <Link to="/Register">
+                            <button>Załóż konto</button>
+                        </Link>
+                        <Link to="/Koszyk">
+                            <button>Kupuję jednorazowo</button>
+                        </Link>
+                        <h2></h2>
+                    </div>
+                ) : (<div style={{display: "none"}}></div>)}
+            </div>
+
         </div>
     )
 }

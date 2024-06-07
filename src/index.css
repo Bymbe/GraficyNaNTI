@@ -1774,3 +1774,129 @@ padding-right: 20px;
   border: 3px solid;
   border-color: var(--textColorBrown);
 }
+
+.ProponowanaKarma{
+  background-color: #F6F1CB;
+  font-size: 2vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5%;
+  height: auto;
+  width: 100%;
+  /*overflow: auto;*/
+}
+
+.Karma-popup img {
+  width: 250px;
+
+  /*padding: 0px 5px 0px 5px;*/
+  margin: auto;
+}
+.Karma-popup h4{
+
+  color: #5E3A1F;
+  font-size: 4vh;
+  margin-bottom: 0%;
+  margin-top: 0%;
+}
+.Karma-popup h3 {
+  margin-bottom: 2%;
+  margin-top: 0%;
+  color: #5E3A1F;
+  font-size: 5vh;
+}
+.Karma-popup h2 {
+
+  color: #5E3A1F;
+  font-size: 4vh;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin-bottom: 0%;
+  margin-top: 0%;
+}
+
+.Karma-popup button {
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorPeanutButter);
+  border: 3px solid;
+  border-color: var(--textColorBrown);
+}
+
+
+.Karma-popup{
+
+
+  height: auto;
+  width: auto;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #F6F1CB;
+
+  color: #5E3A1F;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #5E3A1F;
+  top: 200px;
+}
+
+
+.DDK{
+  background-color: #F6F1CB;
+
+  position: absolute;
+  top: 2700px;
+  /*left: 36.5%;*/
+  width: 100%;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+
+}
+.DodajDoKoszyka-Popup {
+  position: absolute;
+  /*padding-left: 10%;*/
+  width: auto;
+  height: auto;
+  background-color: #F6F1CB;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #5E3A1F;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #5E3A1F;
+  /*margin: auto;*/
+
+}
+
+.DDK h1{
+  margin: 40px;
+}
+
+.DDK button {
+  margin: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  font-size: 30px;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorPeanutButter);
+  border: 3px solid;
+  border-color: var(--textColorBrown);
+}
