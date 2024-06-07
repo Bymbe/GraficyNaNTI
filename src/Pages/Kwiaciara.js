@@ -5,7 +5,7 @@ import {getDoc, doc} from "firebase/firestore";
 
 function Kwiaciara(props) {
 
-    const [KarmaRef, setKarmaRef] = useState("");
+    const [KarmaRef, setKarmaRef] = useState([]);
 
     useEffect(() => {
         console.log(props.Karma);
@@ -41,7 +41,7 @@ function Kwiaciara(props) {
 
                 <div className="Karmy-Header-Kwiaciara">
                     <br/><br/><br/>
-                    <h1>Kwiaciara</h1>
+                    <h1>{KarmaRef.Nazwa}</h1>
 
 
                     <h2>{KarmaRef.DługiOpis}</h2>
