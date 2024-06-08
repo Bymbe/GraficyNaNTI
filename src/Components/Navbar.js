@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Logo from "../Assets/Logo.svg";
 import Koszyk from "../Assets/Koszyk.svg";
 import Konto from "../Assets/Konto.svg";
@@ -8,11 +8,14 @@ import Popup from 'reactjs-popup';
 import {doc, getDoc} from "firebase/firestore";
 import {db} from "../DataBase/init-firebase";
 
-function Navbar(props) {
+const Navbar = (props) => {
 
     const [Login, setLogin] = useState('');
     const [Password, setPassword] = useState("");
-    const [Zalogowano, setZalogowano] = useState(false);
+    //const [Zalogowano, setZalogowano] = useState(props.Zalogowano);
+
+
+
 
     const Logowanie = async () => {
         if (Login.trim() === '' || Password.trim() === '') {
@@ -28,7 +31,7 @@ function Navbar(props) {
             }
             else {
                 alert('Logowanie powiodło się')
-                setZalogowano(true);
+                //setZalogowano(true);
                 props.handleCallBackLogin(Login);
                 props.handleCallBackZalogowo(true);
             }
@@ -56,7 +59,7 @@ function Navbar(props) {
                 <li><Link to="Pomoc" className="Link">Pomoc</Link></li>
             </div>
             <div className="navbar-right">
-                {Zalogowano ? (
+                {props.Zalogowano ? (
                     <Link to="Konto"><img className="Navbar-icons" src={Konto}/></Link>
                 ) : (
                     <Popup trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">

@@ -7,6 +7,7 @@ import TypPies from "../Assets/Pies_EBIZNES.png"
 import TypKot from "../Assets/Kot-EBIZNES.png"
 import TypKrólik from "../Assets/Królik_EBIZNES.png"
 import Ołówek from "../Assets/Ołówek.svg"
+import {Link} from "react-router-dom";
 
 
 
@@ -23,13 +24,16 @@ function Konto(props) {
     const [Country, setCountry] = useState("");
     const [EditingPet, setEditingPet] = useState("");
 
+    const [Dane, setDane] = useState([]);
     const [Pets, setPets] = useState([]);
 
     const [RasaTemp, setRasaTemp] = useState("");
     const [PłećTemp, setPłećTemp] = useState("");
     const [WiekTemp, setWiekTemp] = useState("");
+    const [MiesiącTemp, setMiesiącTemp] = useState("");
     const [WagaTemp, setWagaTemp] = useState("");
-    const [DolegliwościTemp, setDolegliwościTemp] = useState("");
+    const [SterylizedTemp, setSterylizedTemp] = useState("");
+    const [AktywnośćTemp, setAktywnośćTemp] = useState("");
 
     const [EditAdressFlag, setEditAdressFlag] = useState(false);
 
@@ -47,6 +51,9 @@ function Konto(props) {
             const docSnap = await getDoc(DaneRef);
 
             if(docSnap.exists()){
+
+                setDane(docSnap.data());
+
                 setName(docSnap.data().Imię)
                 setSurname(docSnap.data().Nazwisko)
                 setEmail(docSnap.data().E_Mail)
@@ -77,7 +84,7 @@ const OpenDrawer = (PetID) => {
     //console.log(element.style.height);
     if(element.style.height === "0px"){
 
-        element.style.height = "300px";
+        element.style.height = "350px";
         element.style.padding = "10px 20px 10px 20px";
         element2.style.rotate = "-90deg";
         element3.style.borderRadius = "15px 15px 0px 0px";
@@ -104,7 +111,9 @@ const EditPet = async (PetID) => {
                 setPłećTemp(docRef.data().Płeć);
                 setWagaTemp(docRef.data().Waga);
                 setWiekTemp(docRef.data().Wiek);
-                setDolegliwościTemp(docRef.data().Dolegliwości);
+                setMiesiącTemp(docRef.data().Miesiące)
+                setSterylizedTemp(docRef.data().Sterylizacja);
+                setAktywnośćTemp(docRef.data().Aktywność);
             }catch (err){
                 console.log(err);
             }
@@ -118,14 +127,16 @@ const UpdatePet = async (PetID) => {
         //const DaneRef = await doc(db, props.Login, 'Dane');
         //const petsCollecionRef = await collection(DaneRef,'Zwierzęta');
         await updateDoc(doc(db, props.Login, 'Dane','Zwierzęta', PetID), {
-            Rasa: RasaTemp, Płeć: PłećTemp, Waga: WagaTemp, Wiek: WiekTemp, Dolegliwości: DolegliwościTemp
+            Rasa: RasaTemp, Płeć: PłećTemp, Waga: WagaTemp, Wiek: WiekTemp, Miesiące: MiesiącTemp, Sterylizacja: SterylizedTemp, Aktywność: AktywnośćTemp
         });
         setEditingPet("");
         setRasaTemp("");
         setPłećTemp("");
         setWagaTemp("");
         setWiekTemp("");
-        setDolegliwościTemp("");
+        setMiesiącTemp("");
+        setSterylizedTemp("");
+        setAktywnośćTemp("");
         getPets();
 
 
@@ -159,9 +170,9 @@ const EditAdress =  async () => {
                 <div className="Konto-Left">
                     <div className="Konto-Dane-Konta">
                         <h1>Dane konta</h1>
-                        <h2>Imię i Nazwisko: {Name} {Surname}</h2><br/>
-                        <h2>e-mail: {Email}</h2><br/>
-                        <h2>tel.: {Telephone}</h2>
+                        <h2>Imię i Nazwisko: {Dane.Imię} {Dane.Nazwisko}</h2><br/>
+                        <h2>e-mail: {Dane.E_Mail}</h2><br/>
+                        <h2>tel.: {Dane.Telefon}</h2>
                     </div>
                 </div>
                 <h1 className="Konto-Nagłówek">Twoje dane</h1>
@@ -188,7 +199,7 @@ const EditAdress =  async () => {
             </div>
                     <div className="Konto-Dane-Wysyłka">
                         <h1>Adresy do wysyłki</h1>
-                        <h2> Imię i Nazwisko: {Name} {Surname}</h2>
+                        <h2> Imię i Nazwisko: {Dane.Imię} {Dane.Nazwisko}</h2>
                         <h2>Adres: {Adress}</h2>
                         <h2> Kod pocztowy: {Town}</h2>
                     </div>
@@ -201,8 +212,8 @@ const EditAdress =  async () => {
                         /*return (*/
                             if(pet.id !== EditingPet) {
                                 return (<li key={pet.id}>
-                                    <div className="Pupile-Nagłówek">
-                                        <h2 id={`Pet-Nagłówek ${pet.id}`}>{pet.id}</h2>
+                                    <div className="Pupile-Nagłówek" id={`Pet-Nagłówek ${pet.id}`}>
+                                        <h2 >{pet.id}</h2>
                                         <img className="Pupile-Ołówek" src={Ołówek} onClick={() => EditPet(pet.id)}/>
                                         <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka}
                                              onClick={() => OpenDrawer(`${pet.id}`)}/>
@@ -223,10 +234,14 @@ const EditAdress =  async () => {
 
                                         <p>Rasa: {pet.Rasa}</p>
                                         <p>Płeć: {pet.Płeć}</p>
-                                        <p>Wiek: {pet.Wiek}</p>
+                                        <p>Wiek: {pet.Wiek} {pet.Miesiące}</p>
                                         <p>Waga: {pet.Waga}</p>
-                                        <p>Dolegliwości: {pet.Dolegliwości}</p>
-                                        <button>Zobacz karmy</button>
+                                        <p>Sterylizacja: {pet.Sterylizacja}</p>
+                                        <p>Aktywnosć: {pet.Aktywność}</p>
+                                        <Link to="/Kwiaciara" onClick={props.handleCallBackKarma(pet.PrzypisanaKarma)}>
+                                            <button>Zobacz karmy</button>
+                                        </Link>
+
                                     </div>
 
                                 </li>)
@@ -256,19 +271,26 @@ const EditAdress =  async () => {
                                         <p>Płeć: <textarea rows="1" value={PłećTemp}
                                                            onChange={(e) => setPłećTemp(e.target.value)}></textarea></p>
                                         <p>Wiek: <textarea rows="1" value={WiekTemp}
-                                                           onChange={(e) => setWiekTemp(e.target.value)}></textarea></p>
+                                                           onChange={(e) => setWiekTemp(e.target.value)}></textarea>
+                                            <textarea rows="1" value={MiesiącTemp}
+                                                      onChange={(e) => setMiesiącTemp(e.target.value)}></textarea>
+                                        </p>
                                         <p>Waga: <textarea rows="1" value={WagaTemp}
                                                            onChange={(e) => setWagaTemp(e.target.value)}></textarea></p>
-                                        <p>Dolegliwości: <textarea rows="1" value={DolegliwościTemp}
-                                                                   onChange={(e) => setDolegliwościTemp(e.target.value)}></textarea></p>
+                                        <p>Sterylizacja: <textarea rows="1" value={SterylizedTemp}
+                                                                   onChange={(e) => setSterylizedTemp(e.target.value)}></textarea>
+                                        </p>
+                                        <p>Aktywność: <textarea rows="1" value={AktywnośćTemp}
+                                                                   onChange={(e) => setAktywnośćTemp(e.target.value)}></textarea>
+                                        </p>
                                         <button onClick={() => UpdatePet(`${pet.id}`)}>Zapisz</button>
                                     </div>
 
                                 </li>)
                             }
-                    /*)*/
+                        /*)*/
 
-                    /*)*/
+                        /*)*/
                     })}
                 </ul>
             </div>

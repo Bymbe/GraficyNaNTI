@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {Link} from "react-router-dom";
 import Karma from "../Assets/karma.png";
 import {addDoc, collection, doc, setDoc} from "firebase/firestore";
@@ -6,9 +6,13 @@ import {db} from "../DataBase/init-firebase";
 
 function Kwestionariusz(props) {
 
+    /*Flagi*/
     const [Dalej, setDalej] = useState(false);
     const [DodajDoKoszyka, setDodajDoKoszyka] = useState(false);
     const [Rejestracja, setRejestracja] = useState(false);
+    const [Zalogowano, setZalogowano] = useState(false);
+
+    /*Rejestracja */
     const [Name, setName] = useState("");
     const [Surname, setSurname] = useState("");
     const [Login, setLogin] = useState('');
@@ -16,12 +20,27 @@ function Kwestionariusz(props) {
     const [Telephone, setTelephone] = useState("");
     const [Password, setPassword] = useState("");
     const [PasswordRepeated, setPasswordRepeated] = useState("");
-    const [Zalogowano, setZalogowano] = useState(false);
     const [Regulamin, setRegulamin] = useState(false);
+
+    /*Pupil*/
+    const [PupilType, setPupilType] = useState("Pies");
+    const [PupilName, setPupilName] = useState("");
+    const [PupilBreed, setPupilBreed] = useState("Beagle");
+    const [PupilAge, setPupilAge] = useState("");
+    const [PupilMonth, setPupilMonth] = useState("");
+    const [PupilWeight, setPupilWeight] = useState("");
+    const [PupilGender, setPupilGender] = useState("Pies");
+    const [PupilSterylized, setPupilSterylized] = useState("Nie");
+    const [PupilActif, setPupilActif] = useState("Mała aktywność");
+    const [WybranaKarma, setWybranaKarma] = useState("Kwiaciara");
+    const [CenaWybranejKarmy, setCenaWybranejKarmy] = useState(49.99);
 
     const dalejFunction = async ()=> {
         setDalej(true);
         setRejestracja(false);
+
+        const element = document.getElementById("Dalej");
+        element.scrollIntoView({behavior: "smooth"});
         return;
     }
     const DodajDoKoszykaFunction = async ()=> {
@@ -34,7 +53,20 @@ function Kwestionariusz(props) {
         setRejestracja(true);
         setDalej(false);
         setDodajDoKoszyka(false);
+
+        const element = document.getElementById("Register");
+        element.scrollIntoView({behavior: "smooth"});
         return;
+    }
+
+    useEffect(() => {
+        if(props.Zalogowano === true && props.UpdatingPet !== ""){
+            getPet(props.UpdatingPet);
+        }
+    }, []);
+
+    const getPet = async (PetID) => {
+
     }
 
     const CreateUser = async () => {
@@ -44,7 +76,7 @@ function Kwestionariusz(props) {
             return;
         }
 
-        if (Login.trim() === '' || Password.trim() === '' || Name.trim() === '' || Surname.trim() === ''|| Surname.trim() === '') {
+        if (Login.trim() === '' || Password.trim() === '' || Name.trim() === '' || Surname.trim() === '') {
             alert('Nazwa kolekcji nie może być pusta.');
             return;
         }
@@ -55,15 +87,11 @@ function Kwestionariusz(props) {
         }
         try {
             await setDoc(doc(db, Login,"Dane"),{Imię: Name, Nazwisko: Surname, Hasło: Password, E_Mail: Email, Telefon: Telephone} /*{placeholderField: true}*/);
-            const mainDocumentRef = doc(db, Login, "Dane");
+            await setDoc(doc(db, Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+            await setDoc(doc(db, Login, "Dane", "Koszyk", WybranaKarma), {Cena: CenaWybranejKarmy, Amount: 1});
 
-            await addDoc(collection(mainDocumentRef, "Zwierzęta"), {placeholderField: true});
-            await addDoc(collection(mainDocumentRef, "Zamówienia"), {placeholderField: true});
-            await addDoc(collection(mainDocumentRef, "Koszyk"), {placeholderField: true});
-
-            /*await setDoc(doc(db, Login, "Dane", "Zwierzęta", "Burek"), {Rasa: "Golden Retriver"}); // Dodawanie Pupila*/
             setZalogowano(true);
-            props.handleCallBackZalogowo(Zalogowano);
+            props.handleCallBackZalogowo(true);
             props.handleCallBackLogin(Login);
             alert(`Kolekcja '${Login}' oraz jej podkolekcje zostały utworzone.`);
         }catch (error) {
@@ -71,13 +99,6 @@ function Kwestionariusz(props) {
             alert('Błąd przy tworzeniu kolekcji');
         }
     };
-
-
-
-
-
-
-
 
     return (
 
@@ -92,13 +113,13 @@ function Kwestionariusz(props) {
                 Jak wabi się twój pupil?
             </div>
             <div>
-                <input type="text" id="PetNameInput" placeholder="Imię pupila"/>
+                <input type="text" id="PetNameInput" placeholder="Imię pupila"   onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
             </div>
             <div className="Kwestionariusz-question">
                 Jakiej rasy jest twój pupil?
             </div>
             <div className="RaceSelect">
-                <select name="rasy" id="rasy">
+                <select name="rasy" id="rasy"  onChange={(e) => setPupilBreed(e.target.value)}>
                     <option value="Beagle">Beagle</option>
                     <option value="Chihuahua">Chihuahua</option>
                     <option value="GoldenRetirever">Golden Retriever</option>
@@ -114,22 +135,22 @@ function Kwestionariusz(props) {
                 W jakim wieku jest twój pupil?
             </div>
             <div className="AgeSelect">
-                <input type="text" id="PetAgeYearsInput" placeholder="Wiek pupila w latach"/>
+                <input type="text" id="PetAgeYearsInput" placeholder="Wiek pupila w latach" onChange={(e) => setPupilAge(e.target.value + ' lat')}/>
                 <h10>lata</h10>
-                <input type="text" id="PetAgeMonthsInput" placeholder="Wiek pupila w miesiącach"/>
+                <input type="text" id="PetAgeMonthsInput" placeholder="Wiek pupila w miesiącach" onChange={(e) => setPupilMonth(e.target.value + ' miesięcy')}/>
                 <h10>miesiące</h10>
             </div>
             <div className="Kwestionariusz-question">
                 Ile kilogramów waży twój pupil?
             </div>
             <div className="WeightSelect">
-                <input type="text" id="PetWeightInput" placeholder="Waga pupila w kg"/>
+                <input type="text" id="PetWeightInput" placeholder="Waga pupila w kg" onChange={(e) => setPupilWeight(e.target.value)}/>
             </div>
             <div className="Kwestionariusz-question">
                 Czy twój pupil to pies czy suczka?
             </div>
             <div className="SexSelect">
-                <select name="plec" id="plec">
+                <select name="plec" id="plec" onChange={(e) => setPupilGender(e.target.value)}>
                     <option value="samiec">Pies</option>
                     <option value="samica">Suczka</option>
                 </select>
@@ -138,7 +159,7 @@ function Kwestionariusz(props) {
                 Czy twój pupil jest po sterylizacji lub kastracji?
             </div>
             <div className="SterilizedSelect">
-                <select name="sterylizacja" id="sterylizacja">
+                <select name="sterylizacja" id="sterylizacja" onChange={(e) => setPupilSterylized(e.target.value)}>
                     <option value="no">Nie</option>
                     <option value="yes">Tak</option>
                 </select>
@@ -147,7 +168,7 @@ function Kwestionariusz(props) {
                 Jak bardzo aktywny jest twój pupil?
             </div>
             <div className="ActivitySelect">
-                <select name="activity" id="activity">
+                <select name="activity" id="activity" onChange={(e) => setPupilActif(e.target.value)}>
                     <option value="low">Mała aktywność</option>
                     <option value="medium">Przeciętna aktywność</option>
                     <option value="high">Wysoka aktywność</option>
@@ -198,31 +219,24 @@ function Kwestionariusz(props) {
                 <button onClick={dalejFunction}>Dalej</button>
                 <div className="ProponowanaKarma">
                     {Dalej ? (
-                        <div className="Karma-popup">
+                        <div className="Karma-popup" id="Dalej">
                             <h1>Proponowana Karma</h1>
 
-                            <h4>"Kwiaciara"</h4>
+                            <h4>{WybranaKarma}</h4>
                             <img src={Karma}/>
-                            <h3>49,99 zł</h3>
+                            <h3>{CenaWybranejKarmy} zł</h3>
                             <h2>Super dobra karma z płatków kwiatów</h2>
-                            <Link to="/Kwiaciara">
+                            <Link to="/Kwiaciara" onClikc={props.handleCallBackKarma(WybranaKarma)}>
                                 <button>Czytaj więcej</button>
                             </Link>
                             {Zalogowano ? (<Link to="/Koszyk">
-                                <button>Dodaj do koszyka</button>
+                                <button>Dodaj do koszyka</button>  {/*Dodanie karmy dla zalogowanego użytkownika i pupila i karmę dla Pupila -> DodajKarmę(db,Login,Dane,Koszyk,NazwaKarmy*/}
                             </Link>) : (
                                 <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
                             )}
 
-                            <h1></h1>
-
-
-                            {/*<h2>Możesz teraz przejść do swojego profilu</h2>*/}
-                            {/*<Link to="/Konto">*/}
-                            {/*    <button>Przejdź do Profilu</button>*/}
-                            {/*</Link>*/}
                         </div>
-                    ) : (<div style={{display: "none"}}></div>)}
+                    ) : (<div style={{display: "none"}} id="Dalej"></div>)}
                 </div>
 
             </div>
@@ -231,12 +245,11 @@ function Kwestionariusz(props) {
                 {DodajDoKoszyka ? (
                     <div className="DodajDoKoszyka-Popup">
                         <h1>Czy chcesz założyć konto?</h1>
-                        {/*<h2>Możesz teraz przejść do swojego profilu</h2>*/}
 
                         <button onClick={RejestracjaFunction}>Załóż konto</button>
 
                         <Link to="/Koszyk">
-                            <button>Kupuję jednorazowo</button>
+                            <button>Kupuję jednorazowo</button> {/*Dodanie karmy dla wirtualnego użytkownika -> DodajKarmę(db,Virtual,Dane,Koszyk,NazwaKarmy*/}
                         </Link>
                         <h2></h2>
                     </div>
@@ -247,7 +260,7 @@ function Kwestionariusz(props) {
             <div className="Rejestr">
 
 
-                    <div className="RejestrPopup">
+                    <div className="RejestrPopup" id="Register">
 
                         <div className="Register1">
                             <h1>Register</h1>
@@ -317,7 +330,7 @@ function Kwestionariusz(props) {
                     </div>
 
             </div>
-            ) : (<div style={{display: "none"}}></div>)}
+            ) : (<div style={{display: "none"}} id="Register"></div>)}
         </div>
     )
 }

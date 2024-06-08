@@ -20,38 +20,28 @@ function App() {
     const [Login, setLogin] = useState('');
     const [Karma, setKarma] = useState("");
 
-    function CallBackZalogowano (data){
-        setZalogowano(data);
-    }
 
-    function CallBackLogin (data){
-        setLogin(data);
-    }
-
-    function CallBackKarma (data) {
-        setKarma(data);
-    }
 
     console.log(Karma)
   return (
 
     <div className="App">
       <Router>
-        <Navbar Login={Login} Zalogowano={Zalogowano} handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin} />
+        <Navbar Login={Login} Zalogowano={Zalogowano} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} />
 
 
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
-            <Route path="/Karmy" element={<Karmy Login={Login} handleCallBackKarma={CallBackKarma}/>} />
-            <Route path="/Konto" element={<Konto Login={Login} handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/> } />
+            <Route path="/Karmy" element={<Karmy Login={Login} handleCallBackKarma={setKarma}/>} />
+            <Route path="/Konto" element={<Konto Login={Login} Zalogowano={Zalogowano} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} /> } />
             <Route path="/Koszyk" element={<Koszyk Login={Login} Zalogowano={Zalogowano}/>} />
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
             <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />
-            <Route path="/Kwestionariusz" element={<Kwestionariusz />} />
-            <Route path="/Register" element={<Register handleCallBackZalogowo={CallBackZalogowano} handleCallBackLogin={CallBackLogin}/>} />
+            <Route path="/Kwestionariusz" element={<Kwestionariusz Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} />} />
+            <Route path="/Register" element={<Register handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin}/>} />
         </Routes>
         <Footer/>
       </Router>

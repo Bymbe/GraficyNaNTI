@@ -630,7 +630,7 @@ h1 + .Register-Text-Area{
 
   padding-bottom: 20px;
   z-index: 2;
-  height: 500px;
+  min-height: 500px;
   background: #CE9F54;
   height: fit-content;
 }
@@ -647,17 +647,27 @@ h1 + .Register-Text-Area{
 }
 
 .Pupile-Guzik-Szuflada{
-  position: relative;
+  position: absolute;
+  scale: 0.8;
+  margin: 0;
+  right: 30px;
+  rotate: 0deg;
+  transition: 0.5s;
+
+  /*position: relative;
   scale: 0.8;
   bottom: 65px;
   left: 45%;
-  rotate: 0deg;
-  transition: 0.5s;
-  z-index: 4;
+
+  z-index: 8;
+  background-color: #aeff86;*/
 }
 
 .Pupile-Ołówek {
-  position: absolute;
+  position: relative;
+  margin: 0px;
+  left: 20px;
+ /* position: relative;
   top: 15px;
   left: 50px;
   //transform: scaleX(-1);
@@ -665,33 +675,47 @@ h1 + .Register-Text-Area{
   margin: 0;
   padding: 0;
 
-  Z-index: 1;
+  Z-index: 1;*/
 }
 
 .Pupile-Nagłówek {
+  height: fit-content;
   position: relative;
-  width: 60%;
+  width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  background-color: #F6F1CB;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  padding: 20px 20px 20px 20px;
+  border-radius: 15px;
+  margin-bottom: 0px;
 
 }
 
 .Pupile-Nagłówek h2{
-  background-color: #F6F1CB;
   position: relative;
+  width: fit-content;
+  text-align: left;
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: calc(30px + var(--additionaltextsize));
+  line-height: 30px;
+  margin: 0;
+  /*position: relative;
   margin-left: auto;
   margin-right: auto;
   left: -20px;
-  width: 100%;
-  font-family: "Anek Gujarati", sans-serif;
-  font-size: calc(30px + var(--additionaltextsize));
-  text-align: left;
-  padding: 10px 20px 10px 20px;
-  border-radius: 15px;
+  width: 200px;
+
+  text-align: left;*/
+
+
   /*transition-delay: 0.5s;*/
 
   /*border-radius: 15px 15px 0px 0px;*/
-  margin-bottom: 0px;
+  /*margin-bottom: 0px;*/
 
 }
 
@@ -699,12 +723,12 @@ h1 + .Register-Text-Area{
 
   background-image: linear-gradient(to bottom, #e8bc76, #F6F1CB);
 
-  width: 60%;
+  width: 1200px;
   position: relative;
   margin-top: 0px;
   margin-left: auto;
   margin-right: auto;
-  bottom: 75px;
+  bottom: 0px;
   height: 0px;
   padding: 0px 20px 0px 20px;
 

@@ -2,31 +2,36 @@ import React, {useEffect, useState} from 'react'
 import Karma from "../Assets/karma.png";
 import {db} from "../DataBase/init-firebase";
 import {getDoc, doc} from "firebase/firestore";
+import {useNavigate} from "react-router-dom";
 
 function Kwiaciara(props) {
 
     const [KarmaRef, setKarmaRef] = useState([]);
+    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
         console.log(props.Karma);
         getKarma();
 
-    },[])
+    }, [])
 
     const getKarma = async () => {
-        try{
+        try {
 
             const KarmaRef = await doc(db, 'Karmy', props.Karma);
             const snapShot = await getDoc(KarmaRef);
 
             setKarmaRef(snapShot.data());
 
-        }catch(err){
+        } catch (err) {
             console.log(err);
         }
     }
 
-
+    const handleBack = () => {
+        navigate(-1);
+    }
 
     return (
 
@@ -38,6 +43,7 @@ function Kwiaciara(props) {
                     <img src={Karma}/>
                     <h9>{KarmaRef.Cena} zł</h9>
                     <button className="KwiaciaraButton">Dodaj do koszyka</button>
+                    <button className="KwiaciaraButton" onClick={handleBack}>Powrót</button>
                 </div>
 
                 <div className="Karmy-Header-Kwiaciara">
@@ -69,5 +75,6 @@ function Kwiaciara(props) {
         </div>
     )
 }
+
 
 export default Kwiaciara;

@@ -41,13 +41,13 @@ function Register(props) {
             await setDoc(doc(db, Login,"Dane"),{Imię: Name, Nazwisko: Surname, Hasło: Password, E_Mail: Email, Telefon: Telephone} /*{placeholderField: true}*/);
             const mainDocumentRef = doc(db, Login, "Dane");
 
-            await addDoc(collection(mainDocumentRef, "Zwierzęta"), {placeholderField: true});
-            await addDoc(collection(mainDocumentRef, "Zamówienia"), {placeholderField: true});
-            await addDoc(collection(mainDocumentRef, "Koszyk"), {placeholderField: true});
+            //await addDoc(collection(mainDocumentRef, "Zwierzęta"), {placeholderField: true});
+            //await addDoc(collection(mainDocumentRef, "Zamówienia"), {placeholderField: true});
+            //await addDoc(collection(mainDocumentRef, "Koszyk"), {placeholderField: true});
 
             /*await setDoc(doc(db, Login, "Dane", "Zwierzęta", "Burek"), {Rasa: "Golden Retriver"}); // Dodawanie Pupila*/
             setZalogowano(true);
-            props.handleCallBackZalogowo(Zalogowano);
+            props.handleCallBackZalogowo(true);
             props.handleCallBackLogin(Login);
             alert(`Kolekcja '${Login}' oraz jej podkolekcje zostały utworzone.`);
         }catch (error) {
