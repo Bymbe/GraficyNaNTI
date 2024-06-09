@@ -60,7 +60,22 @@ const Navbar = (props) => {
             </div>
             <div className="navbar-right">
                 {props.Zalogowano ? (
-                    <Link to="Konto"><img className="Navbar-icons" src={Konto}/></Link>
+
+                    <Popup trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">
+                        <div className="navbar-popup">
+                            <div className="navbar-popup-konto">
+                                <Link to="Konto">
+                                    <button>Profil</button>
+                                </Link>
+                                <Link to="Konto">
+                                    <button>Historia zamówień</button>
+                                </Link>
+                                <button>Wyloguj</button>
+                            </div>
+
+
+                        </div>
+                    </Popup>
                 ) : (
                     <Popup trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">
                         <div className="navbar-popup">
