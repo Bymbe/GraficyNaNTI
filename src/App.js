@@ -19,10 +19,14 @@ function App() {
     const [Zalogowano, setZalogowano] = useState(false);
     const [Login, setLogin] = useState('');
     const [Karma, setKarma] = useState("");
+    const [PupilDoZmiany, setPupilDoZmiany] = useState("");
+
+    const handlePupilDoZmiany = (data) => {
+        setPupilDoZmiany(data);
+        console.log(data);
+    }
 
 
-
-    console.log(Karma)
   return (
 
     <div className="App">
@@ -34,13 +38,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Home" element={<Home />} />
             <Route path="/Karmy" element={<Karmy Login={Login} handleCallBackKarma={setKarma}/>} />
-            <Route path="/Konto" element={<Konto Login={Login} Zalogowano={Zalogowano} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} /> } />
+            <Route path="/Konto" element={<Konto Login={Login} Zalogowano={Zalogowano} handleCallBackPupilDoZmiany={handlePupilDoZmiany} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} /> } />
             <Route path="/Koszyk" element={<Koszyk Login={Login} Zalogowano={Zalogowano}/>} />
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
             <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />
-            <Route path="/Kwestionariusz" element={<Kwestionariusz Zalogowano={Zalogowano} Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} />} />
+            <Route path="/Kwestionariusz" element={<Kwestionariusz Zalogowano={Zalogowano} PupilDoZmiany={PupilDoZmiany} Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} />} />
             <Route path="/Register" element={<Register handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin}/>} />
         </Routes>
         <Footer/>

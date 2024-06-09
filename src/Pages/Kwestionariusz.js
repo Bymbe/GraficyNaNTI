@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from "react-router-dom";
 import Karma from "../Assets/karma.png";
-import {addDoc, collection, doc, setDoc} from "firebase/firestore";
+import {addDoc, collection, doc, getDoc, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../DataBase/init-firebase";
 
 function Kwestionariusz(props) {
@@ -36,6 +36,9 @@ function Kwestionariusz(props) {
     const [WybranaKarma, setWybranaKarma] = useState("Kwiaciara");
     const [CenaWybranejKarmy, setCenaWybranejKarmy] = useState(49.99);
 
+    /*Updatowanie Pupila*/
+    const [DanePupila, setDanePupila] = useState([]);
+
     const dalejFunction = async ()=> {
         setDalej(true);
         setRejestracja(false);
@@ -61,18 +64,55 @@ function Kwestionariusz(props) {
     }
 
     useEffect(() => {
-        if(props.Zalogowano === true && props.UpdatingPet !== ""){
-            getPet(props.UpdatingPet);
+        console.log(props.Zalogowano);
+        console.log(props.PupilDoZmiany);
+        if(props.Zalogowano === true && props.PupilDoZmiany !== ""){
+            getPet();
+
         }
-    }, []);
 
-    const getPet = async (PetID) => {
+    }, [props.Zalogowano, props.PupilDoZmiany]);
 
+    useEffect(() => {
+        if (DanePupila && Object.keys(DanePupila).length > 0) {
+            setPupilName(props.PupilDoZmiany);
+            setPupilBreed(DanePupila.Rasa);
+            setPupilAge(DanePupila.Wiek);
+            setPupilMonth(DanePupila.Miesiące);
+            setPupilWeight(DanePupila.Waga);
+            setPupilGender(DanePupila.Płeć);
+            setPupilSterylized(DanePupila.Sterylizacja);
+            setPupilActif(DanePupila.Aktywność);
+            console.log(DanePupila.Rasa);
+        }
+    }, [DanePupila]);
+
+
+    const getPet = async () => {
+                try{
+            const PupilRef = await doc(db, props.Login,'Dane', 'Zwierzęta', props.PupilDoZmiany);
+            const snapShot = await getDoc(PupilRef);
+            setDanePupila(snapShot.data());
+
+            console.log(snapShot.data());
+            console.log(DanePupila.Rasa);
+
+        }catch (err){
+            console.log(err);
+        }
     }
+
+
 
     const addPet = async () => {
         try{
-            console.log(props.Zalogowano);
+            if(props.PupilDoZmiany !== ""){
+                const PupilRef = await doc(db, props.Login, 'Dane','Zwierzęta', props.PupilDoZmiany);
+                await updateDoc(PupilRef, {
+                    Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma
+                })
+            }
+            //console.log(props.Zalogowano);
             await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
             await setDoc(doc(db, props.Login, "Dane", "Koszyk", WybranaKarma), {Cena: CenaWybranejKarmy, Amount: 1});
             setPopupDodanie(true);
@@ -125,13 +165,13 @@ function Kwestionariusz(props) {
                 Jak wabi się twój pupil?
             </div>
             <div>
-                <input type="text" id="PetNameInput" placeholder="Imię pupila"   onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
+                <input type="text" id="PetNameInput" {...(props.PupilDoZmiany !== "" ? {value: `${PupilName}`} : {placeholder: 'Imię pupila'})}  onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
             </div>
             <div className="Kwestionariusz-question">
                 Jakiej rasy jest twój pupil?
             </div>
             <div className="RaceSelect">
-                <select name="rasy" id="rasy"  onChange={(e) => setPupilBreed(e.target.value)}>
+                <select name="rasy" id="rasy" value={PupilBreed} onChange={(e) => setPupilBreed(e.target.value)}>
                     <option value="Beagle">Beagle</option>
                     <option value="Chihuahua">Chihuahua</option>
                     <option value="GoldenRetirever">Golden Retriever</option>
@@ -147,22 +187,22 @@ function Kwestionariusz(props) {
                 W jakim wieku jest twój pupil?
             </div>
             <div className="AgeSelect">
-                <input type="text" id="PetAgeYearsInput" placeholder="Wiek pupila w latach" onChange={(e) => setPupilAge(e.target.value + ' lat')}/>
+                <input type="text" id="PetAgeYearsInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilAge}`} : {placeholder: "Wiek pupila w latach"})}  onChange={(e) => setPupilAge(e.target.value)}/>
                 <h10>lata</h10>
-                <input type="text" id="PetAgeMonthsInput" placeholder="Wiek pupila w miesiącach" onChange={(e) => setPupilMonth(e.target.value + ' miesięcy')}/>
+                <input type="text" id="PetAgeMonthsInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilMonth}`} : {placeholder: "Wiek pupila w miesiącach"})}  onChange={(e) => setPupilMonth(e.target.value)}/>
                 <h10>miesiące</h10>
             </div>
             <div className="Kwestionariusz-question">
                 Ile kilogramów waży twój pupil?
             </div>
             <div className="WeightSelect">
-                <input type="text" id="PetWeightInput" placeholder="Waga pupila w kg" onChange={(e) => setPupilWeight(e.target.value)}/>
+                <input type="text" id="PetWeightInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilWeight}`} : {placeholder: "Waga pupila w kg"})}  onChange={(e) => setPupilWeight(e.target.value)}/>
             </div>
             <div className="Kwestionariusz-question">
                 Czy twój pupil to pies czy suczka?
             </div>
             <div className="SexSelect">
-                <select name="plec" id="plec" onChange={(e) => setPupilGender(e.target.value)}>
+                <select name="plec" id="plec" value={PupilGender}  onChange={(e) => setPupilGender(e.target.value)}>
                     <option value="samiec">Pies</option>
                     <option value="samica">Suczka</option>
                 </select>
@@ -171,7 +211,7 @@ function Kwestionariusz(props) {
                 Czy twój pupil jest po sterylizacji lub kastracji?
             </div>
             <div className="SterilizedSelect">
-                <select name="sterylizacja" id="sterylizacja" onChange={(e) => setPupilSterylized(e.target.value)}>
+                <select name="sterylizacja" id="sterylizacja" value={PupilSterylized} onChange={(e) => setPupilSterylized(e.target.value)}>
                     <option value="no">Nie</option>
                     <option value="yes">Tak</option>
                 </select>
@@ -180,7 +220,7 @@ function Kwestionariusz(props) {
                 Jak bardzo aktywny jest twój pupil?
             </div>
             <div className="ActivitySelect">
-                <select name="activity" id="activity" onChange={(e) => setPupilActif(e.target.value)}>
+                <select name="activity" id="activity" value={PupilActif}  onChange={(e) => setPupilActif(e.target.value)}>
                     <option value="Mała aktywność">Mała aktywność</option>
                     <option value="Przeciętna aktywność">Przeciętna aktywność</option>
                     <option value="Wysoka aktywność">Wysoka aktywność</option>
@@ -334,7 +374,7 @@ function Kwestionariusz(props) {
                             <button onClick={CreateUser}>Register</button>
 
                             {Zalogowano ? (
-                                <div className="Register-Popup">
+                                <div className="Kwestionariusz-Register-Popup">
                                     <h1>Zakładanie konta zakończyło się sukcesem!</h1>
                                     <h2>Możesz teraz przejść do swojego profilu</h2>
                                     <Link to="/Konto">

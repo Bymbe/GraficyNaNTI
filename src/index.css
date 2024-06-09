@@ -767,14 +767,18 @@ h1 + .Register-Text-Area{
   background-color: #F6F1CB;
 }
 
-.Pupiple-Informacje button{
-  position: absolute;
-  left: 20px;
-  background-color: #5E3A1F;
-  border: none;
-  border-radius: 5px;
-  padding: 7px 15px;
-  color: #F6F1CB;
+.Pupile-Guziki{
+  position: relative;
+  width: 1000px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+
+}
+
+#Zaktualizuj-karmę{
+  margin-left: 30px;
 }
 
 .Pupiple-Informacje img {
@@ -2032,7 +2036,7 @@ padding-right: 20px;
 .RejestrPopup button {
   margin: 10px;
   margin-bottom: 30px;
-  width: 50%;
+  width: 600px;
   height: 150%;
 
   font-size: calc(20px + var(--additionaltextsize));
@@ -2144,4 +2148,33 @@ padding-right: 20px;
   border-color: #5E3A1F;
   padding: 20px;
 }
+
+.Kwestionariusz-Register-Popup{
+  position: absolute;
+//background-color: #aeff86;
+  background-color: #F6F1CB;
+  width: 600px;
+  color: #5E3A1F;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #CE9F54;
+  padding: 20px;
+  top: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.Kwestionariusz-Register-Popup button {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.Kwestionariusz-Register-Popup button {
+  background-color: #5E3A1F;
+  color: var(--textColorCreamy);
+}
+
 

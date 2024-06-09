@@ -79,6 +79,7 @@ function Konto(props) {
 
 
 const OpenDrawer = (PetID) => {
+        console.log(PetID);
     let element = document.getElementById(`Pet-Inf ${PetID}`);
     let element2 = document.getElementById(`Szuflada ${PetID}`);
     let element3 = document.getElementById(`Pet-Nagłówek ${PetID}`);
@@ -235,13 +236,19 @@ const EditAdress =  async () => {
 
                                         <p>Rasa: {pet.Rasa}</p>
                                         <p>Płeć: {pet.Płeć}</p>
-                                        <p>Wiek: {pet.Wiek} {pet.Miesiące}</p>
+                                        <p>Wiek: {pet.Wiek} lat i {pet.Miesiące} miesięcy</p>
                                         <p>Waga: {pet.Waga}</p>
                                         <p>Sterylizacja: {pet.Sterylizacja}</p>
                                         <p>Aktywnosć: {pet.Aktywność}</p>
-                                        <Link to="/Kwiaciara" onClick={props.handleCallBackKarma(pet.PrzypisanaKarma)}>
-                                            <button>Zobacz karmy</button>
-                                        </Link>
+                                        <div className="Pupile-Guziki">
+                                            <Link to="/Kwiaciara" id="Zobacz-karmy" onClick={props.handleCallBackKarma(pet.PrzypisanaKarma)}>
+                                                <button>Zobacz karmy</button>
+                                            </Link>
+                                            <Link to="/Kwestionariusz" id="Zaktualizuj-karmę" onClick={() => {props.handleCallBackPupilDoZmiany(`${pet.id}`)}}>
+                                                <button>Zaktualizuj karmę</button>
+                                            </Link>
+                                        </div>
+
 
                                     </div>
 
@@ -272,9 +279,9 @@ const EditAdress =  async () => {
                                         <p>Płeć: <textarea rows="1" value={PłećTemp}
                                                            onChange={(e) => setPłećTemp(e.target.value)}></textarea></p>
                                         <p>Wiek: <textarea rows="1" value={WiekTemp}
-                                                           onChange={(e) => setWiekTemp(e.target.value)}></textarea>
+                                                           onChange={(e) => setWiekTemp(e.target.value)}></textarea> lat i
                                             <textarea rows="1" value={MiesiącTemp}
-                                                      onChange={(e) => setMiesiącTemp(e.target.value)}></textarea>
+                                                      onChange={(e) => setMiesiącTemp(e.target.value)}></textarea> miesięcy
                                         </p>
                                         <p>Waga: <textarea rows="1" value={WagaTemp}
                                                            onChange={(e) => setWagaTemp(e.target.value)}></textarea></p>
