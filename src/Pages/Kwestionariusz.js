@@ -11,6 +11,7 @@ function Kwestionariusz(props) {
     const [DodajDoKoszyka, setDodajDoKoszyka] = useState(false);
     const [Rejestracja, setRejestracja] = useState(false);
     const [Zalogowano, setZalogowano] = useState(false);
+    const [PopupDodanie, setPopupDodanie] = useState(false);
 
     /*Rejestracja */
     const [Name, setName] = useState("");
@@ -67,6 +68,17 @@ function Kwestionariusz(props) {
 
     const getPet = async (PetID) => {
 
+    }
+
+    const addPet = async () => {
+        try{
+            console.log(props.Zalogowano);
+            await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+            await setDoc(doc(db, props.Login, "Dane", "Koszyk", WybranaKarma), {Cena: CenaWybranejKarmy, Amount: 1});
+            setPopupDodanie(true);
+        }catch(err){
+            console.log(err)
+        }
     }
 
     const CreateUser = async () => {
@@ -169,9 +181,9 @@ function Kwestionariusz(props) {
             </div>
             <div className="ActivitySelect">
                 <select name="activity" id="activity" onChange={(e) => setPupilActif(e.target.value)}>
-                    <option value="low">Mała aktywność</option>
-                    <option value="medium">Przeciętna aktywność</option>
-                    <option value="high">Wysoka aktywność</option>
+                    <option value="Mała aktywność">Mała aktywność</option>
+                    <option value="Przeciętna aktywność">Przeciętna aktywność</option>
+                    <option value="Wysoka aktywność">Wysoka aktywność</option>
                 </select>
             </div>
             <div className="Kwestionariusz-question">
@@ -226,14 +238,27 @@ function Kwestionariusz(props) {
                             <img src={Karma}/>
                             <h3>{CenaWybranejKarmy} zł</h3>
                             <h2>Super dobra karma z płatków kwiatów</h2>
-                            <Link to="/Kwiaciara" onClikc={props.handleCallBackKarma(WybranaKarma)}>
+                            <Link to="/Kwiaciara" onClick={props.handleCallBackKarma(WybranaKarma)}>
                                 <button>Czytaj więcej</button>
                             </Link>
-                            {Zalogowano ? (<Link to="/Koszyk">
-                                <button>Dodaj do koszyka</button>  {/*Dodanie karmy dla zalogowanego użytkownika i pupila i karmę dla Pupila -> DodajKarmę(db,Login,Dane,Koszyk,NazwaKarmy*/}
-                            </Link>) : (
+                            {props.Zalogowano ? (
+
+                                <button onClick={() => addPet()}>Dodaj do koszyka</button> ) : (
+
                                 <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
                             )}
+
+
+
+                        </div>
+                    ) : (<div style={{display: "none"}} id="Dalej"></div>)}
+
+                    {PopupDodanie ? (
+                        <div className="Kwestionariusz-Popup-Dodanie">
+                            <h1>Pupil oraz karma zostały pomyślnie dodane do Twojego konta!</h1>
+                            <Link className="Link" to="/Konto">
+                                <button>Przejdź do profilu</button>
+                            </Link>
 
                         </div>
                     ) : (<div style={{display: "none"}} id="Dalej"></div>)}

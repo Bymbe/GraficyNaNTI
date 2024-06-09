@@ -691,7 +691,7 @@ h1 + .Register-Text-Area{
   justify-content: left;
   padding: 20px 20px 20px 20px;
   border-radius: 15px;
-  margin-bottom: 0px;
+  margin-top: 30px;
 
 }
 
@@ -703,6 +703,7 @@ h1 + .Register-Text-Area{
   font-size: calc(30px + var(--additionaltextsize));
   line-height: 30px;
   margin: 0;
+  color: var(--textColorBrown);
   /*position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -784,6 +785,50 @@ h1 + .Register-Text-Area{
   scale: 0.5;
 }
 
+.Pupile-Dodaj {
+  background-color: #5E3A1F;
+  width: 1200px;
+  position: relative;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 20px 0px 20px;
+  border-radius: 15px 15px 15px 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin-top: 30px;
+  cursor: pointer;
+
+}
+
+#Pupile-Link{
+  width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+}
+
+.Pupile-Dodaj h2 {
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: calc(30px + var(--additionaltextsize));
+  line-height: 30px;
+  color: var(--textColorCreamy);
+  text-decoration: none;
+}
+
+Link {
+  text-decoration: none;
+}
+
+.Pupile-Dodaj img {
+  //rotate: 45deg;
+  scale: 1.1;
+  margin-left: 10px;
+
+}
 
 
 .Konto-Bottom{
@@ -2085,5 +2130,18 @@ padding-right: 20px;
   content: attr(data-end);
   color: red;
 
+}
+
+.Kwestionariusz-Popup-Dodanie{
+  position: absolute;
+  //background-color: #aeff86;
+  background-color: #F6F1CB;
+  width: 600px;
+  color: #5E3A1F;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #5E3A1F;
+  padding: 20px;
 }
 

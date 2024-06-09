@@ -40,7 +40,7 @@ function App() {
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/ONas" element={<ONas />} />
             <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />
-            <Route path="/Kwestionariusz" element={<Kwestionariusz Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} />} />
+            <Route path="/Kwestionariusz" element={<Kwestionariusz Zalogowano={Zalogowano} Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} />} />
             <Route path="/Register" element={<Register handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin}/>} />
         </Routes>
         <Footer/>

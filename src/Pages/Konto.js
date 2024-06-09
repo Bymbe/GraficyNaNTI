@@ -7,6 +7,7 @@ import TypPies from "../Assets/Pies_EBIZNES.png"
 import TypKot from "../Assets/Kot-EBIZNES.png"
 import TypKrólik from "../Assets/Królik_EBIZNES.png"
 import Ołówek from "../Assets/Ołówek.svg"
+import Plus from "../Assets/Plus.svg"
 import {Link} from "react-router-dom";
 
 
@@ -292,6 +293,15 @@ const EditAdress =  async () => {
 
                         /*)*/
                     })}
+
+                        <li className="Pupile-Dodaj">
+                            <Link to="/Kwestionariusz" className="Link" id="Pupile-Link">
+                            <h2>Dodaj nowego pupila</h2>
+                            <img src={Plus}/>
+                            </Link>
+                        </li>
+
+
                 </ul>
             </div>
             <div className="Konto-Bottom">

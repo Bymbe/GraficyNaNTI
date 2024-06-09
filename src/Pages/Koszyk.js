@@ -38,7 +38,7 @@ function Koszyk(props) {
 
                 const docSnap = await getDoc(DaneRef);
                 console.log(docSnap.data().KodPocztowy)
-                if(docSnap.data().Adres.trim() === "" || docSnap.data().KodPocztowy.trim() === "" || docSnap.data().Kraj.trim() === ""){
+                if(docSnap.data().Adres === "" || docSnap.data().KodPocztowy === "" || docSnap.data().Kraj === ""){
                     setUzupełnioneDane(false);
                 }
                 else{
