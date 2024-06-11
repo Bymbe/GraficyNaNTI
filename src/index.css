@@ -1930,8 +1930,8 @@ padding-right: 20px;
 }
 
 .Kwestionariusz button {
-  margin-top: 30px;
-  margin-bottom: 50px;
+  margin-top: 10px;
+  margin-bottom: 20px;
   font-size: calc(30px + var(--additionaltextsize));
   color: var(--textColorBrown);
   background-color: var(--bgColorPeanutButter);
@@ -1947,7 +1947,7 @@ padding-right: 20px;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  padding-bottom: 5%;
+  /*padding-bottom: 2%;*/
   height: auto;
   width: 100%;
   /*overflow: auto;*/
@@ -2242,3 +2242,64 @@ padding-right: 20px;
 }
 
 
+/*########################################### POMOC ###########################################*/
+
+.Pomoc {
+  margin: 60px auto;
+  width:90%;
+  box-sizing: border-box;
+}
+.Pomoc li {
+  list-style: none;
+  width: 90%;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #CE9F54;
+  color: #5E3A1F;
+  /*box-shadow: 6px 6px 10px -1px rgba(94, 58, 31, 0.45),*/
+  /*-6px -6px 10px -1px rgba(255, 255, 255, 0.7);*/
+}
+.LabelPomoc {
+  display: flex;
+  align-items: center;
+  color: #5E3A1F;
+  padding: 5px;
+  font-size: 22px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.LabelPomoc::before {
+  content: '+';
+  margin-right: 10px;
+  font-size: 28px;
+  font-weight: 700;
+}
+.InputPomoc{
+  display: none;
+}
+.Pomoc .ContentPomoc{
+  font-size: 16px;
+  color: #5E3A1F;
+  padding: 0 2px;
+  line-height:26px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s, paadding 0.5s;
+}
+.InputPomoc:checked + .LabelPomoc + .ContentPomoc {
+  max-height: 400px;
+  padding: 10px 10px 20px;
+}
+.InputPomoc:checked + .LabelPomoc::before{
+  content: '-';
+}
+.ButtonsPomoc {
+  margin: 10px;
+}
+.Buttons2Pomoc{
+  background-color: #CE9F54;
+  margin: 10px;
+  width: 190px;
+  color: #5E3A1F;
+}

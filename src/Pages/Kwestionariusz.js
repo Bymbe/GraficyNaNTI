@@ -268,7 +268,7 @@ function Kwestionariusz(props) {
                 <h10>Zboża</h10>
             </div>
             <div>
-                <button onClick={dalejFunction}>Dalej</button>
+                <button onClick={dalejFunction}>Zaproponuj Karmę</button>
                 <div className="ProponowanaKarma">
                     {Dalej ? (
                         <div className="Karma-popup" id="Dalej">
@@ -283,11 +283,10 @@ function Kwestionariusz(props) {
                             </Link>
                             {props.Zalogowano ? (
 
-                                <button onClick={() => addPet()}>Dodaj do koszyka</button> ) : (
+                                <button onClick={() => addPet()}>Dodaj do koszyka</button>) : (
 
                                 <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
                             )}
-
 
 
                         </div>
@@ -303,6 +302,7 @@ function Kwestionariusz(props) {
                         </div>
                     ) : (<div style={{display: "none"}} id="Dalej"></div>)}
                 </div>
+                <button onClick={dalejFunction}>Dodaj Pupila</button>
 
             </div>
 
