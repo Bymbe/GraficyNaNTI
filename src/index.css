@@ -188,6 +188,28 @@ button {
 
   resize: none;
 }
+
+.navbar-popup-logowanie input {
+  position: relative;
+  display: block;
+  margin-top: 5px;
+  padding: 5px;
+  height: 15px;
+  border-radius: 5px;
+  border-width: 3px ;
+  border-color: #5E3A1F;
+  border-style: solid;
+}
+
+.navbar-popup-logowanie h3{
+  color: var(--textColorBrown);
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  top: 10px;
+  cursor: pointer;
+}
+
 textarea:focus, input:focus{
   outline: none;
 }
@@ -466,6 +488,18 @@ h1 + .Register-Text-Area{
   text-align: center;
   line-height: 30px;
 
+}
+
+.Register div input{
+  display: inline-block;
+  position: relative;
+  width: 164px;
+  
+  height: 30px;
+  border-radius: 0 5px 5px 0;
+  resize: none;
+  text-align: center;
+  line-height: 30px;
 }
 
 .Register-CheckBox-Area{
@@ -1579,6 +1613,14 @@ input[type="text"] {
   color: var(--textColorBrown);
   background-color: var(--bgColorNull);
 
+}
+
+.Karmy-Header h3{
+  color: var(--textColorBrown);
+  position: relative;
+  bottom: 30px;
+  margin: 0;
+  padding: 0;
 }
 
 

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {db} from "../DataBase/init-firebase";
-import {collection, deleteDoc, doc, getDoc, getDocs, updateDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc} from "firebase/firestore";
 import Pies from "../Assets/piesek.png";
 import Kot from "../Assets/kotek.png";
 import Karma from "../Assets/Karma.svg";
@@ -77,6 +77,8 @@ function Koszyk(props) {
     }
 
     const deleteKarma = async (id) => {
+
+
         const KarmaRef = await doc(db, props.Login, 'Dane','Koszyk', id);
         deleteDoc(KarmaRef);
         getKoszyk();
@@ -97,7 +99,7 @@ function Koszyk(props) {
         setPayout(Suma);
     }, [Suma])
 
-    const Payment = () => {
+    const Payment = async () => {
         if(props.Zalogowano !== true){
             if(Adress === "" || Country === "" || Town === "" || Email === ""){
                 alert("Uzupełnij dane adresowe")
@@ -109,6 +111,38 @@ function Koszyk(props) {
             return;
         }
         alert("Przejście do płatności")
+
+        try{
+            /*Pobieranie produktów z koszyka*/
+            const koszykSnapshot = await getDocs(collection(db, props.Login, 'Dane', 'Koszyk'));
+            const koszykDocs = koszykSnapshot.docs;
+
+
+
+            /*Nowe zamówienie w kolekcji zamówienia*/
+            const currentDateTime = new Date().toISOString();
+            const newOrderRef = doc(collection(db,props.Login, 'Dane', "Zamówienia"), currentDateTime);
+
+            /*Dane do dokumentu*/
+            const orderData = {
+                createdAt: new Date().toLocaleString()
+            }
+
+            koszykDocs.forEach((doc) => {
+                //orderData[`element${index + 1}`] = doc.id;
+                orderData[doc.id] = doc.data().Amount;
+                deleteKarma(doc.id);
+                /*const KarmaRef = doc(db, props.Login, 'Dane','Koszyk', doc.id);
+                deleteDoc(KarmaRef);*/
+            });
+
+            /*Ustawianie dokumentu w kolekcji "Zamówienia"*/
+            await setDoc(newOrderRef, orderData);
+            console.log("Order created with ID: ", currentDateTime);
+
+        }catch(err){
+            console.error("Error creating order: ", err);
+        }
 
     }
 
@@ -216,7 +250,7 @@ function Koszyk(props) {
 
                         {UzupełnioneDane === false && props.Zalogowano === true &&
                             <h4>Uzupełnij dane adresowe na swoim profilu, zanim będziesz mógł/a przejść dalej</h4>}
-                        <button disabled={UzupełnioneDane ? false : true} onClick={() => Payment}>Zapłać</button>
+                        <button disabled={UzupełnioneDane ? false : true} onClick={Payment}>Zapłać</button>
                     </div>
                 </div>
 

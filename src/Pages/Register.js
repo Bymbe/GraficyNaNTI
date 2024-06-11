@@ -72,11 +72,11 @@ function Register(props) {
                 </div>
                 <div className="Register-Text-Area">
                     <label htmlFor="Password">Password:</label>
-                    <textarea rows="1" type="text" value={Password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input rows="1" type="password" value={Password} onChange={(e) => setPassword(e.target.value)}/>
                 </div>
                 <div className="Register-Text-Area">
                     <label htmlFor="Password">Repeat Password:</label>
-                    <textarea rows="1" type="text" value={PasswordRepeated}
+                    <input rows="1" type="password" value={PasswordRepeated}
                               onChange={(e) => setPasswordRepeated(e.target.value)}/>
                 </div>
                 <div className="Register-Text-Area">

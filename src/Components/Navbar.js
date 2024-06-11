@@ -67,7 +67,7 @@ const Navbar = (props) => {
                                 <Link to="Konto">
                                     <button>Profil</button>
                                 </Link>
-                                <Link to="Konto">
+                                <Link to="Historia">
                                     <button>Historia zamówień</button>
                                 </Link>
                                 <button>Wyloguj</button>
@@ -83,8 +83,9 @@ const Navbar = (props) => {
                             <div className="navbar-popup-logowanie">
                                 <textarea rows="1" type="text" value={Login} placeholder="Login"
                                           onChange={(e) => setLogin(e.target.value)}/>
-                                <textarea rows="1" type="text" value={Password} placeholder="Hasło"
+                                <input rows="1" type="password" value={Password} placeholder="Hasło"
                                           onChange={(e) => setPassword(e.target.value)}/>
+                                <h3>Nie pamiętam hasła</h3>
                                 <button onClick={Logowanie}>Zaloguj</button>
                             </div>
                             <div className="navbar-popup-rejestracja">

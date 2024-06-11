@@ -52,6 +52,7 @@ function Kwiaciara(props) {
 
 
                     <h2>{KarmaRef.DługiOpis}</h2>
+                    <h3>Gramatura produktu: 3kg</h3>
                     <h3>Kluczowe Składniki:</h3>
                     <h4>{KarmaRef.Składnik1}</h4>
                     <h4>{KarmaRef.Składnik2}</h4>
@@ -64,7 +65,7 @@ function Kwiaciara(props) {
                     <h4>{KarmaRef.Korzyść3}</h4>
                     <h4>{KarmaRef.Korzyść4}</h4>
                     <h3>Dawkowanie: </h3>
-                    <h4>{KarmaRef.Dawkowanie}</h4>
+                    <h4>Dawkowanie zależy od wagi, wieku i poziomu aktywności Twojego psa. Zapewnij stały dostęp do świeżej wody i skonsultuj się z weterynarzem w celu określenia optymalnej porcji dla Twojego pupila.</h4>
 
 
                 </div>
