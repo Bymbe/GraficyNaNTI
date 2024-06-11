@@ -120,11 +120,26 @@ function Pomoc() {
                     <input className="InputPomoc" type="radio" name="Pomoc" id="seventh"/>
                     <label className="LabelPomoc" htmlFor="seventh">Jak wypełnić formularz?</label>
                     <div className="ContentPomoc">
-                        <p>Formularz można znaleźć na stronie głównej. Wypełniając go otrzymujemy na koniec propozycję spersonalizowanej karmy dla naszego pupila.</p>
-                        <p>Po otwarciu formularza należy wypełnić okienka: </p>
-                        <p>Jeśli zamówienie NIE było składane z użyciem konta:</p>
-                        <p>Prosimy jak najszybciej skontaktować się z nami telefonicznie.
-                            Jesteśmy dostępni pod numerem: +48 123 456 789 </p>
+                        <p>Formularz można znaleźć na stronie głównej. Gdy go wypełnimy, otrzymamy propozycję spersonalizowanej karmy dla naszego pupila.</p>
+                        <p>Po otwarciu formularza należy wypełnić okienka:
+                            Imię Pupila, Wybrać jakiej jest rasy, Określić w jakim wieku jest i ile kilogramów waży,
+                            podać płeć, zaznaczyć czy jest po sterylizacji lub kastracji,
+                            określić aktywność fizyczą pupila (mała aktywność - krótkie spacery
+                            , pupil przesiaduje w domu, duża aktywność - pupil jest większość
+                            czasu na dworze i może biegać, średnia aktywność - pupil spędza
+                            przynajmniej 3h dziennie na powietrzu i może biegać). Następnie
+                            należy zaznaczyć które składniki chcemy wykluczyć z karmy, jeśli
+                            nasz pupil ma większe wymagania. By otrzymać propozycję karmy
+                            klikamy przycisk "Zaproponuj Karmę", a poniżej pojawi nam się
+                            karma dostosowana do potrzeb naszego pupila, którą albo możemy
+                            dodać do koszyka przyciskiem "dodaj do koszyka" albo możemy
+                            dowiedzieć się więcej o jej właściwościach, czy składnikach klikając
+                            przycisk "Czytaj więcej". Po dodaniu karmy do koszyka znajduje
+                            się ona już w koszyku (ikona koszyka w prawym górnym rogu). Klikając
+                            ikonę możemy przejść już do płatności.</p>
+                        <Link to="/Kwestionariusz">
+                            <button className="ButtonsPomoc">Wypełnij formularz</button>
+                        </Link>
                     </div>
                 </li>
                 <h1>Kontakt do nas:</h1>
@@ -134,6 +149,8 @@ function Pomoc() {
                         al.Szarkia 102,
                         00-100 Warszawa,
                     </div>
+                    <div>NIP:</div>
+                    <div>KRS:</div>
                     <h1> INFOLINIA: </h1>
                     <div className="DanePomoc">tel.: +48 123 456 789
                     </div>

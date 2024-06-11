@@ -2412,3 +2412,58 @@ h1 + .MessagePomoc-Text-Area{
   line-height: 30px;
 }
 
+
+/*########################################### O NAS ###########################################*/
+
+.NaszaFirmaONas {
+  padding: 20px;
+  position: relative;
+  /*top: 100px;*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  background-color: #CE9F54;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  height: auto;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+.NaszaFirmaONas h1 {
+  position: relative;
+  top:-45px;
+  background-color: var(--bgColorBrown);
+  font-size: calc(30px + var(--additionaltextsize));
+  font-family: "Anek Gujarati", sans-serif;
+  width: 100%;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  color: var(--textColorCreamy);
+}
+.NaszaFirmaONas img{
+    width: 200px;
+    bottom: 100px;
+    box-sizing: inherit;
+    /*padding: 0px 5px 0px 5px;*/
+    margin: auto;
+  border: #5E3A1F 10px solid;
+}
+.OkienkoONas {
+  display: inherit;
+  width: 100%;
+}
+.NaszaFirmaONas div{
+  width: 900px;
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: calc(20px + var(--additionaltextsize));
+  text-align: start;
+  padding-left: 20px;
+  margin-bottom: 40px;
+  color: #5E3A1F;
+;
+}
