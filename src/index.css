@@ -2248,6 +2248,7 @@ padding-right: 20px;
   margin: 60px auto;
   width:90%;
   box-sizing: border-box;
+  color: #5E3A1F;
 }
 .Pomoc li {
   list-style: none;
@@ -2303,3 +2304,111 @@ padding-right: 20px;
   width: 190px;
   color: #5E3A1F;
 }
+.KontaktPomoc {
+  padding: 20px;
+  position: relative;
+  /*top: 100px;*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  background-color: #CE9F54;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  height: auto;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+.KontaktPomoc h1{
+  font-size: calc(10px + 2vmin);
+}
+.KontaktPomoc div{
+  font-size: calc(5px + 2vmin);
+}
+.MessagePomoc {
+  padding: 20px;
+  position: relative;
+  /*top: 100px;*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  background-color: #CE9F54;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  height: auto;
+  border-radius: 20px;
+}
+.MessagePomoc h1 {
+  position: relative;
+  top:-45px;
+  background-color: var(--bgColorBrown);
+  font-size: calc(30px + var(--additionaltextsize));
+  font-family: "Anek Gujarati", sans-serif;
+  width: 100%;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  color: var(--textColorCreamy);
+}
+
+.MessagePomoc-Text-Area{
+  position: relative;
+  top: -20px;
+  display: inline-block;
+  /*width: 300px;*/
+  background-color: #5E3A1F;
+  width: 90%;
+  padding: 10px;
+  vertical-align: center;
+}
+
+h1 + .MessagePomoc-Text-Area{
+  border-radius: 5px 5px 0px 0px;
+}
+
+.MessagePomoc div label{
+  display: table-row;
+  position: relative;
+  /*background-color: var(--bgColorCreamy);*/
+
+  width: 90%;
+  height: 35px;
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: calc(20px + var(--additionaltextsize));
+  padding-left: 20px;
+  padding-right: 20px;
+
+  color: var(--bgColorCreamy);
+  border-radius: 5px 0 0 5px;
+}
+
+.MessagePomoc div textarea{
+  display: inline-block;
+  position: relative;
+  top: 15px;
+  height: 30px;
+  border-radius: 0 5px 5px 0;
+  resize: none;
+  text-align: center;
+  line-height: 30px;
+  width: 90%;
+
+}
+
+.MessagePomoc div input{
+  display: inline-block;
+  position: relative;
+  width: 90%;
+  height: 30px;
+  border-radius: 0 5px 5px 0;
+  resize: none;
+  text-align: left;
+  line-height: 30px;
+}
+

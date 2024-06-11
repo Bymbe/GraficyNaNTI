@@ -11,6 +11,7 @@ function Pomoc() {
     return (
         <div>
             <ul className="Pomoc">
+                <h1>Najczęstrze pytania:</h1>
                 <li>
                     <input className="InputPomoc" type="radio" name="Pomoc" id="first" checked/>
                     <label className="LabelPomoc" htmlFor="first">Jak mogę kupić karmę?</label>
@@ -36,8 +37,8 @@ function Pomoc() {
                     </div>
                 </li>
                 <li>
-                    <input className="InputPomoc" type="radio" name="Pomoc" id="sixth" checked/>
-                    <label className="LabelPomoc" htmlFor="sixth">Jak mogę stworzyć konto?</label>
+                    <input className="InputPomoc" type="radio" name="Pomoc" id="second" checked/>
+                    <label className="LabelPomoc" htmlFor="second">Jak mogę stworzyć konto?</label>
                     <div className="ContentPomoc">
                         <p>Aby stworzyć konto należy kliknąć ikonę w prawym górnym rogu, a następnie
                             nacisnąć przycisk "Zarejestruj się tutaj", który przeniesie nas do rejestracji.
@@ -49,8 +50,8 @@ function Pomoc() {
                     </div>
                 </li>
                 <li>
-                    <input className="InputPomoc" type="radio" name="Pomoc" id="second"/>
-                    <label className="LabelPomoc" htmlFor="second">Gdzie mogę dodać zwierzaka? Da się go później
+                    <input className="InputPomoc" type="radio" name="Pomoc" id="third"/>
+                    <label className="LabelPomoc" htmlFor="third">Gdzie mogę dodać zwierzaka? Da się go później
                         edytować?</label>
                     <div className="ContentPomoc">
                         <p>Aby dodać zwierzaka należy mieć uprzednio stworzone konto i się na nie zalogować (ikona w
@@ -70,8 +71,8 @@ function Pomoc() {
                     </div>
                 </li>
                 <li>
-                    <input className="InputPomoc" type="radio" name="Pomoc" id="third"/>
-                    <label className="LabelPomoc" htmlFor="third">Jak można zmienić adres?</label>
+                    <input className="InputPomoc" type="radio" name="Pomoc" id="fourth"/>
+                    <label className="LabelPomoc" htmlFor="fourth">Jak można zmienić adres?</label>
                     <div className="ContentPomoc">
                         <p>Swój adres można edytować po zalogowaniu na konto. Klikając na ikonę w prawym górnym
                             rogu należy przejść do zakładki "Profil". Po kliknięciu zostaniemy przeniesieni
@@ -81,20 +82,22 @@ function Pomoc() {
                     </div>
                 </li>
                 <li>
-                    <input className="InputPomoc" type="radio" name="Pomoc" id="fourth"/>
-                    <label className="LabelPomoc" htmlFor="fourth">Gdzie można znaleźć zamówione kiedyś karmy?</label>
+                    <input className="InputPomoc" type="radio" name="Pomoc" id="fifth"/>
+                    <label className="LabelPomoc" htmlFor="fifth">Gdzie można znaleźć zamówione kiedyś karmy?</label>
                     <div className="ContentPomoc">
                         <p>Złożone zamówienia znajdują się na naszym koncie (jeśli zamówienie było
                             realizowane za pomocą konta, jeśli nie, to nie mamy dostępu do historii zamówień).
                             Po zalogowaniu się na konto należy kliknąć ikonę w prawym górnym rogu, a następnie nacisnąć
-                            "Historia zamówień", gdzie znajdziemy zrobione przez nas wcześniej zakupy. Znajdują się tam informacje m.in.
-                            o tym jakie ile karm było zamówione, czy za jaką cenę zrealizowaliśmy zamówienie. Mamy również
-                        możliwość ponowić zamówienie.</p>
+                            "Historia zamówień", gdzie znajdziemy zrobione przez nas wcześniej zakupy. Znajdują się tam
+                            informacje m.in.
+                            o tym jakie ile karm było zamówione, czy za jaką cenę zrealizowaliśmy zamówienie. Mamy
+                            również
+                            możliwość ponowić zamówienie.</p>
                     </div>
                 </li>
                 <li>
-                    <input className="InputPomoc" type="radio" name="Pomoc" id="fifth"/>
-                    <label className="LabelPomoc" htmlFor="fifth">Moje zamówienie do mnie nie dotarło, co teraz?</label>
+                    <input className="InputPomoc" type="radio" name="Pomoc" id="sixth"/>
+                    <label className="LabelPomoc" htmlFor="sixth">Moje zamówienie do mnie nie dotarło, co teraz?</label>
                     <div className="ContentPomoc">
                         <p>Jeśli zamówienie było składane za pomocą konta: </p>
                         <p>Prosimy wejść historię zamówień, która jest dostępna po zalogowaniu pod ikoną w prawym górnym
@@ -113,6 +116,42 @@ function Pomoc() {
                             Jesteśmy dostępni pod numerem: +48 123 456 789 </p>
                     </div>
                 </li>
+                <li>
+                    <input className="InputPomoc" type="radio" name="Pomoc" id="seventh"/>
+                    <label className="LabelPomoc" htmlFor="seventh">Jak wypełnić formularz?</label>
+                    <div className="ContentPomoc">
+                        <p>Formularz można znaleźć na stronie głównej. Wypełniając go otrzymujemy na koniec propozycję spersonalizowanej karmy dla naszego pupila.</p>
+                        <p>Po otwarciu formularza należy wypełnić okienka: </p>
+                        <p>Jeśli zamówienie NIE było składane z użyciem konta:</p>
+                        <p>Prosimy jak najszybciej skontaktować się z nami telefonicznie.
+                            Jesteśmy dostępni pod numerem: +48 123 456 789 </p>
+                    </div>
+                </li>
+                <h1>Kontakt do nas:</h1>
+                <div className="KontaktPomoc">
+                    <h1> DANE ADRESOWE: </h1>
+                    <div className="DanePomoc">Pawsome Provisions,
+                        al.Szarkia 102,
+                        00-100 Warszawa,
+                    </div>
+                    <h1> INFOLINIA: </h1>
+                    <div className="DanePomoc">tel.: +48 123 456 789
+                    </div>
+                </div>
+                <h1>Masz jeszcze jakieś pytania, problemy lub wątpliwości? Napisz do nas!</h1>
+                <div className="MessagePomoc">
+                    <h1>Napisz wiadomość:</h1>
+
+                    <div className="MessagePomoc-Text-Area">
+                        <label htmlFor="Email">Podaj swój E-mail:</label>
+                        <textarea rows="1" type="text"/>
+                    </div>
+                    <div className="MessagePomoc-Text-Area">
+                        <label htmlFor="Message">Twoja wiadomość:</label>
+                        <input rows="4" cols="50" type="text" placeholder={"Napisz coś..."}/>
+                    </div>
+                    <button className="ButtonPomoc" type="submit">Wyślij wiadomość</button>
+                </div>
             </ul>
         </div>
     )
