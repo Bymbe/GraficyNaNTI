@@ -155,6 +155,7 @@ function Kwestionariusz(props) {
     return (
 
         <div className="Kwestionariusz">
+            <br/><br/><br/><br/><br/><br/>
             <div className="Kwestionariusz-header">
                 SPERSONALIZOWANA KARMA DLA TWOJEGO PUPILA!
             </div>
@@ -165,7 +166,9 @@ function Kwestionariusz(props) {
                 Jak wabi się twój pupil?
             </div>
             <div>
-                <input type="text" id="PetNameInput" {...(props.PupilDoZmiany !== "" ? {value: `${PupilName}`} : {placeholder: 'Imię pupila'})}  onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
+                <input type="text"
+                       id="PetNameInput" {...(props.PupilDoZmiany !== "" ? {value: `${PupilName}`} : {placeholder: 'Imię pupila'})}
+                       onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
             </div>
             <div className="Kwestionariusz-question">
                 Jakiej rasy jest twój pupil?
@@ -187,22 +190,28 @@ function Kwestionariusz(props) {
                 W jakim wieku jest twój pupil?
             </div>
             <div className="AgeSelect">
-                <input type="text" id="PetAgeYearsInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilAge}`} : {placeholder: "Wiek pupila w latach"})}  onChange={(e) => setPupilAge(e.target.value)}/>
+                <input type="text"
+                       id="PetAgeYearsInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilAge}`} : {placeholder: "Wiek pupila w latach"})}
+                       onChange={(e) => setPupilAge(e.target.value)}/>
                 <h10>lata</h10>
-                <input type="text" id="PetAgeMonthsInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilMonth}`} : {placeholder: "Wiek pupila w miesiącach"})}  onChange={(e) => setPupilMonth(e.target.value)}/>
+                <input type="text"
+                       id="PetAgeMonthsInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilMonth}`} : {placeholder: "Wiek pupila w miesiącach"})}
+                       onChange={(e) => setPupilMonth(e.target.value)}/>
                 <h10>miesiące</h10>
             </div>
             <div className="Kwestionariusz-question">
                 Ile kilogramów waży twój pupil?
             </div>
             <div className="WeightSelect">
-                <input type="text" id="PetWeightInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilWeight}`} : {placeholder: "Waga pupila w kg"})}  onChange={(e) => setPupilWeight(e.target.value)}/>
+                <input type="text"
+                       id="PetWeightInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilWeight}`} : {placeholder: "Waga pupila w kg"})}
+                       onChange={(e) => setPupilWeight(e.target.value)}/>
             </div>
             <div className="Kwestionariusz-question">
                 Czy twój pupil to pies czy suczka?
             </div>
             <div className="SexSelect">
-                <select name="plec" id="plec" value={PupilGender}  onChange={(e) => setPupilGender(e.target.value)}>
+                <select name="plec" id="plec" value={PupilGender} onChange={(e) => setPupilGender(e.target.value)}>
                     <option value="samiec">Pies</option>
                     <option value="samica">Suczka</option>
                 </select>
@@ -211,7 +220,8 @@ function Kwestionariusz(props) {
                 Czy twój pupil jest po sterylizacji lub kastracji?
             </div>
             <div className="SterilizedSelect">
-                <select name="sterylizacja" id="sterylizacja" value={PupilSterylized} onChange={(e) => setPupilSterylized(e.target.value)}>
+                <select name="sterylizacja" id="sterylizacja" value={PupilSterylized}
+                        onChange={(e) => setPupilSterylized(e.target.value)}>
                     <option value="no">Nie</option>
                     <option value="yes">Tak</option>
                 </select>
@@ -220,7 +230,8 @@ function Kwestionariusz(props) {
                 Jak bardzo aktywny jest twój pupil?
             </div>
             <div className="ActivitySelect">
-                <select name="activity" id="activity" value={PupilActif}  onChange={(e) => setPupilActif(e.target.value)}>
+                <select name="activity" id="activity" value={PupilActif}
+                        onChange={(e) => setPupilActif(e.target.value)}>
                     <option value="Mała aktywność">Mała aktywność</option>
                     <option value="Przeciętna aktywność">Przeciętna aktywność</option>
                     <option value="Wysoka aktywność">Wysoka aktywność</option>
@@ -314,7 +325,8 @@ function Kwestionariusz(props) {
                         <button onClick={RejestracjaFunction}>Załóż konto</button>
 
                         <Link to="/Koszyk">
-                            <button>Kupuję jednorazowo</button> {/*Dodanie karmy dla wirtualnego użytkownika -> DodajKarmę(db,Virtual,Dane,Koszyk,NazwaKarmy*/}
+                            <button>Kupuję jednorazowo</button>
+                            {/*Dodanie karmy dla wirtualnego użytkownika -> DodajKarmę(db,Virtual,Dane,Koszyk,NazwaKarmy*/}
                         </Link>
                         <h2></h2>
                     </div>
@@ -322,7 +334,7 @@ function Kwestionariusz(props) {
 
             </div>
             {Rejestracja ? (
-            <div className="Rejestr">
+                <div className="Rejestr">
 
 
                     <div className="RejestrPopup" id="Register">
@@ -394,7 +406,7 @@ function Kwestionariusz(props) {
                         {/*<h2></h2>*/}
                     </div>
 
-            </div>
+                </div>
             ) : (<div style={{display: "none"}} id="Register"></div>)}
         </div>
     )

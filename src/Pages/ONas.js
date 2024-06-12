@@ -7,6 +7,7 @@ import Pies from "../Assets/piesek.png";
 function ONas() {
     return (
         <div className="ONas">
+            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
             <div className="NaszaFirmaONas">
                 <h1>Jak powstała nasza firma?</h1>
                 <div className="OkienkoONas">

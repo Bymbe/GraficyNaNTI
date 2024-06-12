@@ -10,8 +10,9 @@ import {Link} from "react-router-dom";
 function Pomoc() {
     return (
         <div>
+            <br/><br/><br/><br/><br/><br/>
             <ul className="Pomoc">
-                <h1>Najczęstrze pytania:</h1>
+                <h1>Najczęstsze pytania:</h1>
                 <li>
                     <input className="InputPomoc" type="radio" name="Pomoc" id="first" checked/>
                     <label className="LabelPomoc" htmlFor="first">Jak mogę kupić karmę?</label>
@@ -120,7 +121,8 @@ function Pomoc() {
                     <input className="InputPomoc" type="radio" name="Pomoc" id="seventh"/>
                     <label className="LabelPomoc" htmlFor="seventh">Jak wypełnić formularz?</label>
                     <div className="ContentPomoc">
-                        <p>Formularz można znaleźć na stronie głównej. Gdy go wypełnimy, otrzymamy propozycję spersonalizowanej karmy dla naszego pupila.</p>
+                        <p>Formularz można znaleźć na stronie głównej. Gdy go wypełnimy, otrzymamy propozycję
+                            spersonalizowanej karmy dla naszego pupila.</p>
                         <p>Po otwarciu formularza należy wypełnić okienka:
                             Imię Pupila, Wybrać jakiej jest rasy, Określić w jakim wieku jest i ile kilogramów waży,
                             podać płeć, zaznaczyć czy jest po sterylizacji lub kastracji,
@@ -149,8 +151,8 @@ function Pomoc() {
                         al.Szarkia 102,
                         00-100 Warszawa,
                     </div>
-                    <div>NIP:</div>
-                    <div>KRS:</div>
+                    <div>NIP: 2134565444</div>
+                    <div>KRS: 4365756887</div>
                     <h1> INFOLINIA: </h1>
                     <div className="DanePomoc">tel.: +48 123 456 789
                     </div>

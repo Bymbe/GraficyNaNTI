@@ -44,16 +44,17 @@ function Historia(props) {
 
     return (
         <div className="Historia">
+            <br/><br/><br/><br/><br/><br/>
             <h1>Historia zamówień</h1>
 
             <ul>
                 {Zamówienia.map(order => {
-                    return(
-                    <li key={order.id}>
-                        <h2>Zamówienie</h2>
+                    return (
+                        <li key={order.id}>
+                            <h2>Zamówienie</h2>
 
-                        <h2>{order.Data}</h2>
-                    </li>
+                            <h2>{order.Data}</h2>
+                        </li>
                     )
                 })}
             </ul>

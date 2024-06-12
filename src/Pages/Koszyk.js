@@ -148,6 +148,7 @@ function Koszyk(props) {
 
     return (
         <div className="Koszyk">
+            <br/><br/><br/><br/><br/><br/>
             <div className="Koszyk-Top"><img src={Pies}/></div>
             <div className="Koszyk-Content">
                 <h1 id="Koszyk-Nagłówek">Koszyk</h1>
@@ -162,14 +163,21 @@ function Koszyk(props) {
                                         <img src={Karma} className="Produkty-Karma"/>
                                         <h2>{karma.id}</h2>
                                         <div className="Koszyk-Produkty-Ilość">
-                                            <img src={Strzałka} onClick={() => {setAmaount('+',karma.id, karma.Amount)}}/>{/*po kliknięciu ustaw w bazie danych wartosć +1*/}
-                                            <div id={`Karma-Ilość ${karma.id}`}>{karma.Amount}</div> {/*Karma.Ilosć*/}
-                                            <img src={Strzałka} onClick={() => {setAmaount('-',karma.id, karma.Amount)}}/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
+                                            <img src={Strzałka} onClick={() => {
+                                                setAmaount('+', karma.id, karma.Amount)
+                                            }}/>{/*po kliknięciu ustaw w bazie danych wartosć +1*/}
+                                            <div id={`Karma-Ilość ${karma.id}`}>{karma.Amount}</div>
+                                            {/*Karma.Ilosć*/}
+                                            <img src={Strzałka} onClick={() => {
+                                                setAmaount('-', karma.id, karma.Amount)
+                                            }}/> {/*po kliknięciu ustaw w bazie danych wartosć -1*/}
                                         </div>
                                         <div id={`Cena ${karma.id}`} className="Produkty-Cena">{karma.Cena} zł</div>
                                         {/*Karma.Cena**Karma.Ilość*/}
                                         <img src={Krzyżyk}
-                                             className="Produkty-Krzyżyk" onClick={() => {deleteKarma(karma.id)}}/> {/*Krzyżyk - usuń z bazy danych*/}
+                                             className="Produkty-Krzyżyk" onClick={() => {
+                                            deleteKarma(karma.id)
+                                        }}/> {/*Krzyżyk - usuń z bazy danych*/}
                                     </li>
                                 )
                             })}

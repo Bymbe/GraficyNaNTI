@@ -37,11 +37,12 @@ button {
 }
 /*########################################### NAVBAR ###########################################*/
 .navbar {
-  position: sticky;
+  position: fixed;
+  /*position: sticky;*/
   background-color: var(--bgColorBrown);
   height: 150px;
   width: 100%;
-  z-index: 4;
+  z-index: 5;
 }
 
 .navbar div {
@@ -51,7 +52,7 @@ button {
 .Logo-navbar {
   position: absolute;
   left: 25px;
-  top: 15px;
+  top: 10px;
 }
 
 #PawsomeProvisions-Navbar {
@@ -323,7 +324,7 @@ textarea:focus, input:focus{
   display: flex;
   flex-direction: row;
   left: 400px;
-  top: 30px;
+  top: 20px;
 }
 
 .Footer-Text{
@@ -1008,7 +1009,7 @@ input[type="text"] {
   right: 0;
   margin-right: auto;
   margin-left: auto;
-  top: -65vh;
+  top: -45vh;
   opacity: 30%;
   scale: 0.39;
   object-fit: cover;

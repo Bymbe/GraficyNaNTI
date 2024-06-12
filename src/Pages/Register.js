@@ -58,6 +58,7 @@ function Register(props) {
 
     return (
         <div className="Register-Page">
+            <br/><br/><br/><br/><br/><br/>
             <div className="Register-Page-BackgroundImages">
                 <img src={Kot}/>
                 <img src={Pies}/>
@@ -77,7 +78,7 @@ function Register(props) {
                 <div className="Register-Text-Area">
                     <label htmlFor="Password">Repeat Password:</label>
                     <input rows="1" type="password" value={PasswordRepeated}
-                              onChange={(e) => setPasswordRepeated(e.target.value)}/>
+                           onChange={(e) => setPasswordRepeated(e.target.value)}/>
                 </div>
                 <div className="Register-Text-Area">
                     <label htmlFor="EMail">E-mail:</label>

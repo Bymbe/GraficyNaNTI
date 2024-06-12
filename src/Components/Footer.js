@@ -3,6 +3,7 @@ import Logo from "../Assets/Logo-Footer.svg";
 import Facebook from "../Assets/Facebook.svg";
 import Instagram from "../Assets/Instagram.svg";
 import Twitter from "../Assets/Twitter.svg";
+import {Link} from "react-router-dom";
 
 function Footer() {
     return (
@@ -15,7 +16,7 @@ function Footer() {
             <div className="Footer-Dane">
                 <div className="Footer-Text">
                     <h1>DANE ADRESOWE</h1>
-                    <div>Pawsome Provisions<br/>al.Szarkia 102<br/>00-100 Warszawa</div>
+                    <div>Pawsome Provisions<br/>al.Szarika 102<br/>Warszawa 00-100 <br/>NIP: 2134565444<br/>KRS: 4365756887</div>
                 </div>
                 <div className="Footer-Text">
                     <h1>SKONTAKTUJ SIĘ Z NAMI</h1>
@@ -24,9 +25,15 @@ function Footer() {
             </div>
             <div className="Footer-Socjale">
                 <h1>Znajdź nas na:</h1>
-                <img src={Facebook}/>
-                <img src={Instagram}/>
-                <img src={Twitter}/>
+                <Link to="http://facebook.com">
+                    <img src={Facebook}/>
+                </Link>
+                <Link to="http://instagram.com">
+                    <img src={Instagram}/>
+                </Link>
+                <Link to="http://twitter.com">
+                    <img src={Twitter}/>
+                 </Link>
             </div>
             <div className="Footer-Bottom">
                 <div></div>

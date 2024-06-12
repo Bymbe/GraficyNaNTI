@@ -10,8 +10,9 @@ import {Link} from "react-router-dom";
 function Home() {
 
     return (
-        <div className="Home">
 
+        <div className="Home">
+            <br/><br/><br/><br/><br/><br/>
             <div className="Home-Top">
                 <br/><br/><br/><br/>
                 <h1 id="HeaderMain-Home">Spersonalizowana karma dla Twojego pupila!</h1>

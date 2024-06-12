@@ -60,6 +60,7 @@ function Karmy(props) {
 
     return (
         <div className="Karmy">
+            <br/><br/><br/><br/><br/><br/>
             <div className="Karmy-Header">
                 <br/><br/><br/>
                 <h1 id="HeaderMain-Karmy">Nasze Karmy</h1>
@@ -89,13 +90,17 @@ function Karmy(props) {
                                 <Link to="/Kwiaciara" onClick={() => handleKarma(karma.id)}>
                                     <button className="KarmyButtons2-Karmy">Czytaj więcej</button>
                                 </Link>
-                                <button className="KarmyButtons3-Karmy" onClick={() => DodajDoKoszyka(karma.id, karma.Cena)}>Dodaj do koszyka</button>
+                                <button className="KarmyButtons3-Karmy"
+                                        onClick={() => DodajDoKoszyka(karma.id, karma.Cena)}>Dodaj do koszyka
+                                </button>
                             </div>
                         )
                     })}
                 </div>
 
             </div>
+            <h1></h1>
+
         </div>
     )
 }

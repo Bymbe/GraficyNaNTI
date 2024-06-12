@@ -166,6 +166,7 @@ const EditAdress =  async () => {
 }
     return (
         <div className="Konto">
+            <br/><br/><br/><br/><br/><br/>
             <div className="Konto-Dane">
                 <img id="Konto-Królik-Top" src={Królik}/>
 
@@ -191,14 +192,12 @@ const EditAdress =  async () => {
                                                     onChange={(e) => setCountry(e.target.value)}></textarea></h2></div>
 
 
+                        ) : (<div><h2>Adres: {Adress}</h2>
+                            <h2> Kod pocztowy: {Town}</h2>
+                            <h2>Kraj: {Country}</h2></div>)
+                        }
 
-
-                            ) : (<div><h2>Adres: {Adress}</h2>
-                    <h2> Kod pocztowy: {Town}</h2>
-                    <h2>Kraj: {Country}</h2></div>)
-                }
-
-            </div>
+                    </div>
                     <div className="Konto-Dane-Wysyłka">
                         <h1>Adresy do wysyłki</h1>
                         <h2> Imię i Nazwisko: {Dane.Imię} {Dane.Nazwisko}</h2>
@@ -212,101 +211,104 @@ const EditAdress =  async () => {
                 <ul>
                     {Pets.map(pet => {
                         /*return (*/
-                            if(pet.id !== EditingPet) {
-                                return (<li key={pet.id}>
-                                    <div className="Pupile-Nagłówek" id={`Pet-Nagłówek ${pet.id}`}>
-                                        <h2 >{pet.id}</h2>
-                                        <img className="Pupile-Ołówek" src={Ołówek} onClick={() => EditPet(pet.id)}/>
-                                        <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka}
-                                             onClick={() => OpenDrawer(`${pet.id}`)}/>
+                        if (pet.id !== EditingPet) {
+                            return (<li key={pet.id}>
+                                <div className="Pupile-Nagłówek" id={`Pet-Nagłówek ${pet.id}`}>
+                                    <h2>{pet.id}</h2>
+                                    <img className="Pupile-Ołówek" src={Ołówek} onClick={() => EditPet(pet.id)}/>
+                                    <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka}
+                                         onClick={() => OpenDrawer(`${pet.id}`)}/>
 
+                                </div>
+
+                                <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`}>
+                                    {pet.Typ === "Pies" &&
+                                        <img src={TypPies}/>
+                                    }
+                                    {pet.Typ === "Kot" &&
+                                        <img src={TypKot}/>
+                                    }
+                                    {pet.Typ === "Królik" &&
+                                        <img src={TypKrólik}/>
+                                    }
+
+
+                                    <p>Rasa: {pet.Rasa}</p>
+                                    <p>Płeć: {pet.Płeć}</p>
+                                    <p>Wiek: {pet.Wiek} lat i {pet.Miesiące} miesięcy</p>
+                                    <p>Waga: {pet.Waga}</p>
+                                    <p>Sterylizacja: {pet.Sterylizacja}</p>
+                                    <p>Aktywnosć: {pet.Aktywność}</p>
+                                    <div className="Pupile-Guziki">
+                                        <Link to="/Kwiaciara" id="Zobacz-karmy"
+                                              onClick={props.handleCallBackKarma(pet.PrzypisanaKarma)}>
+                                            <button>Zobacz karmy</button>
+                                        </Link>
+                                        <Link to="/Kwestionariusz" id="Zaktualizuj-karmę" onClick={() => {
+                                            props.handleCallBackPupilDoZmiany(`${pet.id}`)
+                                        }}>
+                                            <button>Zaktualizuj karmę</button>
+                                        </Link>
                                     </div>
 
-                                    <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`}>
-                                        {pet.Typ === "Pies" &&
-                                            <img src={TypPies}/>
-                                        }
-                                        {pet.Typ === "Kot" &&
-                                            <img src={TypKot}/>
-                                        }
-                                        {pet.Typ === "Królik" &&
-                                            <img src={TypKrólik}/>
-                                        }
 
+                                </div>
 
-                                        <p>Rasa: {pet.Rasa}</p>
-                                        <p>Płeć: {pet.Płeć}</p>
-                                        <p>Wiek: {pet.Wiek} lat i {pet.Miesiące} miesięcy</p>
-                                        <p>Waga: {pet.Waga}</p>
-                                        <p>Sterylizacja: {pet.Sterylizacja}</p>
-                                        <p>Aktywnosć: {pet.Aktywność}</p>
-                                        <div className="Pupile-Guziki">
-                                            <Link to="/Kwiaciara" id="Zobacz-karmy" onClick={props.handleCallBackKarma(pet.PrzypisanaKarma)}>
-                                                <button>Zobacz karmy</button>
-                                            </Link>
-                                            <Link to="/Kwestionariusz" id="Zaktualizuj-karmę" onClick={() => {props.handleCallBackPupilDoZmiany(`${pet.id}`)}}>
-                                                <button>Zaktualizuj karmę</button>
-                                            </Link>
-                                        </div>
+                            </li>)
 
+                        } else {
+                            return (<li key={pet.id}>
+                                <div className="Pupile-Nagłówek">
+                                    <h2 id={`Pet-Nagłówek ${pet.id}`}>{pet.id}</h2>
+                                    <img className="Pupile-Ołówek" src={Ołówek} onClick={() => EditPet(pet.id)}/>
+                                    <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka}
+                                         onClick={() => OpenDrawer(`${pet.id}`)}/>
 
-                                    </div>
+                                </div>
 
-                                </li>)
+                                <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`}>
+                                    {pet.Typ === "Pies" &&
+                                        <img src={TypPies}/>
+                                    }
+                                    {pet.Typ === "Kot" &&
+                                        <img src={TypKot}/>
+                                    }
+                                    {pet.Typ === "Królik" &&
+                                        <img src={TypKrólik}/>
+                                    }
+                                    <p>Rasa: <textarea rows="1" value={RasaTemp}
+                                                       onChange={(e) => setRasaTemp(e.target.value)}></textarea></p>
+                                    <p>Płeć: <textarea rows="1" value={PłećTemp}
+                                                       onChange={(e) => setPłećTemp(e.target.value)}></textarea></p>
+                                    <p>Wiek: <textarea rows="1" value={WiekTemp}
+                                                       onChange={(e) => setWiekTemp(e.target.value)}></textarea> lat i
+                                        <textarea rows="1" value={MiesiącTemp}
+                                                  onChange={(e) => setMiesiącTemp(e.target.value)}></textarea> miesięcy
+                                    </p>
+                                    <p>Waga: <textarea rows="1" value={WagaTemp}
+                                                       onChange={(e) => setWagaTemp(e.target.value)}></textarea></p>
+                                    <p>Sterylizacja: <textarea rows="1" value={SterylizedTemp}
+                                                               onChange={(e) => setSterylizedTemp(e.target.value)}></textarea>
+                                    </p>
+                                    <p>Aktywność: <textarea rows="1" value={AktywnośćTemp}
+                                                            onChange={(e) => setAktywnośćTemp(e.target.value)}></textarea>
+                                    </p>
+                                    <button onClick={() => UpdatePet(`${pet.id}`)}>Zapisz</button>
+                                </div>
 
-                            } else {
-                                return (<li key={pet.id}>
-                                    <div className="Pupile-Nagłówek">
-                                        <h2 id={`Pet-Nagłówek ${pet.id}`}>{pet.id}</h2>
-                                        <img className="Pupile-Ołówek" src={Ołówek} onClick={() => EditPet(pet.id)}/>
-                                        <img className="Pupile-Guzik-Szuflada" id={`Szuflada ${pet.id}`} src={Strzałka}
-                                             onClick={() => OpenDrawer(`${pet.id}`)}/>
-
-                                    </div>
-
-                                    <div className="Pupiple-Informacje" id={`Pet-Inf ${pet.id}`}>
-                                        {pet.Typ === "Pies" &&
-                                            <img src={TypPies}/>
-                                        }
-                                        {pet.Typ === "Kot" &&
-                                            <img src={TypKot}/>
-                                        }
-                                        {pet.Typ === "Królik" &&
-                                            <img src={TypKrólik}/>
-                                        }
-                                        <p>Rasa: <textarea rows="1" value={RasaTemp}
-                                                           onChange={(e) => setRasaTemp(e.target.value)}></textarea></p>
-                                        <p>Płeć: <textarea rows="1" value={PłećTemp}
-                                                           onChange={(e) => setPłećTemp(e.target.value)}></textarea></p>
-                                        <p>Wiek: <textarea rows="1" value={WiekTemp}
-                                                           onChange={(e) => setWiekTemp(e.target.value)}></textarea> lat i
-                                            <textarea rows="1" value={MiesiącTemp}
-                                                      onChange={(e) => setMiesiącTemp(e.target.value)}></textarea> miesięcy
-                                        </p>
-                                        <p>Waga: <textarea rows="1" value={WagaTemp}
-                                                           onChange={(e) => setWagaTemp(e.target.value)}></textarea></p>
-                                        <p>Sterylizacja: <textarea rows="1" value={SterylizedTemp}
-                                                                   onChange={(e) => setSterylizedTemp(e.target.value)}></textarea>
-                                        </p>
-                                        <p>Aktywność: <textarea rows="1" value={AktywnośćTemp}
-                                                                   onChange={(e) => setAktywnośćTemp(e.target.value)}></textarea>
-                                        </p>
-                                        <button onClick={() => UpdatePet(`${pet.id}`)}>Zapisz</button>
-                                    </div>
-
-                                </li>)
-                            }
+                            </li>)
+                        }
                         /*)*/
 
                         /*)*/
                     })}
 
-                        <li className="Pupile-Dodaj">
-                            <Link to="/Kwestionariusz" className="Link" id="Pupile-Link">
+                    <li className="Pupile-Dodaj">
+                        <Link to="/Kwestionariusz" className="Link" id="Pupile-Link">
                             <h2>Dodaj nowego pupila</h2>
                             <img src={Plus}/>
-                            </Link>
-                        </li>
+                        </Link>
+                    </li>
 
 
                 </ul>
