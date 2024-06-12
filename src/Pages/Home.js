@@ -2,6 +2,8 @@ import React, {useState} from 'react'
 import Pies from "../Assets/piesek.png";
 import Kot from "../Assets/kotek.png";
 import Karma from "../Assets/karma.png";
+import politykaPrywatnosci from "./politykaPrywatnosci.pdf";
+
 import Logo from "../Assets/Logo-Footer.svg";
 import Twitter from "../Assets/Twitter.svg";
 import {Link} from "react-router-dom";
@@ -36,9 +38,12 @@ function Home(props) {
                         danych osobowych. W takich przypadkach Check Systems Sp. z o.o. jest
                         administratorem tych danych. Więcej informacji na ten temat znajdziesz w naszej
                         Polityce Prywatności.</h2>
+
                     <button onClick={CookieFunction}>Zaakceptuj</button>
                     <button onClick={CookieFunction}>Odrzuć</button>
-                    <button onClick={CookieFunction} id="polityka">Polityka Prywatności</button>
+                    <a href={politykaPrywatnosci} target="_blank">Polityka Prywatności</a>
+
+
                     <h1></h1>
                 </div>
             ) : (<div style={{display: "none"}}></div>)}

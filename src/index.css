@@ -952,11 +952,10 @@ Link {
   background: rgba(94, 58, 31, 0.9);
 
   border-radius: 15px;
-
-
-
-  z-index: 10;
+  z-index: 20;
 }
+
+
 
 .Home-cookies h1{
   display: grid;
@@ -979,6 +978,19 @@ Link {
   size: 7px;
   z-index: 10;
 }
+
+.Home-cookies a{
+  display: grid;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 1%;
+  background: #e8bc76;
+  margin-left: 40%;
+  margin-right: 40%;
+  color:#5E3A1F;
+  font-size: calc(16px + var(--additionaltextsize));
+}
+
 
 .Home-cookies button{
 width: 20%;
