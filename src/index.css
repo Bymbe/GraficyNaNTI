@@ -1571,6 +1571,11 @@ input[type="text"] {
   padding: 0px;
 }
 
+.Koszyk a {
+  font-size: 1.17em;
+  padding-left: 0.2em;
+}
+
 .Koszyk-Podsumowanie h4{
   position: relative;
   margin-left: auto;
