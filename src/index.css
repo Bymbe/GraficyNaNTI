@@ -38,6 +38,7 @@ button {
 /*########################################### NAVBAR ###########################################*/
 .navbar {
   position: fixed;
+  top: 0;
   /*position: sticky;*/
   background-color: var(--bgColorBrown);
   height: 150px;
@@ -106,7 +107,10 @@ button {
   cursor: pointer;
 }
 
+
 .navbar-popup {
+  position: relative;
+  //top: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -121,7 +125,8 @@ button {
 }
 
 .navbar-popup2 {
-  position: relative;
+  position: relative
+;
   right: 50px;
   display: flex;
   flex-direction: column;

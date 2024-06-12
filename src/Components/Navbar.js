@@ -42,6 +42,13 @@ const Navbar = (props) => {
 
     }
 
+    const Wyloguj = () => {
+        setLogin("")
+        setPassword("")
+        props.handleCallBackLogin("");
+        props.handleCallBackZalogowo(false);
+    }
+
 
     return (
         <div className="navbar">
@@ -70,15 +77,16 @@ const Navbar = (props) => {
                                 <Link to="Historia">
                                     <button>Historia zamówień</button>
                                 </Link>
-                                <button>Wyloguj</button>
+                                <button onClick={Wyloguj}>Wyloguj</button>
                             </div>
 
 
                         </div>
                     </Popup>
                 ) : (
-                    <Popup trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">
+                    <Popup clasName="Popup" trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">
                         <div className="navbar-popup">
+
                             <h1>Logowanie</h1>
                             <div className="navbar-popup-logowanie">
                                 <textarea rows="1" type="text" value={Login} placeholder="Login"

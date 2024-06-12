@@ -32,12 +32,16 @@ function Koszyk(props) {
 
     const getKoszyk = async () => {
         console.log(props.Login)
+        console.log("Zalogowano: ", props.Zalogowano);
+        console.log("Uzupełnieone: ", UzupełnioneDane);
         if(props.Zalogowano === true){
             try{
                 const DaneRef = await doc(db, props.Login, 'Dane');
 
                 const docSnap = await getDoc(DaneRef);
-                console.log(docSnap.data().KodPocztowy)
+                console.log("Kod pocztowy", docSnap.data().KodPocztowy)
+                console.log("Zalogowano: ", props.Zalogowano);
+                console.log(docSnap.data().Adres);
                 if(docSnap.data().Adres === "" || docSnap.data().KodPocztowy === "" || docSnap.data().Kraj === ""){
                     setUzupełnioneDane(false);
                 }
@@ -57,6 +61,9 @@ function Koszyk(props) {
                 console.error("Bład przy pobieraniu kolekcji: ",err);
                 return [];
             }
+        }
+        else {
+
         }
 
     }
@@ -125,12 +132,24 @@ function Koszyk(props) {
 
             /*Dane do dokumentu*/
             const orderData = {
-                createdAt: new Date().toLocaleString()
+                createdAt: new Date().toLocaleString(),
+                Dostarczono: true
             }
 
-            koszykDocs.forEach((doc) => {
+            koszykDocs.forEach((doc, index) => {
                 //orderData[`element${index + 1}`] = doc.id;
-                orderData[doc.id] = doc.data().Amount;
+                const data = doc.data();
+                //orderData[doc.id] = doc.data().Amount;
+
+                /*const name = data.name || "Unknown Name";
+                const price = data.price || 0;
+                const quantity = data.quantity || 0;*/
+
+                orderData[`item${index + 1}`] = {
+                    Nazwa: doc.id,
+                    Cena: data.Cena,
+                    Amount: data.Amount,
+                };
                 deleteKarma(doc.id);
                 /*const KarmaRef = doc(db, props.Login, 'Dane','Koszyk', doc.id);
                 deleteDoc(KarmaRef);*/
@@ -182,20 +201,6 @@ function Koszyk(props) {
                                 )
                             })}
 
-                            {/*<li key="Kwiaciara">
-                                <img src={Karma} className="Produkty-Karma"/>
-                                <h2>"Kwiaciara"</h2>
-                                <div className="Koszyk-Produkty-Ilość">
-                                    <img src={Strzałka}/> po kliknięciu ustaw w bazie danych wartosć +1
-                                    <div id={`Karma-Ilość Kwiaciara`}>1</div>
-                                    Karma.Ilosć
-                                    <img src={Strzałka}/> po kliknięciu ustaw w bazie danych wartosć -1
-
-                                </div>
-                                <div id={`Cena Kwiaciara`} className="Produkty-Cena">49.99 zł</div>
-                                Karma.Cena**Karma.Ilość
-                                <img src={Krzyżyk} className="Produkty-Krzyżyk"/> Krzyżyk - usuń z bazy danych
-                            </li>*/}
                         </ul>
                     </div>
                     <div className="Metoda-Płatności">
@@ -258,7 +263,7 @@ function Koszyk(props) {
 
                         {UzupełnioneDane === false && props.Zalogowano === true &&
                             <h4>Uzupełnij dane adresowe na swoim profilu, zanim będziesz mógł/a przejść dalej</h4>}
-                        <button disabled={UzupełnioneDane ? false : true} onClick={Payment}>Zapłać</button>
+                        <button disabled={UzupełnioneDane === true && Regulamin === true ? false : true} onClick={Payment}>Zapłać</button>
                     </div>
                 </div>
 

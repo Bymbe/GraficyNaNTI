@@ -38,7 +38,7 @@ function Register(props) {
             return;
         }
         try {
-            await setDoc(doc(db, Login,"Dane"),{Imię: Name, Nazwisko: Surname, Hasło: Password, E_Mail: Email, Telefon: Telephone} /*{placeholderField: true}*/);
+            await setDoc(doc(db, Login,"Dane"),{Imię: Name, Nazwisko: Surname, Hasło: Password, E_Mail: Email, Telefon: Telephone, Adres: "", Kraj: "", KodPocztowy: ""} /*{placeholderField: true}*/);
             const mainDocumentRef = doc(db, Login, "Dane");
 
             //await addDoc(collection(mainDocumentRef, "Zwierzęta"), {placeholderField: true});
