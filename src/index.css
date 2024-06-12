@@ -2771,3 +2771,24 @@ h1 + .MessagePomoc-Text-Area{
   color: var(--textColorBrown);
   font-size: calc(24px + var(--additionaltextsize));
 }
+
+.Regulamin {
+  margin-top: 200px;
+  padding: 20px;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorNull);
+}
+
+.Regulamin h1  {
+  font-size: calc(40px + var(--additionaltextsize));
+  font-weight: bold;
+}
+
+.Regulamin p {
+  display: inline-block;
+  white-space: pre-wrap;
+  text-align: left;
+  font-size: calc(20px + var(--additionaltextsize));
+  color: var(--textColorBrown);
+  font-weight: normal;
+}

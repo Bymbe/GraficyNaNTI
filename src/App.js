@@ -13,6 +13,7 @@ import Pomoc from "./Pages/Pomoc";
 import Register from "./Pages/Register";
 import Kwestionariusz  from "./Pages/Kwestionariusz";
 import Historia  from "./Pages/Historia";
+import Regulamin from "./Pages/Regulamin"
 import AccessibilitySettings from "./Pages/accessibilitySettings"
 import {useState} from "react";
 
@@ -49,6 +50,7 @@ function App() {
             <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />
             <Route path="/Kwestionariusz" element={<Kwestionariusz Zalogowano={Zalogowano} PupilDoZmiany={PupilDoZmiany} Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} />} />
             <Route path="/Register" element={<Register handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin}/>} />
+            <Route path="/Regulamin" element={<Regulamin />} />
         </Routes>
         <Footer/>
       </Router>
