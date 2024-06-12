@@ -947,7 +947,7 @@ Link {
   height: fit-content;
   width: 70%;
   left: 50%;
-  top: 40%;
+  top: 400px;
   transform: translate(-50%, -50%);
   background: rgba(94, 58, 31, 0.9);
 
