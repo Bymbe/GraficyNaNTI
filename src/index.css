@@ -1495,12 +1495,18 @@ input[type="text"] {
   align-items: center;
   position: relative;
 
+
 }
 
 .Koszyk-Ikonki img{
   margin-left: 10px;
   margin-right: 10px;
   cursor: pointer;
+  //border-style: solid;
+
+ /* border-width: 4px;
+  border-radius: 30px;
+  border-color: #CE9F54;*/
 }
 
 .Koszyk-Podsumowanie {
@@ -2543,4 +2549,225 @@ h1 + .MessagePomoc-Text-Area{
   margin-bottom: 40px;
   color: #5E3A1F;
 ;
+}
+
+/*########################################### HISTORIA ###########################################*/
+.Historia-Komunikat{
+  color: var(--bgColorBrown);
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: calc(20px + var(--additionaltextsize));
+}
+
+
+.Historia h1 {
+  position: relative;
+  color: var(--bgColorCreamy);
+  font-size: calc(36px + var(--additionaltextsize));
+  margin: 0px 0 30px 0;
+  background-color: var(--bgColorBrown);
+  width: 100%;
+}
+
+.Historia-ListaZamówień{
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 1200px;
+  background-color: #CE9F54;
+  padding-bottom: 30px;
+  margin-top: 0px;
+}
+
+.Historia-Zamówienie {
+  background-color: #F6F1CB;
+  width: 1000px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.Historia-Zamówienie-Nagłówek{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+
+}
+
+.Historia-Zamówienie-Nagłówek button{
+  width: 200px;
+  position: relative;
+  left: 100px;
+}
+
+.Historia-Zamówienie-Dane{
+  //background-color: #aeff86;
+  width: 500px;
+  height: 70px;
+  position: relative;
+  right: 120px;
+  top: 10px;
+  color: var(--textColorBrown);
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+
+
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+
+.Historia-Zamówienie-Dane h2, .Historia-Zamówienie-Dane p{
+  top: 10px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 420px;
+  //background-color: crimson;
+
+}
+
+.Historia-Zamówienie-Dane p{
+  margin-top: 5px;
+  width: 230px;
+}
+
+.Historia-Zamówienie-Informacje{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+
+}
+
+.Historia-Zamówienie-Dane-Kontaktowe {
+  //background-color: #aeff86;
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  width: 300px;
+  position: relative;
+  right: 170px;
+
+  height: fit-content;
+  top: 20px;
+  color: var(--textColorBrown);
+}
+.Historia-Zamówienie-Dane-Kontaktowe h2{
+  //background-color: crimson;
+  position: relative;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.Historia-Zamówienie-Dane-Kontaktowe h3{
+  position: relative;
+  //background-color: #61dafb;
+  width: 270px;
+  text-align: left;
+  margin: 0;
+  margin-left: 10px;
+
+}
+
+.Historia-Zamówienie-Status{
+  //background-color: #aeff86;
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  position: relative;
+  left: 170px;
+  height: fit-content;
+  top: 20px;
+  color: var(--textColorBrown);
+}
+
+.Historia-Zamówienie-Status h2{
+  //background-color: crimson;
+  position: relative;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.Historia-Zamówienie-Status h3{
+  position: relative;
+  //background-color: #61dafb;
+  width: 270px;
+  text-align: left;
+  margin: 0;
+  margin-left: 10px;
+}
+
+.Historia-Zamówienie-Produkty{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.Historia-Zamówienie-Produkty h2{
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+
+}
+
+.Historia-Zamówienie-Produkty div{
+  width: 100%;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Anek Gujarati", sans-serif;
+  color: var(--textColorBrown);
+  font-size: calc(20px + var(--additionaltextsize));
+  margin-bottom: 5px;
+
+}
+
+.Historia-Zamówienie-Produkty h2{
+  position: relative;
+  color: var(--textColorBrown);
+  font-size: calc(24px + var(--additionaltextsize));
+
+}
+
+.Kreseczka{
+  position: relative;
+  margin:0;
+  padding: 0;
+  height: 5px;
+  background-color: var(--textColorBrown);
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Historia-Podsumowanie{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Historia-Podsumowanie h2{
+  position: relative;
+  color: var(--textColorBrown);
+  font-size: calc(24px + var(--additionaltextsize));
 }

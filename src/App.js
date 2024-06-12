@@ -21,6 +21,7 @@ function App() {
     const [Login, setLogin] = useState('');
     const [Karma, setKarma] = useState("");
     const [PupilDoZmiany, setPupilDoZmiany] = useState("");
+    const [Cookies, setCookies] = useState(true);
 
     const handlePupilDoZmiany = (data) => {
         setPupilDoZmiany(data);
@@ -37,7 +38,7 @@ function App() {
 
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Home" element={<Home />} />
+            <Route path="/Home" element={<Home Cookies={Cookies} handleCallBackCookies={setCookies} />} />
             <Route path="/Karmy" element={<Karmy Login={Login} handleCallBackKarma={setKarma}/>} />
             <Route path="/Konto" element={<Konto Login={Login} Zalogowano={Zalogowano} handleCallBackPupilDoZmiany={handlePupilDoZmiany} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} /> } />
             <Route path="/Koszyk" element={<Koszyk Login={Login} Zalogowano={Zalogowano}/>} />

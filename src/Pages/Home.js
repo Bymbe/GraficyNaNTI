@@ -11,19 +11,17 @@ import {Link} from "react-router-dom";
 
 function Home(props) {
 
-    const [Cookie, setCookie] = useState(true);
 
     const CookieFunction = async ()=> {
-        setCookie(false);
+        props.handleCallBackCookies(false);
 
-        return;
     }
 
     return (
 
         <div className="Home">
             <br/><br/><br/><br/><br/><br/>
-            {Cookie ? (
+            {props.Cookies &&
                 <div className="Home-cookies">
                     <h1>Pliki cookie</h1>
                     <h2>
@@ -45,8 +43,7 @@ function Home(props) {
 
 
                     <h1></h1>
-                </div>
-            ) : (<div style={{display: "none"}}></div>)}
+                </div>}
             <div className="Home-Top">
                 <br/><br/><br/><br/>
 
@@ -147,11 +144,6 @@ function Home(props) {
 
             </div>
 
-
-            {/*<div className="Home-Bottom">*/}
-            {/*    <img src={Kot}/>*/}
-
-            {/*</div>*/}
 
 
         </div>
