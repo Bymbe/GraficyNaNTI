@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Pies from "../Assets/piesek.png";
 import Kot from "../Assets/kotek.png";
 import Karma from "../Assets/karma.png";
@@ -7,14 +7,44 @@ import Twitter from "../Assets/Twitter.svg";
 import {Link} from "react-router-dom";
 
 
-function Home() {
+function Home(props) {
+
+    const [Cookie, setCookie] = useState(true);
+
+    const CookieFunction = async ()=> {
+        setCookie(false);
+
+        return;
+    }
 
     return (
 
         <div className="Home">
             <br/><br/><br/><br/><br/><br/>
+            {Cookie ? (
+                <div className="Home-cookies">
+                    <h1>Pliki cookie</h1>
+                    <h2>
+                        Używamy niezbędnych plików cookie, aby zapewnić prawidłowe działanie naszego
+                        Systemu. Dodatkowo, my i nasi partnerzy możemy stosować opcjonalne pliki cookie
+                        w celach takich jak analiza i targetowanie/reklama. Aby korzystać z opcjonalnych
+                        plików cookie, wymagana jest Twoja zgoda, którą można udzielić, klikając
+                        „Zaakceptuj”. Jeśli nie wyrażasz zgody na korzystanie z opcjonalnych
+                        plików cookie, wystarczy kliknąć „Odrzuć”. Pamiętaj
+                        , że zawsze masz możliwość wycofania udzielonej zgody, zmieniając odpowiednie
+                        ustawienia. Korzystanie z plików cookie może wiązać się z przetwarzaniem Twoich
+                        danych osobowych. W takich przypadkach Check Systems Sp. z o.o. jest
+                        administratorem tych danych. Więcej informacji na ten temat znajdziesz w naszej
+                        Polityce Prywatności.</h2>
+                    <button onClick={CookieFunction}>Zaakceptuj</button>
+                    <button onClick={CookieFunction}>Odrzuć</button>
+                    <button onClick={CookieFunction} id="polityka">Polityka Prywatności</button>
+                    <h1></h1>
+                </div>
+            ) : (<div style={{display: "none"}}></div>)}
             <div className="Home-Top">
                 <br/><br/><br/><br/>
+
                 <h1 id="HeaderMain-Home">Spersonalizowana karma dla Twojego pupila!</h1>
                 <h3 id="Header-Home">Odpowiedz na kilka pytań na temat swojego pupila aby dostać propozycje dopasowanej
                     do jego potrzeb karmy </h3>

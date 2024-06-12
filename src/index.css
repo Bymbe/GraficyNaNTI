@@ -940,7 +940,66 @@ Link {
 
 }
 
+.Home-cookies{
+  position: fixed;
+  align-items: center;
 
+  height: fit-content;
+  width: 70%;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  background: rgba(94, 58, 31, 0.9);
+
+  border-radius: 15px;
+
+
+
+  z-index: 10;
+}
+
+.Home-cookies h1{
+  display: grid;
+  color: var(--textColorCreamy);
+  text-align: left;
+  margin-left: 50px;
+  margin-top: 20px;
+  font-size: calc(2vh + var(--additionaltextsize));
+  size: 10px;
+  z-index: 10;
+}
+.Home-cookies h2{
+  display: grid;
+  text-align: justify;
+  padding: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  color: var(--textColorCreamy);
+  font-size: calc(16px + var(--additionaltextsize));
+  size: 7px;
+  z-index: 10;
+}
+
+.Home-cookies button{
+width: 20%;
+  padding: 20px;
+  margin: 5px;
+  color:#5E3A1F;
+  font-size: calc(15px + var(--additionaltextsize));
+  background: #F6F1CB;
+  z-index: 10;
+}
+
+#polityka{
+  width: 20%;
+  padding: 20px;
+  margin: 5px;
+  color:#F6F1CB;
+  font-size: calc(15px + var(--additionaltextsize));
+  background: #5E3A1F;
+  border-radius: 10px;
+  z-index: 10;
+  border: 3px solid #F6F1CB;}
 
 .Home-Top {
   color: #5E3A1F;
