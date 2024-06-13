@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import {BrowserRouter as Router, Navigate, Route, Routes} from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import Home from "./Pages/Home";
@@ -14,6 +14,8 @@ import Register from "./Pages/Register";
 import Kwestionariusz  from "./Pages/Kwestionariusz";
 import Historia  from "./Pages/Historia";
 import Regulamin from "./Pages/Regulamin"
+import DodajKarmy from "./Pages/DodajKarmy"
+import KarmyAdmina from "./Pages/KarmyAdmina"
 import AccessibilitySettings from "./Pages/accessibilitySettings"
 import {useState} from "react";
 
@@ -38,13 +40,15 @@ function App() {
 
 
         <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Navigate to="/Home" replace={true} />} />
             <Route path="/Home" element={<Home Cookies={Cookies} handleCallBackCookies={setCookies} />} />
             <Route path="/Karmy" element={<Karmy Login={Login} handleCallBackKarma={setKarma}/>} />
             <Route path="/Konto" element={<Konto Login={Login} Zalogowano={Zalogowano} handleCallBackPupilDoZmiany={handlePupilDoZmiany} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} /> } />
             <Route path="/Koszyk" element={<Koszyk Login={Login} Zalogowano={Zalogowano}/>} />
             <Route path="/Opinie" element={<Opinie />} />
             <Route path="/Pomoc" element={<Pomoc />} />
+            <Route path="/DodajKarmy" element={<DodajKarmy />} />
+            <Route path="/KarmyAdmina" element={<KarmyAdmina />} />
             <Route path="/ONas" element={<ONas />} />
             <Route path="/Historia" element={<Historia Login={Login}/>} />
             <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />

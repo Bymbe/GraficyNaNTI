@@ -64,6 +64,7 @@ const Navbar = (props) => {
                 {/*<li><Link to="Opinie" className="Link">Opinie</Link></li>*/}
                 <li><Link to="Karmy" className="Link">Karmy</Link></li>
                 <li><Link to="Pomoc" className="Link">Pomoc</Link></li>
+                <li><Link to="KarmyAdmina" className="Link">KarmyAdmina</Link></li>
             </div>
             <div className="navbar-right">
                 {props.Zalogowano ? (
