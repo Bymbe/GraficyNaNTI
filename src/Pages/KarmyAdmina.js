@@ -90,6 +90,7 @@ function KarmyAdmina(props) {
                     {KarmyRef.map(karma => {
                         return (
                             <div className="FlexBoxy-Karmy">
+                                {props.Login}
                                 <button className="KarmyButtons3-KarmyAdmina"> - Usuń tą karmę</button>
                                 <h1 id="NazwaKarmy-Karmy">{karma.id}</h1>
 

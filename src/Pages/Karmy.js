@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import App from "../App";
 import Karma from "../Assets/karma.png";
 import {Link} from "react-router-dom";
-import {collection, doc, getDoc, getDocs, setDoc, updateDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../DataBase/init-firebase";
 
 function Karmy(props) {
@@ -35,6 +35,17 @@ function Karmy(props) {
         console.log(KarmaID);
         props.handleCallBackKarma(KarmaID);
     }
+
+    const UsuńKarmę = async (KarmaID) => {
+        try{
+            const KarmaRef = await doc(db, 'Karmy', KarmaID);
+            await deleteDoc(KarmaRef);
+            getKarmy();
+        }catch(err){
+            console.log(err);
+        }
+    }
+
 
     const DodajDoKoszyka = async (KarmaID, KarmaCena) => {
         setPopup(true);
@@ -79,10 +90,23 @@ function Karmy(props) {
                 ) : (<div style={{display: "none"}}></div>)}
 
                 <div className={"flex-container"}>
+                    {props.Login === "admin" &&
+                        <div className="FlexBoxy-Karmy">
+
+                        <Link to="/DodajKarmy">
+                            <button className="KarmyButtons2-KarmyAdmina">+</button>
+                        </Link>
+                        <h1 id="NazwaKarmy-Karmy">Dodaj nową karmę</h1>
+
+                    </div>}
+
 
                     {KarmyRef.map(karma => {
                         return (
                             <div className="FlexBoxy-Karmy">
+                                {props.Login === 'admin' &&
+                                    <button className="KarmyButtons3-KarmyAdmina" onClick={() => UsuńKarmę(karma.id)}> - Usuń tą karmę</button>}
+
                                 <h1 id="NazwaKarmy-Karmy">{karma.id}</h1>
                                 <img src={Karma}/>
                                 <h3>{karma.Cena} zł</h3>
