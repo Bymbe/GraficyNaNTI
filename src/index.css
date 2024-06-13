@@ -2888,56 +2888,6 @@ h1 + .MessagePomoc-Text-Area{
   border: 3px solid;
   border-color: var(--textColorBrown);
 }
-.FlexBoxy-Karmy {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  /*padding: 10px;*/
-  text-align: center;
-  width: 300px;
-  border: 5px solid #5E3A1F;
-  background: #e8bc76;
-  border-radius: 20px;
-  margin: 10px;
-  /*margin-right: 40px;*/
-  /*height: 70vh;*/
-  opacity: 1;
-  align-items: center;
-  align-content: center;
-  transition: transform 0.5s;
-}
-.FlexBoxy-Karmy:hover{
-  background: rgb(232, 188, 118,.5);
-  cursor: pointer;
-  transform: scale(1.04);
-}
-
-
-.FlexBoxy-Karmy img {
-  width: 250px;
-
-  /*padding: 0px 5px 0px 5px;*/
-  margin: auto;
-}
-#NazwaKarmy-Karmy {
-  color: var(--textColorBrown);
-  background-color: var(--bgColorNull);
-  font-size: calc(4vh + var(--additionaltextsize));
-}
-
-.FlexBoxy-Karmy h3 {
-  display: grid;
-  color: var(--textColorBrown);
-  background-color: var(--bgColorNull);
-  font-size: calc(4vh + var(--additionaltextsize));
-}
-.FlexBoxy-Karmy h2 {
-  color: var(--textColorBrown);
-  background-color: var(--bgColorNull);
-  font-size: calc(2vh + var(--additionaltextsize));
-  size: 10px;
-
-}
 
 .KarmyButtons2-KarmyAdmina{
   /*padding: 10px;*/
