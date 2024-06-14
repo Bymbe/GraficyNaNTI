@@ -2478,10 +2478,10 @@ h1 + .MessagePomoc-Text-Area{
 
 .MessagePomoc div textarea{
   display: inline-block;
-  position: relative;   
+  position: relative;
   border-radius: 0 5px 5px 0;
   resize: none;
-  text-align: center;
+  text-align: left;
   line-height: 30px;
   width: 90%;
 
