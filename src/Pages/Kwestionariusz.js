@@ -1,26 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useRef, useState} from 'react'
 import {Link} from "react-router-dom";
 import Karma from "../Assets/karma.png";
 import {addDoc, collection, doc, getDoc, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../DataBase/init-firebase";
 
 function Kwestionariusz(props) {
-
-
-
-    // useEffect(() => {
-    //     // Funkcja, która będzie wykonywana co sekundę
-    //     const interval = setInterval(() => {
-    //         if(PupilName === ""){
-    //             console.log('PupilName is Empty')
-    //         }
-    //     }, 1000);
-    //
-    //     // Funkcja czyszcząca, która usunie interval przy unmount
-    //     return () => clearInterval(interval);
-    // }, []);
-
-    /*Flagi*/
+        /*Flagi*/
     const [Dalej, setDalej] = useState(false);
     const [DodajDoKoszyka, setDodajDoKoszyka] = useState(false);
     const [Rejestracja, setRejestracja] = useState(false);
@@ -52,6 +37,8 @@ function Kwestionariusz(props) {
 
     /*Updatowanie Pupila*/
     const [DanePupila, setDanePupila] = useState([]);
+    const firstRender = useRef(true);
+
 
     const dalejFunction = async ()=> {
         console.log("DalejFunction")
@@ -84,15 +71,30 @@ function Kwestionariusz(props) {
     useEffect(() => {
         //console.log(props.Zalogowano);
         //console.log(props.PupilDoZmiany);
+        if(props.WTrakcieKwestionariusza === true){
+            console.log("UseEffect -> getTemp")
+            getTemp();
+            return;
+        }
+
         if(props.Zalogowano === true && props.PupilDoZmiany !== ""){
             console.log("UseEffect -> getPet")
             getPet();
-
+            return;
         }
+
+
+
+
 
     }, [props.Zalogowano, props.PupilDoZmiany]);
 
     useEffect(() => {
+
+        if (firstRender.current) {
+            firstRender.current = false; // Ustawiamy flagę na false po pierwszym renderze
+            return;
+        }
         console.log("UseEffect -> DanePupila")
         if (DanePupila && Object.keys(DanePupila).length > 0) {
             setPupilName(props.PupilDoZmiany);
@@ -123,6 +125,37 @@ function Kwestionariusz(props) {
         }
     }
 
+    const getTemp = async () => {
+        console.log("getTemp")
+        try{
+            const PupilRef = await doc(db, props.Login,'Temp');
+            const snapShot = await getDoc(PupilRef);
+            setDanePupila(snapShot.data());
+
+        }catch (err){
+            console.log(err);
+        }
+    }
+
+    const updateTemp = async () => {
+        console.log("updatePet")
+        try{
+            props.handleCallBackWTrakcie(true);
+            await setDoc(doc(db, props.Login,  "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    const koszykTemp = async () => {
+        console.log("koszykTemp")
+        try{
+            await setDoc(doc(db, 'TempUser', "Dane", "Koszyk", WybranaKarma), {Cena: CenaWybranejKarmy, Amount: 1});
+        }catch (err){
+            console.log(err);
+        }
+    }
+
 
 
     const addPet = async () => {
@@ -134,8 +167,11 @@ function Kwestionariusz(props) {
                     Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma
                 })
             }
+            else{
+                await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+
+            }
             //console.log(props.Zalogowano);
-            await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
             await setDoc(doc(db, props.Login, "Dane", "Koszyk", WybranaKarma), {Cena: CenaWybranejKarmy, Amount: 1});
             setPopupDodanie(true);
         }catch(err){
@@ -311,7 +347,7 @@ function Kwestionariusz(props) {
                             <img src={Karma}/>
                             <h3>{CenaWybranejKarmy} zł</h3>
                             <h2>Super dobra karma z płatków kwiatów</h2>
-                            <Link to="/Kwiaciara" onClick={props.handleCallBackKarma(WybranaKarma)}>
+                            <Link to="/Kwiaciara" onClick={() => props.handleCallBackKarma(WybranaKarma)}>
                                 <button>Czytaj więcej</button>
                             </Link>
                             {props.Zalogowano ? (
@@ -346,7 +382,7 @@ function Kwestionariusz(props) {
 
                         <button onClick={RejestracjaFunction}>Załóż konto</button>
 
-                        <Link to="/Koszyk">
+                        <Link to="/Koszyk" onClick={koszykTemp}>
                             <button>Kupuję jednorazowo</button>
                             {/*Dodanie karmy dla wirtualnego użytkownika -> DodajKarmę(db,Virtual,Dane,Koszyk,NazwaKarmy*/}
                         </Link>

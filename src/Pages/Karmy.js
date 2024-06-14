@@ -103,7 +103,7 @@ function Karmy(props) {
 
                     {KarmyRef.map(karma => {
                         return (
-                            <div className="FlexBoxy-Karmy">
+                            <div className="FlexBoxy-Karmy" key={karma.id}>
                                 {props.Login === 'admin' &&
                                     <button className="KarmyButtons3-KarmyAdmina" onClick={() => UsuńKarmę(karma.id)}> - Usuń tą karmę</button>}
 

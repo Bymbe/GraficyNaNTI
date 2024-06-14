@@ -17,19 +17,48 @@ import Regulamin from "./Pages/Regulamin"
 import DodajKarmy from "./Pages/DodajKarmy"
 import KarmyAdmina from "./Pages/KarmyAdmina"
 import AccessibilitySettings from "./Pages/accessibilitySettings"
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {collection, deleteDoc, doc, getDocs} from "firebase/firestore";
+import {db} from "./DataBase/init-firebase";
 
 function App() {
     const [Zalogowano, setZalogowano] = useState(false);
-    const [Login, setLogin] = useState('');
+    const [Login, setLogin] = useState('TempUser');
     const [Karma, setKarma] = useState("");
     const [PupilDoZmiany, setPupilDoZmiany] = useState("");
     const [Cookies, setCookies] = useState(true);
+    const [WTrakcieKwestionariusza, setWTrakcieKwestionariusza] = useState(false);
 
     const handlePupilDoZmiany = (data) => {
         setPupilDoZmiany(data);
         console.log(data);
     }
+
+    const cleanTemp = async () => {
+        try{
+            const TempRef = await doc(db, 'TempUser', "Temp");
+            await deleteDoc(TempRef);
+
+            const koszykSnapshot = await getDocs(collection(db, 'TempUser', 'Dane', 'Koszyk'));
+            const koszykDocs = koszykSnapshot.docs;
+
+            koszykDocs.forEach((document, index) => {
+
+                const KarmaRef = doc(db, 'TempUser', 'Dane','Koszyk', document.id);
+                deleteDoc(KarmaRef);
+
+            });
+
+            console.log("Wyczyszczono Temp")
+        }catch(err){
+            console.log(err)
+        }
+
+    }
+
+    useEffect(() => {
+        cleanTemp()
+    }, [Login]);
 
 
   return (
@@ -52,7 +81,7 @@ function App() {
             <Route path="/ONas" element={<ONas />} />
             <Route path="/Historia" element={<Historia Login={Login}/>} />
             <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />
-            <Route path="/Kwestionariusz" element={<Kwestionariusz Zalogowano={Zalogowano} PupilDoZmiany={PupilDoZmiany} Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} />} />
+            <Route path="/Kwestionariusz" element={<Kwestionariusz Zalogowano={Zalogowano} PupilDoZmiany={PupilDoZmiany} Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} WTrakcieKwestionariusza={WTrakcieKwestionariusza} handleCallBackWTrakcie={setWTrakcieKwestionariusza}/>} />
             <Route path="/Register" element={<Register handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin}/>} />
             <Route path="/Regulamin" element={<Regulamin />} />
         </Routes>

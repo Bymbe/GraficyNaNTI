@@ -10,7 +10,7 @@ import {db} from "../DataBase/init-firebase";
 
 const Navbar = (props) => {
 
-    const [Login, setLogin] = useState('');
+    const [Login, setLogin] = useState('TempUser');
     const [Password, setPassword] = useState("");
     //const [Zalogowano, setZalogowano] = useState(props.Zalogowano);
 
@@ -43,9 +43,9 @@ const Navbar = (props) => {
     }
 
     const Wyloguj = () => {
-        setLogin("")
+        setLogin("TempUser")
         setPassword("")
-        props.handleCallBackLogin("");
+        props.handleCallBackLogin("TempUser");
         props.handleCallBackZalogowo(false);
     }
 
