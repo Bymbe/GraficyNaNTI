@@ -167,7 +167,7 @@ function Pomoc() {
                     </div>
                     <div className="MessagePomoc-Text-Area">
                         <label htmlFor="Message">Twoja wiadomość:</label>
-                        <input rows="4" cols="50" type="text" placeholder={"Napisz coś..."}/>
+                        <textarea rows="4" cols="50" type="text" placeholder={"Napisz coś..."}/>
                     </div>
                     <button className="ButtonPomoc" type="submit">Wyślij wiadomość</button>
                 </div>
