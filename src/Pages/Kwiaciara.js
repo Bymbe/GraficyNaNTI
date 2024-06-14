@@ -47,7 +47,7 @@ function Kwiaciara(props) {
                 </div>
 
                 <div className="Karmy-Header-Kwiaciara">
-                    <br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/>
                     <h1>{KarmaRef.Nazwa}</h1>
 
 
