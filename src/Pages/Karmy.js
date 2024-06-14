@@ -4,23 +4,53 @@ import Karma from "../Assets/karma.png";
 import {Link} from "react-router-dom";
 import {collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../DataBase/init-firebase";
+import { query, where } from 'firebase/firestore';
 
 function Karmy(props) {
 
     const [KarmyRef, setKarmyRef] = useState([]);
     const [Popup, setPopup] = useState(false);
+    const [MeatFilter, setMeatFilter] = useState(null);
+    const [CenaFilter, setCenaFilter] = useState("");
 
-    const [filter, setFilter] = useState("");
 
     useEffect(() => {
         getKarmy();
 
     },[])
 
+    useEffect(() => {
+        getKarmy();
+
+    },[MeatFilter, CenaFilter]);
+
+    const handleMeatTypeChange = (value) => {
+        setMeatFilter(value);
+    }
+
+    const handleCenaFilterChange = (value) => {
+        setCenaFilter(value);
+    }
+
     const getKarmy = async () => {
         try{
 
-            const karmyCollectionRef = await collection(db, 'Karmy');
+            let karmyCollectionRef = collection(db, 'Karmy');
+            if (MeatFilter) {
+                karmyCollectionRef = query(karmyCollectionRef, where('MeatType', '==', MeatFilter));
+            }
+            if (CenaFilter !== "") {
+                if(CenaFilter === ">"){
+                    karmyCollectionRef = query(karmyCollectionRef, where('Cena', '>=', 100));
+                } else if(CenaFilter === "<"){
+                    karmyCollectionRef = query(karmyCollectionRef, where('Cena', '<', 50));
+                } else {
+                    karmyCollectionRef = query(karmyCollectionRef, where('Cena', '>', 50));
+                    karmyCollectionRef = query(karmyCollectionRef, where('Cena', '=<', 100));
+                }
+
+            }
+
             const snapShot = await getDocs(karmyCollectionRef);
             const documents = snapShot.docs.map(doc => ({
                 id: doc.id,
@@ -69,6 +99,11 @@ function Karmy(props) {
         }
     }
 
+    const ClearFilters = () => {
+        setMeatFilter(null);
+        setCenaFilter("")
+    }
+
 
 
     return (
@@ -82,6 +117,56 @@ function Karmy(props) {
             <div className="Shop">
                 <div className="SearchingBar">
                     <h1 id="SB-Head">Filtry</h1>
+                    <div>
+                        <h2>Typ mięsa</h2>
+                        <div>
+                            <input type="checkbox" id="ingredient1" name="kaczka" value="Kaczka"
+                                   checked={MeatFilter === 'Kaczka'}
+                                   onChange={() => handleMeatTypeChange('Kaczka')}/>
+                            <h3>Kaczka</h3>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="ingredient2" name="kurczak" value="Kurczak"
+                                   checked={MeatFilter === 'Kurczak'} onChange={() => handleMeatTypeChange('Kurczak')}/>
+                            <h3>Kurczak</h3>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="ingredient3" name="wieprzowina" value="Wieprzowina"
+                                   checked={MeatFilter === 'Wieprzowina'}
+                                   onChange={() => handleMeatTypeChange('Wieprzowina')}/>
+                            <h3>Wieprzowina</h3>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="ingredient4" name="wolowina" value="Wołowina"
+                                   checked={MeatFilter === 'Wołowina'}
+                                   onChange={() => handleMeatTypeChange('Wołowina')}/>
+                            <h3>Wołowina</h3>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="ingredient5" name="vege" value="Vege"
+                                   checked={MeatFilter === 'Vege'} onChange={() => handleMeatTypeChange('Vege')}/>
+                            <h3>Vege</h3>
+                        </div>
+
+                        <h2>Cena</h2>
+                        <div>
+                            <input type="checkbox" checked={CenaFilter === '<'}
+                                   onChange={() => handleCenaFilterChange('<')}/>
+                            <h3>Mniej niż 50zł</h3>
+                        </div>
+                        <div>
+                            <input type="checkbox" checked={CenaFilter === '<>'}
+                                   onChange={() => handleCenaFilterChange('<>')}/>
+                            <h3>Między 50zł a 100zł</h3>
+                        </div>
+                        <div>
+                            <input type="checkbox" checked={CenaFilter === '>'}
+                                   onChange={() => handleCenaFilterChange('>')}/>
+                            <h3>Więcej niż 100zł</h3>
+                        </div>
+
+                        <button onClick={ClearFilters}>Wyczyść Filtry</button>
+                    </div>
                 </div>
 
                 {Popup ? (
@@ -95,19 +180,20 @@ function Karmy(props) {
                     {props.Login === "admin" &&
                         <div className="FlexBoxy-Karmy">
 
-                        <Link to="/DodajKarmy">
-                            <button className="KarmyButtons2-KarmyAdmina">+</button>
-                        </Link>
-                        <h1 id="NazwaKarmy-Karmy">Dodaj nową karmę</h1>
+                            <Link to="/DodajKarmy">
+                                <button className="KarmyButtons2-KarmyAdmina">+</button>
+                            </Link>
+                            <h1 id="NazwaKarmy-Karmy">Dodaj nową karmę</h1>
 
-                    </div>}
+                        </div>}
 
 
                     {KarmyRef.map(karma => {
                         return (
                             <div className="FlexBoxy-Karmy" key={karma.id}>
                                 {props.Login === 'admin' &&
-                                    <button className="KarmyButtons3-KarmyAdmina" onClick={() => UsuńKarmę(karma.id)}> - Usuń tą karmę</button>}
+                                    <button className="KarmyButtons3-KarmyAdmina" onClick={() => UsuńKarmę(karma.id)}> -
+                                        Usuń tą karmę</button>}
 
                                 <h1 id="NazwaKarmy-Karmy">{karma.id}</h1>
                                 <img src={Karma}/>

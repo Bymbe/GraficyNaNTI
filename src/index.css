@@ -1730,13 +1730,51 @@ input[type="text"] {
 
 .SearchingBar{
   z-index:3;
-margin-left: 2%;
-background:#5E3A1F ;
-  width: 1000px;
-  height: 1000px;
+  margin-left: 2%;
+  background:#5E3A1F ;
+  width: 400px;
+  height: fit-content;
   border-radius: 20px;
-   /*box-shadow: 5px 5px 15px;*/
+  padding: 10px;
+  border-style: solid;
+  border-width: 4px;
+  border-color: #CE9F54;
+  /*box-shadow: 5px 5px 15px;*/
 
+}
+
+.SearchingBar h1, .SearchingBar h2{
+  font-size: calc(24px + var(--additionaltextsize));
+  color: var(--textColorCreamy);
+  margin: 0;
+  padding: 0;
+}
+
+.SearchingBar h3{
+  color: var(--textColorCreamy);
+}
+
+.SearchingBar button {
+  background: #CE9F54;
+  color: var(--textColorBrown);
+  width: 300px;
+}
+
+.SearchingBar div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.SearchingBar div div{
+//background: #aeff86;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  width: 200px;
 }
 
 .flex-container{
@@ -1758,23 +1796,23 @@ background:#5E3A1F ;
   background: #e8bc76;
 }
 .FlexBoxy-Karmy {
-   display: flex;
-   flex-direction: column;
-   flex-wrap: wrap;
-   /*padding: 10px;*/
-   text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  /*padding: 10px;*/
+  text-align: center;
   width: 300px;
-   border: 5px solid #5E3A1F;
+  border: 5px solid #5E3A1F;
   background: #e8bc76;
-   border-radius: 20px;
-   margin: 10px;
-   /*margin-right: 40px;*/
-   /*height: 70vh;*/
-   opacity: 1;
-   align-items: center;
-   align-content: center;
-   transition: transform 0.5s;
- }
+  border-radius: 20px;
+  margin: 10px;
+  /*margin-right: 40px;*/
+  /*height: 70vh;*/
+  opacity: 1;
+  align-items: center;
+  align-content: center;
+  transition: transform 0.5s;
+}
 .FlexBoxy-Karmy:hover{
   background: rgb(232, 188, 118,.5);
   cursor: pointer;
@@ -1846,7 +1884,6 @@ background:#5E3A1F ;
   border-radius: 15px;
   color: #5E3A1F;
 }
-
 /*########################################### KWIACIARA ###########################################*/
 .Kwiaciara{
   height: 1200px;
