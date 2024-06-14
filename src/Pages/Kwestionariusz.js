@@ -43,10 +43,14 @@ function Kwestionariusz(props) {
     const location = useLocation();
 
     useEffect(() => {
+        console.log(PupilName)
+    }, [PupilName]);
+
+    useEffect(() => {
         const currentPath = location.pathname;
 
         return () => {
-            updateTemp();
+            //updateTemp();
             console.log('Opuszczono trasę:', currentPath);
         };
     }, [location]);
@@ -186,21 +190,31 @@ function Kwestionariusz(props) {
 
 
     const addPet = async () => {
-        console.log("addPet")
+        console.log("addPet PupilName: ", PupilName)
         try{
-            if(props.PupilDoZmiany !== ""){
-                const PupilRef = await doc(db, props.Login, 'Dane','Zwierzęta', props.PupilDoZmiany);
-                await updateDoc(PupilRef, {
-                    Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma
-                })
-            }
-            else{
-                await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+            if(props.WTrakcieKwestionariusza === false){
+                props.handleCallBackKarma(WybranaKarma)
+                console.log("addPet if PupilName: ", PupilName)
+                await setDoc(doc(db, props.Login, "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
 
             }
-            //console.log(props.Zalogowano);
-            await setDoc(doc(db, props.Login, "Dane", "Koszyk", WybranaKarma), {Cena: CenaWybranejKarmy, Amount: 1});
-            setPopupDodanie(true);
+            else{
+                if(props.PupilDoZmiany !== ""){
+                    const PupilRef = await doc(db, props.Login, 'Dane','Zwierzęta', props.PupilDoZmiany);
+                    await updateDoc(PupilRef, {
+                        Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma
+                    })
+                }
+                else{
+                    await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+
+                }
+                //console.log(props.Zalogowano);
+                await setDoc(doc(db, props.Login, "Dane", "Koszyk", WybranaKarma), {Cena: CenaWybranejKarmy, Amount: 1});
+                setPopupDodanie(true);
+            }
+
+
         }catch(err){
             console.log(err)
         }
@@ -251,7 +265,7 @@ function Kwestionariusz(props) {
                 Jak wabi się twój pupil?
             </div>
             <div>
-                <input type="text" value={PupilName}
+                <input type="text" value={PupilName} placeholder="Imię pupila"
                        id="PetNameInput" onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
             </div>
             <div className="Kwestionariusz-question">
@@ -275,11 +289,11 @@ function Kwestionariusz(props) {
             </div>
             <div className="AgeSelect">
                 <input type="text"
-                       id="PetAgeYearsInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilAge}`} : {placeholder: "Wiek pupila w latach"})}
+                       id="PetAgeYearsInput" value={PupilAge} placeholder="Wiek pupila w latach"
                        onChange={(e) => setPupilAge(e.target.value)}/>
                 <h10>lata</h10>
                 <input type="text"
-                       id="PetAgeMonthsInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilMonth}`} : {placeholder: "Wiek pupila w miesiącach"})}
+                       id="PetAgeMonthsInput" value={PupilMonth} placeholder="Wiek pupila w miesiącach"
                        onChange={(e) => setPupilMonth(e.target.value)}/>
                 <h10>miesiące</h10>
             </div>
@@ -287,8 +301,8 @@ function Kwestionariusz(props) {
                 Ile kilogramów waży twój pupil?
             </div>
             <div className="WeightSelect">
-                <input type="text"
-                       id="PetWeightInput"  {...(props.PupilDoZmiany !== "" ? {value: `${PupilWeight}`} : {placeholder: "Waga pupila w kg"})}
+                <input type="text" placeholder="Waga pupila w kg"
+                       id="PetWeightInput"  value={PupilWeight}
                        onChange={(e) => setPupilWeight(e.target.value)}/>
             </div>
             <div className="Kwestionariusz-question">
@@ -373,7 +387,7 @@ function Kwestionariusz(props) {
                             <img src={Karma}/>
                             <h3>{CenaWybranejKarmy} zł</h3>
                             <h2>Super dobra karma z płatków kwiatów</h2>
-                            <Link to="/Kwiaciara" onClick={() => props.handleCallBackKarma(WybranaKarma)}>
+                            <Link to="/Kwiaciara" onClick={() => addPet()}>
                                 <button>Czytaj więcej</button>
                             </Link>
                             {props.Zalogowano ? (
