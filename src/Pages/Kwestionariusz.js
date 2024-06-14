@@ -6,6 +6,20 @@ import {db} from "../DataBase/init-firebase";
 
 function Kwestionariusz(props) {
 
+
+
+    // useEffect(() => {
+    //     // Funkcja, która będzie wykonywana co sekundę
+    //     const interval = setInterval(() => {
+    //         if(PupilName === ""){
+    //             console.log('PupilName is Empty')
+    //         }
+    //     }, 1000);
+    //
+    //     // Funkcja czyszcząca, która usunie interval przy unmount
+    //     return () => clearInterval(interval);
+    // }, []);
+
     /*Flagi*/
     const [Dalej, setDalej] = useState(false);
     const [DodajDoKoszyka, setDodajDoKoszyka] = useState(false);
@@ -40,6 +54,8 @@ function Kwestionariusz(props) {
     const [DanePupila, setDanePupila] = useState([]);
 
     const dalejFunction = async ()=> {
+        console.log("DalejFunction")
+
         setDalej(true);
         setRejestracja(false);
 
@@ -48,12 +64,14 @@ function Kwestionariusz(props) {
         return;
     }
     const DodajDoKoszykaFunction = async ()=> {
+        console.log("DodajDoKoszykaFunction")
         setDodajDoKoszyka(true);
         setRejestracja(false);
         return;
     }
 
     const RejestracjaFunction = async ()=> {
+        console.log("RejestracjaFunction")
         setRejestracja(true);
         setDalej(false);
         setDodajDoKoszyka(false);
@@ -64,9 +82,10 @@ function Kwestionariusz(props) {
     }
 
     useEffect(() => {
-        console.log(props.Zalogowano);
-        console.log(props.PupilDoZmiany);
+        //console.log(props.Zalogowano);
+        //console.log(props.PupilDoZmiany);
         if(props.Zalogowano === true && props.PupilDoZmiany !== ""){
+            console.log("UseEffect -> getPet")
             getPet();
 
         }
@@ -74,6 +93,7 @@ function Kwestionariusz(props) {
     }, [props.Zalogowano, props.PupilDoZmiany]);
 
     useEffect(() => {
+        console.log("UseEffect -> DanePupila")
         if (DanePupila && Object.keys(DanePupila).length > 0) {
             setPupilName(props.PupilDoZmiany);
             setPupilBreed(DanePupila.Rasa);
@@ -89,6 +109,7 @@ function Kwestionariusz(props) {
 
 
     const getPet = async () => {
+        console.log("getPet")
                 try{
             const PupilRef = await doc(db, props.Login,'Dane', 'Zwierzęta', props.PupilDoZmiany);
             const snapShot = await getDoc(PupilRef);
@@ -105,6 +126,7 @@ function Kwestionariusz(props) {
 
 
     const addPet = async () => {
+        console.log("addPet")
         try{
             if(props.PupilDoZmiany !== ""){
                 const PupilRef = await doc(db, props.Login, 'Dane','Zwierzęta', props.PupilDoZmiany);
@@ -122,7 +144,7 @@ function Kwestionariusz(props) {
     }
 
     const CreateUser = async () => {
-
+        console.log("CreateUser")
         if (Regulamin === false) {
             alert('Zaznacz wszystkie wymagane pola')
             return;
