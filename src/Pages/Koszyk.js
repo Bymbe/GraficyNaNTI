@@ -348,8 +348,8 @@ function Koszyk(props) {
 
                         <div className="Koszyk-CheckBox-Area">
                             <input type="checkbox" onChange={(e) => setRegulamin(!Regulamin)}/>
-                            <h3 data-end="*">Akceptuję warunki </h3>
-                            <a href="http://localhost:3000/Regulamin"> regulaminu</a>
+                            <h3 data-end="*" >Akceptuję warunki </h3>
+                            <a href="http://localhost:3000/Regulamin">regulaminu</a>
                         </div>
 
                         {UzupełnioneDane === false && props.Zalogowano === true &&

@@ -98,7 +98,8 @@ function Register(props) {
                 </div>
                 <div className="Register-CheckBox-Area">
                     <input type="checkbox" onChange={(e) => setRegulamin(!Regulamin)}/>
-                    <h3 data-end="*">Akceptuję warunki regulaminu</h3>
+                    <a data-end="*" href="http://localhost:3000/Regulamin">Akceptuję warunki regulaminu</a>
+                    <h3 data-end="*"></h3>
                 </div>
 
 
