@@ -2953,3 +2953,168 @@ h1 + .MessagePomoc-Text-Area{
   font-weight: bold;
   margin-top: 10px;
 }
+/*#######################################ZAMOWIENIA#######################################*/
+
+.Zamowienia h1{
+  font-size: 50px;
+
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+  color: var(--textColorBrown);
+}
+
+.Zamowienia h2{
+  font-size: 30px;
+  /*padding: 10px;*/
+  margin-bottom: 0px;
+  margin-top: -0px;
+  text-align: left;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+  color: var(--textColorBrown);
+}
+
+.Zamowienia h3{
+  font-size: 30px;
+  /*padding: 10px;*/
+  margin-bottom: 0px;
+  margin-top: -0px;
+  text-align: center;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+  color: var(--textColorBrown);
+}
+
+.Zamowienia h4{
+  font-size: 25px;
+  /*padding: 10px;*/
+  margin-bottom: 0px;
+  margin-top: -0px;
+  text-align: center;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+  color: var(--textColorBrown);
+}
+
+.Zamowienia-Conteiner{
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #F6F1CB;
+  border: 5px solid var(--textColorBrown);
+
+}
+
+.Zamowienie{
+
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10px;
+  width: 80%;
+  height: fit-content;
+  display: inline-grid;
+  align-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  background-color: #F6F1CB;
+  border: 10px solid var(--textColorBrown);
+}
+
+.ZamowienieDane{
+ text-align: left;
+
+}
+
+.ZamowienieStatus{
+  text-align: right;
+  align-self: flex-end;
+
+}
+
+.Zamowienia select{
+  width: 150%;
+  background-color: #F6F1CB;
+  border: 2px solid var(--textColorBrown);
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Anek Gujarati", sans-serif;
+  font-size: 20px;
+}
+.ZamowienieTop{
+
+  width: 100%;
+  height: fit-content;
+  display: inline-grid;
+  flex-direction: row;
+  align-content: center;
+
+
+  grid-template-columns: 50% 50% ;
+  justify-items: center;
+  background-color: #e8bc76;
+
+}
+
+.ProduktyHead{
+  background-color: #5E3A1F;
+  text-align: center;
+  font-size: 30px;
+  color: #e8bc76;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+}
+
+.Produkty{
+  background-color: #F6F1CB;
+  display: block;
+}
+
+.Produkt{
+
+  width: 90%;
+  margin: 5%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  border: 5px solid var(--textColorBrown);
+  border-radius: 10px;
+
+  height: fit-content;
+  display: inline-grid;
+  flex-direction: row;
+  align-content: center;
+  grid-template-columns: 10% 90% ;
+  justify-items: center;
+  background-color: #e8bc76;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+}
+
+.Ilosc{
+  width: 100%;
+  background-color: #5E3A1F;
+  text-align: center;
+  font-size: 30px;
+  color: #e8bc76;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+
+}
+
+.Nazwa{
+  width: 100%;
+  text-align: left;
+  padding-left: 10%;
+  font-size: 30px;
+  color: #5E3A1F;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+
+}
+

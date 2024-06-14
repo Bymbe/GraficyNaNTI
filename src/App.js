@@ -16,6 +16,7 @@ import Historia  from "./Pages/Historia";
 import Regulamin from "./Pages/Regulamin"
 import DodajKarmy from "./Pages/DodajKarmy"
 import KarmyAdmina from "./Pages/KarmyAdmina"
+import Zamowienia from "./Pages/Zamowienia"
 import AccessibilitySettings from "./Pages/accessibilitySettings"
 import {useEffect, useState} from "react";
 import {collection, deleteDoc, doc, getDocs} from "firebase/firestore";
@@ -78,6 +79,7 @@ function App() {
             <Route path="/Pomoc" element={<Pomoc />} />
             <Route path="/DodajKarmy" element={<DodajKarmy />} />
             <Route path="/KarmyAdmina" element={<KarmyAdmina />} />
+            <Route path="/Zamowienia" element={<Zamowienia />} />
             <Route path="/ONas" element={<ONas />} />
             <Route path="/Historia" element={<Historia Login={Login}/>} />
             <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />

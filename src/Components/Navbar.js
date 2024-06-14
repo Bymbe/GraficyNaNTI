@@ -64,7 +64,8 @@ const Navbar = (props) => {
                 {/*<li><Link to="Opinie" className="Link">Opinie</Link></li>*/}
                 {Login === "admin" && props.Zalogowano === true ? (<li><Link to="Karmy" className="Link">KarmyAdmina</Link></li>) : (
                     <li><Link to="Karmy" className="Link">Karmy</Link></li>)}
-
+                {Login === "admin" && props.Zalogowano === true ? (<li><Link to="Zamowienia" className="Link">Zamówienia</Link></li>) : (
+                    <div></div>)}
                 <li><Link to="Pomoc" className="Link">Pomoc</Link></li>
                 {/*<li><Link to="KarmyAdmina" className="Link">KarmyAdmina</Link></li>*/}
             </div>
