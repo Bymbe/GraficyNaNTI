@@ -39,6 +39,7 @@ function DodajKarmy() {
                 Korzyść3: Korzyść3,
                 Korzyść4: Korzyść4,
                 KrótkiOpis: KOpis,
+                Cena: CenaKarmy,
                 MeatType: MeatType,
                 Nazwa: NazwaKarmy,
                 Składnik1: Składnik1,

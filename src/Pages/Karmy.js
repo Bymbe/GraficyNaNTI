@@ -10,6 +10,8 @@ function Karmy(props) {
     const [KarmyRef, setKarmyRef] = useState([]);
     const [Popup, setPopup] = useState(false);
 
+    const [filter, setFilter] = useState("");
+
     useEffect(() => {
         getKarmy();
 
