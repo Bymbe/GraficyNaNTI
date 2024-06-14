@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import Karma from "../Assets/karma.png";
 import {addDoc, collection, doc, getDoc, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../DataBase/init-firebase";
@@ -38,6 +38,18 @@ function Kwestionariusz(props) {
     /*Updatowanie Pupila*/
     const [DanePupila, setDanePupila] = useState([]);
     const firstRender = useRef(true);
+
+
+    const location = useLocation();
+
+    useEffect(() => {
+        const currentPath = location.pathname;
+
+        return () => {
+            updateTemp();
+            console.log('Opuszczono trasę:', currentPath);
+        };
+    }, [location]);
 
 
     const dalejFunction = async ()=> {
@@ -95,8 +107,9 @@ function Kwestionariusz(props) {
             firstRender.current = false; // Ustawiamy flagę na false po pierwszym renderze
             return;
         }
-        console.log("UseEffect -> DanePupila")
-        if (DanePupila && Object.keys(DanePupila).length > 0) {
+
+        if (DanePupila && Object.keys(DanePupila).length > 0 && props.WTrakcieKwestionariusza === false) {
+            console.log("UseEffect -> DanePupila normalne")
             setPupilName(props.PupilDoZmiany);
             setPupilBreed(DanePupila.Rasa);
             setPupilAge(DanePupila.Wiek);
@@ -105,8 +118,22 @@ function Kwestionariusz(props) {
             setPupilGender(DanePupila.Płeć);
             setPupilSterylized(DanePupila.Sterylizacja);
             setPupilActif(DanePupila.Aktywność);
-            console.log(DanePupila.Rasa);
+
         }
+
+        if(props.WTrakcieKwestionariusza === true){
+            console.log("UseEffect -> DanePupila W trakcie")
+            setPupilName(DanePupila.Nazwa);
+            setPupilBreed(DanePupila.Rasa);
+            setPupilAge(DanePupila.Wiek);
+            setPupilMonth(DanePupila.Miesiące);
+            setPupilWeight(DanePupila.Waga);
+            setPupilGender(DanePupila.Płeć);
+            setPupilSterylized(DanePupila.Sterylizacja);
+            setPupilActif(DanePupila.Aktywność);
+        }
+
+
     }, [DanePupila]);
 
 
@@ -138,7 +165,7 @@ function Kwestionariusz(props) {
     }
 
     const updateTemp = async () => {
-        console.log("updatePet")
+        console.log("updateTemp")
         try{
             props.handleCallBackWTrakcie(true);
             await setDoc(doc(db, props.Login,  "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
@@ -224,9 +251,8 @@ function Kwestionariusz(props) {
                 Jak wabi się twój pupil?
             </div>
             <div>
-                <input type="text"
-                       id="PetNameInput" {...(props.PupilDoZmiany !== "" ? {value: `${PupilName}`} : {placeholder: 'Imię pupila'})}
-                       onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
+                <input type="text" value={PupilName}
+                       id="PetNameInput" onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
             </div>
             <div className="Kwestionariusz-question">
                 Jakiej rasy jest twój pupil?
