@@ -86,7 +86,7 @@ function Koszyk(props) {
 
 
         const KarmaRef = await doc(db, props.Login, 'Dane','Koszyk', id);
-        deleteDoc(KarmaRef);
+        await deleteDoc(KarmaRef);
         getKoszyk();
     }
 
