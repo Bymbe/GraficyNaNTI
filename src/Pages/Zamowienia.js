@@ -73,18 +73,23 @@ function Zamowienia() {
                                 </div>
                             </div>
 
-                            {order.TempUser !== true &&
-                                <div>
-                                    <h2>Imie i Nazwisko: </h2>
+
+                            <div className="Zamowienie-Status">
+                                <br/>
+                                {order.TempUser !== true &&
+                                    <div>
+                                        <h2>Imie i Nazwisko: </h2>
                                         <h4>{order.Imię} {order.Nazwisko}</h4>
                                         <br/>
                                     </div>
                                 }
-                            <div className="Zamowienie-Status">
-                                <br/>
+                                <br/><br/><br/>
+
                                 <h3>Status:</h3>
                                 <select value={order.Dostarczono ? "Wysłane" : "W realizacji"}
-                                onChange={(e) => {handleStatus(e.target.value, order.id)}}>
+                                        onChange={(e) => {
+                                            handleStatus(e.target.value, order.id)
+                                        }}>
                                     <option value="W realizaji">W realizacji</option>
                                     <option value="Wysłane">Wysłane</option>
                                 </select>
@@ -107,8 +112,17 @@ function Zamowienia() {
                                     }
                                     return null;
                                 })}
-                                <div>Suma</div>
-                                <h4>{order.Suma}</h4>
+                                <div className="ZamowieniaSuma">
+                                    <div className="Suma">
+                                        Suma
+                                    </div>
+                                    <div className="Suma2">
+                                        {order.Suma}
+                                    </div>
+
+
+                                </div>
+
                             </div>
                             <h2></h2>
                         </div>

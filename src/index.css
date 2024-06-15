@@ -2979,7 +2979,7 @@ h1 + .MessagePomoc-Text-Area{
   /*padding: 10px;*/
   margin-bottom: 0px;
   margin-top: -0px;
-  text-align: center;
+  text-align: left;
   font-family: "Anek Gujarati", sans-serif;
   font-weight: bold;
   color: var(--textColorBrown);
@@ -2992,6 +2992,18 @@ h1 + .MessagePomoc-Text-Area{
   margin-top: -0px;
   text-align: left;
   margin-left: 30px;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+  color: var(--textColorBrown);
+}
+
+.Zamowienia h5{
+  font-size: 25px;
+  /*padding: 10px;*/
+  margin-bottom: 0px;
+  margin-top: -0px;
+  text-align: right;
+  margin-right: 30px;
   font-family: "Anek Gujarati", sans-serif;
   font-weight: bold;
   color: var(--textColorBrown);
@@ -3037,7 +3049,7 @@ h1 + .MessagePomoc-Text-Area{
 }
 
 .Zamowienia select{
-  width: 150%;
+  width: 100%;
   background-color: #F6F1CB;
   border: 2px solid var(--textColorBrown);
   border-radius: 5px;
@@ -3088,7 +3100,7 @@ h1 + .MessagePomoc-Text-Area{
   display: inline-grid;
   flex-direction: row;
   align-content: center;
-  grid-template-columns: 10% 90% ;
+  grid-template-columns: 10% 80% 10% ;
   justify-items: center;
   background-color: #e8bc76;
   text-align: center;
@@ -3127,3 +3139,37 @@ h1 + .MessagePomoc-Text-Area{
 
 }
 
+.ZamowieniaSuma{
+
+  width: 90%;
+  margin: 5%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+  border: 5px solid var(--textColorBrown);
+  border-radius: 10px;
+
+  height: fit-content;
+  display: inline-grid;
+  flex-direction: row;
+  align-content: center;
+  grid-template-columns: 75% 25% ;
+  justify-items: center;
+  background-color: #F6F1CB;
+  text-align: center;
+  font-size: 30px;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
+}
+
+.Suma{
+  width: 100%;
+  background-color: #5E3A1F;
+  color: #e8bc76;
+}
+
+
+.Suma2{
+  width: 100%;
+  color: #5E3A1F;
+}
