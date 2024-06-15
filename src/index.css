@@ -2990,7 +2990,8 @@ h1 + .MessagePomoc-Text-Area{
   /*padding: 10px;*/
   margin-bottom: 0px;
   margin-top: -0px;
-  text-align: center;
+  text-align: left;
+  margin-left: 30px;
   font-family: "Anek Gujarati", sans-serif;
   font-weight: bold;
   color: var(--textColorBrown);
@@ -3105,6 +3106,14 @@ h1 + .MessagePomoc-Text-Area{
   font-family: "Anek Gujarati", sans-serif;
   font-weight: bold;
 
+}
+
+.Cena{
+  //background-color: #aeff86;
+  font-size: 30px;
+  color: #5E3A1F;
+  font-family: "Anek Gujarati", sans-serif;
+  font-weight: bold;
 }
 
 .Nazwa{

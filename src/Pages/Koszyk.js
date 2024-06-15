@@ -184,6 +184,7 @@ function Koszyk(props) {
                         Adres: daneRef.data().Adres,
                         KodPocztowy: daneRef.data().KodPocztowy,
                         Imię: daneRef.data().Imię,
+                        EMail: Email,
                         Nazwisko: daneRef.data().Nazwisko,
                         MetodaPłatności: Metoda,
                         Suma: Suma
@@ -211,6 +212,7 @@ function Koszyk(props) {
                         Adres: Adress,
                         KodPocztowy: Town,
                         EMail: Email,
+                        TempUser: true,
                         MetodaPłatności: Metoda,
                         Suma: Suma
 

@@ -37,9 +37,6 @@ function Historia(props) {
         }
     }
 
-    const PobierzZamówienie = async (orderID) => {
-
-    }
 
     const PonówZamówienie = async (orderID) => {
         try{
@@ -61,9 +58,6 @@ function Historia(props) {
             else{
                 console.log("No such document");
             }
-
-
-
 
         }catch(err){
             console.error("Error copying items: ", err);
