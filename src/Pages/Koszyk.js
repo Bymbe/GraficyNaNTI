@@ -143,8 +143,8 @@ function Koszyk(props) {
 
         try{
 
-            if(props.Zalogowano !== true){
-                const koszykSnapshot = await getDocs(collection(db, 'TempUser', 'Dane', 'Koszyk'));
+            //if(props.Zalogowano !== true){
+                /*const koszykSnapshot = await getDocs(collection(db, 'TempUser', 'Dane', 'Koszyk'));
                 if(koszykSnapshot.empty){
                     alert("Nie posiadasz produktów w swoim koszyku")
                     return;
@@ -158,9 +158,10 @@ function Koszyk(props) {
 
                     const KarmaRef = doc(db, 'TempUser', 'Dane','Koszyk', document.id);
                     deleteDoc(KarmaRef);
-                });
-            }
-            else{
+                });*/
+            //}
+            //else{
+
                 /*Pobieranie produktów z koszyka*/
                 const koszykSnapshot = await getDocs(collection(db, props.Login, 'Dane', 'Koszyk'));
                 const koszykDocs = koszykSnapshot.docs;
@@ -169,56 +170,68 @@ function Koszyk(props) {
 
                 /*Nowe zamówienie w kolekcji zamówienia*/
                 const currentDateTime = new Date().toISOString();
-                const newOrderRef = await doc(collection(db,props.Login, 'Dane', "Zamówienia"), currentDateTime);
+                if(props.Login !== 'TempUser'){
+                    const newOrderRef = await doc(collection(db,props.Login, 'Dane', "Zamówienia"), currentDateTime);
 
-                const DaneRef = await doc(db, props.Login, 'Dane');
+                    const DaneRef = await doc(db, props.Login, 'Dane');
 
-                const daneRef = await getDoc(DaneRef);
+                    const daneRef = await getDoc(DaneRef);
 
-                /*Dane do dokumentu*/
-                const orderData = {
-                    createdAt: new Date().toLocaleString(),
-                    Dostarczono: true,
-                    Adres: daneRef.data().Adres,
-                    KodPocztowy: daneRef.data().KodPocztowy,
-                    Imię: daneRef.data().Imię,
-                    Nazwisko: daneRef.data().Nazwisko,
-                    MetodaPłatności: Metoda,
-                    Suma: Suma
+                    /*Dane do dokumentu*/
+                    const orderData = {
+                        createdAt: new Date().toLocaleString(),
+                        Dostarczono: false,
+                        Adres: daneRef.data().Adres,
+                        KodPocztowy: daneRef.data().KodPocztowy,
+                        Imię: daneRef.data().Imię,
+                        Nazwisko: daneRef.data().Nazwisko,
+                        MetodaPłatności: Metoda,
+                        Suma: Suma
 
+                    }
+
+                    koszykDocs.forEach((doc, index) => {
+                        const data = doc.data();
+                        orderData[`item${index + 1}`] = {
+                            Nazwa: doc.id,
+                            Cena: data.Cena,
+                            Amount: data.Amount,
+                        };
+                        deleteKarma(doc.id);
+
+                    });
+                    /*Ustawianie dokumentu w kolekcji "Zamówienia"*/
+                    setDoc(newOrderRef, orderData);
+                    setDoc(doc(db,'Zamówienia', currentDateTime), orderData);
                 }
+                else{
+                    const orderData = {
+                        createdAt: new Date().toLocaleString(),
+                        Dostarczono: false,
+                        Adres: Adress,
+                        KodPocztowy: Town,
+                        EMail: Email,
+                        MetodaPłatności: Metoda,
+                        Suma: Suma
 
-                koszykDocs.forEach((doc, index) => {
-                    //orderData[`element${index + 1}`] = doc.id;
-                    const data = doc.data();
-                    //orderData[doc.id] = doc.data().Amount;
+                    }
 
-                    /*const name = data.name || "Unknown Name";
-                    const price = data.price || 0;
-                    const quantity = data.quantity || 0;*/
+                    koszykDocs.forEach((doc, index) => {
+                        const data = doc.data();
+                        orderData[`item${index + 1}`] = {
+                            Nazwa: doc.id,
+                            Cena: data.Cena,
+                            Amount: data.Amount,
+                        };
+                        deleteKarma(doc.id);
 
-                    orderData[`item${index + 1}`] = {
-                        Nazwa: doc.id,
-                        Cena: data.Cena,
-                        Amount: data.Amount,
-                    };
-                    deleteKarma(doc.id);
-                    /*const KarmaRef = doc(db, props.Login, 'Dane','Koszyk', doc.id);
-                    deleteDoc(KarmaRef);*/
-                });
-
-                /*Ustawianie dokumentu w kolekcji "Zamówienia"*/
-
-                await setDoc(newOrderRef, orderData);
+                    });
+                    setDoc(doc(db,'Zamówienia', currentDateTime), orderData);
+                }
                 console.log("Order created with ID: ", currentDateTime);
-            }
-
-
-
         }catch(err){
             console.error("Error creating order: ", err);
         }
-
     }
 
     const MP = (MetodaID) => {

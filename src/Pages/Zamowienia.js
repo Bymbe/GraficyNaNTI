@@ -1,7 +1,5 @@
 import React from 'react'
-import App from "../App";
-import {Link} from "react-router-dom";
-import Karma from "../Assets/karma.png";
+
 
 function Zamowienia() {
     return (
