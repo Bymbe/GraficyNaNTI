@@ -14,7 +14,12 @@ const Navbar = (props) => {
     const [Password, setPassword] = useState("");
     //const [Zalogowano, setZalogowano] = useState(props.Zalogowano);
 
+    useEffect(() => {
+        if(props.Login !== "TempUser"){
+            setLogin(props.Login);
+        }
 
+    }, [props.Login]);
 
 
     const Logowanie = async () => {

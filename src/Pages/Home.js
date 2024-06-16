@@ -7,6 +7,8 @@ import politykaPrywatnosci from "./politykaPrywatnosci.pdf";
 import Logo from "../Assets/Logo-Footer.svg";
 import Twitter from "../Assets/Twitter.svg";
 import {Link} from "react-router-dom";
+import {doc, getDoc, setDoc, updateDoc} from "firebase/firestore";
+import {db} from "../DataBase/init-firebase";
 
 
 function Home(props) {
@@ -18,11 +20,34 @@ function Home(props) {
     }
 
     const [ImiePupila, setImiePupila] = useState(props.ImiePupila);
+    const [Popup, setPopup] = useState(false);
 
     const handleImiePupila = async (imie) => {
         console.log(imie);
         props.handleCallBackImiePupila(imie);
     }
+
+    const DodajDoKoszyka = async (KarmaID, KarmaCena) => {
+        setPopup(true);
+        console.log("DodanieDoKoszyka")
+        try{
+            const KarmaRef = await doc(db, props.Login, 'Dane','Koszyk', KarmaID);
+            const snapShot = await getDoc(KarmaRef);
+            if(snapShot.exists()){
+                updateDoc(KarmaRef, {
+                    Amount: (snapShot.data().Amount +1 )
+                });
+
+            } else {
+                await setDoc(doc(db, props.Login, 'Dane','Koszyk',KarmaID), {Amount: 1, Cena: KarmaCena});
+            }
+
+
+        }catch(err){
+            console.log(err);
+        }
+    }
+
 
 
 
@@ -91,27 +116,27 @@ function Home(props) {
                                 <img src={Karma}/>
                                 <h2>Super dobra karma z płatków kwiatów</h2>
                                 <Link to="/Karmy">
-                                    <button className="KarmyButtons2-Home">Czytaj więcej</button>
+                                    <button className="KarmyButtons2-Home" >Czytaj więcej</button>
                                 </Link>
-                                <button className="KarmyButtons3-Home">Dodaj do koszyka</button>
+                                <button className="KarmyButtons3-Home" onClick={() => DodajDoKoszyka("Kwiaciara", 49.99)}>Dodaj do koszyka</button>
                             </div>
                             <div className="KarmyBoxy-Home">
                                 <h1 id="NazwaKarmy-Home">"Wiosenna energia"</h1>
                                 <img src={Karma}/>
                                 <h2>Warzywny miks na dłuższe dni</h2>
-                                <Link to="/Karmy">
+                                <Link to="/Karmy" >
                                     <button className="KarmyButtons2-Home">Czytaj więcej</button>
                                 </Link>
-                                <button className="KarmyButtons3-Home">Dodaj do koszyka</button>
+                                <button className="KarmyButtons3-Home" onClick={() => DodajDoKoszyka("Wiosenna energia", 55.99)}>Dodaj do koszyka</button>
                             </div>
                             <div className="KarmyBoxy-Home">
                                 <h1 id="NazwaKarmy-Home">"Sezonowy owoc"</h1>
                                 <img src={Karma}/>
                                 <h2>Karma z kawałkami sezonowych truskawek</h2>
-                                <Link to="/Karmy">
+                                <Link to="/Karmy" >
                                     <button className="KarmyButtons2-Home">Czytaj więcej</button>
                                 </Link>
-                                <button className="KarmyButtons3-Home">Dodaj do koszyka</button>
+                                <button className="KarmyButtons3-Home" onClick={() => DodajDoKoszyka("Sezonowy owoc", 45.99)}>Dodaj do koszyka</button>
                             </div>
                         </div>
                         <div className="KarmyDiv-Home">
@@ -119,10 +144,10 @@ function Home(props) {
                                 <h1 id="NazwaKarmy-Home">"Na pyłki"</h1>
                                 <img src={Karma}/>
                                 <h2>Wzmacnia odporność w sezonie alergicznym</h2>
-                                <Link to="/Karmy">
+                                <Link to="/Karmy" >
                                     <button className="KarmyButtons2-Home">Czytaj więcej</button>
                                 </Link>
-                                <button className="KarmyButtons3-Home">Dodaj do koszyka</button>
+                                <button className="KarmyButtons3-Home" onClick={() => DodajDoKoszyka("Sezonowy owoc", 45.99)}>Dodaj do koszyka</button>
                             </div>
                             <div className="KarmyBoxy-Home">
                                 <h1 id="NazwaKarmy-Home">"W słońcu"</h1>
@@ -131,7 +156,7 @@ function Home(props) {
                                 <Link to="/Karmy">
                                     <button className="KarmyButtons2-Home">Czytaj więcej</button>
                                 </Link>
-                                <button className="KarmyButtons3-Home">Dodaj do koszyka</button>
+                                <button className="KarmyButtons3-Home" onClick={() => DodajDoKoszyka("W słońcu", 69.99)}>Dodaj do koszyka</button>
                             </div>
                             <div className="KarmyBoxy-Home">
                                 <h1 id="NazwaKarmy-Home">"Na ochłodę"</h1>
@@ -140,7 +165,7 @@ function Home(props) {
                                 <Link to="/Karmy">
                                     <button className="KarmyButtons2-Home">Czytaj więcej</button>
                                 </Link>
-                                <button className="KarmyButtons3-Home">Dodaj do koszyka</button>
+                                <button className="KarmyButtons3-Home" onClick={() => DodajDoKoszyka("Na ochłodę", 39.99)}>Dodaj do koszyka</button>
                             </div>
                         </div>
                     </div>
@@ -148,6 +173,12 @@ function Home(props) {
                 </div>
 
             </div>
+            {Popup ? (
+                <div className="Karmy-Popup-Home">
+                    <h1>Dodano do koszyka!</h1>
+                    <button onClick={() => setPopup(false)}>Kontynuuj</button>
+                </div>
+            ) : (<div style={{display: "none"}}></div>)}
 
             <div className="Home-Bottom">
                 <img src={Kot}/>

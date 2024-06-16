@@ -73,7 +73,7 @@ function App() {
 
         <Routes>
             <Route path="/" element={<Navigate to="/Home" replace={true} />} />
-            <Route path="/Home" element={<Home Cookies={Cookies} handleCallBackCookies={setCookies} ImiePupila={ImiePupila} handleCallBackImiePupila={setImiePupila} />} />
+            <Route path="/Home" element={<Home Cookies={Cookies} handleCallBackCookies={setCookies} ImiePupila={ImiePupila} handleCallBackImiePupila={setImiePupila} Login={Login}/>} />
             <Route path="/Karmy" element={<Karmy Login={Login} handleCallBackKarma={setKarma}/>} />
             <Route path="/Konto" element={<Konto Login={Login} Zalogowano={Zalogowano} handleCallBackPupilDoZmiany={handlePupilDoZmiany} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} /> } />
             <Route path="/Koszyk" element={<Koszyk Login={Login} Zalogowano={Zalogowano}/>} />
