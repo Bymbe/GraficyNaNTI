@@ -277,7 +277,7 @@ function Koszyk(props) {
             <div className="Koszyk-Content">
                 <h1 id="Koszyk-Nagłówek">Koszyk</h1>
                 <div className="Koszyk-Produkty">
-                    <div className="Produkty">
+                    <div className="Produkty-Koszyk">
                         <h1>Produkty</h1>
                         <ul>
                             {Karmy.map(karma => {

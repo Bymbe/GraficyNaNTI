@@ -46,7 +46,7 @@ function Karmy(props) {
                     karmyCollectionRef = query(karmyCollectionRef, where('Cena', '<', 50));
                 } else {
                     karmyCollectionRef = query(karmyCollectionRef, where('Cena', '>', 50));
-                    karmyCollectionRef = query(karmyCollectionRef, where('Cena', '=<', 100));
+                    karmyCollectionRef = query(karmyCollectionRef, where('Cena', '<', 100));
                 }
 
             }

@@ -10,7 +10,7 @@ import {db} from "../DataBase/init-firebase";
 
 const Navbar = (props) => {
 
-    const [Login, setLogin] = useState('TempUser');
+    const [Login, setLogin] = useState('');
     const [Password, setPassword] = useState("");
     //const [Zalogowano, setZalogowano] = useState(props.Zalogowano);
 
@@ -43,7 +43,8 @@ const Navbar = (props) => {
     }
 
     const Wyloguj = () => {
-        setLogin("TempUser")
+
+        setLogin("")
         setPassword("")
         props.handleCallBackLogin("TempUser");
         props.handleCallBackZalogowo(false);
@@ -97,7 +98,6 @@ const Navbar = (props) => {
                                           onChange={(e) => setLogin(e.target.value)}/>
                                 <input rows="1" type="password" value={Password} placeholder="Hasło"
                                           onChange={(e) => setPassword(e.target.value)}/>
-                                <h3>Nie pamiętam hasła</h3>
                                 <button onClick={Logowanie}>Zaloguj</button>
                             </div>
                             <div className="navbar-popup-rejestracja">

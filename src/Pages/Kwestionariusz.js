@@ -87,6 +87,7 @@ function Kwestionariusz(props) {
     useEffect(() => {
         //console.log(props.Zalogowano);
         //console.log(props.PupilDoZmiany);
+        console.log(props.WTrakcieKwestionariusza)
         if(props.WTrakcieKwestionariusza === true){
             console.log("UseEffect -> getTemp")
             getTemp();
@@ -127,6 +128,7 @@ function Kwestionariusz(props) {
 
         if(props.WTrakcieKwestionariusza === true){
             console.log("UseEffect -> DanePupila W trakcie")
+
             setPupilName(DanePupila.Nazwa);
             setPupilBreed(DanePupila.Rasa);
             setPupilAge(DanePupila.Wiek);
@@ -135,6 +137,8 @@ function Kwestionariusz(props) {
             setPupilGender(DanePupila.Płeć);
             setPupilSterylized(DanePupila.Sterylizacja);
             setPupilActif(DanePupila.Aktywność);
+            setDalej(DanePupila.DalejFlag)
+            props.handleCallBackWTrakcie(false);
         }
 
 
@@ -163,18 +167,9 @@ function Kwestionariusz(props) {
             const snapShot = await getDoc(PupilRef);
             setDanePupila(snapShot.data());
 
+
         }catch (err){
             console.log(err);
-        }
-    }
-
-    const updateTemp = async () => {
-        console.log("updateTemp")
-        try{
-            props.handleCallBackWTrakcie(true);
-            await setDoc(doc(db, props.Login,  "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
-        }catch(err){
-            console.log(err)
         }
     }
 
@@ -187,6 +182,25 @@ function Kwestionariusz(props) {
         }
     }
 
+    const addOnlyPet = async () => {
+        try{
+            props.handleCallBackWTrakcie(false);
+            if(props.PupilDoZmiany !== ""){
+                const PupilRef = await doc(db, props.Login, 'Dane','Zwierzęta', props.PupilDoZmiany);
+                await updateDoc(PupilRef, {
+                    Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma
+                })
+            }
+            else{
+                console.log("addOnlyPet, Pupil do zmiany pusty");
+                await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+
+            }
+            setPopupDodanie(true);
+        }catch (err){
+            console.log(err)
+        }
+    }
 
 
     const addPet = async () => {
@@ -194,11 +208,14 @@ function Kwestionariusz(props) {
         try{
             if(props.WTrakcieKwestionariusza === false){
                 props.handleCallBackKarma(WybranaKarma)
+                props.handleCallBackWTrakcie(true);
                 console.log("addPet if PupilName: ", PupilName)
-                await setDoc(doc(db, props.Login, "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+                console.log("addPet if Login: ", props.Login)
+                await setDoc(doc(db, props.Login, "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma, DalejFlag: Dalej });
 
             }
             else{
+                props.handleCallBackWTrakcie(false);
                 if(props.PupilDoZmiany !== ""){
                     const PupilRef = await doc(db, props.Login, 'Dane','Zwierzęta', props.PupilDoZmiany);
                     await updateDoc(PupilRef, {
@@ -206,6 +223,7 @@ function Kwestionariusz(props) {
                     })
                 }
                 else{
+                    console.log("add Pet Pupildozmiany = pusty");
                     await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
 
                 }
@@ -244,7 +262,7 @@ function Kwestionariusz(props) {
             setZalogowano(true);
             props.handleCallBackZalogowo(true);
             props.handleCallBackLogin(Login);
-            alert(`Kolekcja '${Login}' oraz jej podkolekcje zostały utworzone.`);
+            //alert(`Kolekcja '${Login}' oraz jej podkolekcje zostały utworzone.`);
         }catch (error) {
             console.error("Błąd przy tworzeniu kolekcji: ", error);
             alert('Błąd przy tworzeniu kolekcji');
@@ -392,7 +410,7 @@ function Kwestionariusz(props) {
                             </Link>
                             {props.Zalogowano ? (
 
-                                <button onClick={() => addPet()}>Dodaj do koszyka</button>) : (
+                                <button onClick={() => addPet(true)}>Dodaj do koszyka</button>) : (
 
                                 <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
                             )}
@@ -411,7 +429,8 @@ function Kwestionariusz(props) {
                         </div>
                     ) : (<div style={{display: "none"}} id="Dalej"></div>)}
                 </div>
-                <button onClick={dalejFunction}>Dodaj Pupila</button>
+                {props.Zalogowano ? (<button onClick={() => addOnlyPet()}>Dodaj Pupila</button>): (<div style={{display: "none"}} id="Dalej"></div>)}
+
 
             </div>
 
@@ -447,13 +466,13 @@ function Kwestionariusz(props) {
                                           onChange={(e) => setLogin(e.target.value)}/>
                             </div>
                             <div className="Register-Text-AreaKW">
-                                <label htmlFor="Password">Password:</label>
-                                <textarea rows="1" type="text" value={Password}
+                                <label htmlFor="Password" >Password:</label>
+                                <textarea rows="1" type="password" value={Password}
                                           onChange={(e) => setPassword(e.target.value)}/>
                             </div>
                             <div className="Register-Text-AreaKW">
                                 <label htmlFor="Password">Repeat Password:</label>
-                                <textarea rows="1" type="text" value={PasswordRepeated}
+                                <textarea rows="1" type="password" value={PasswordRepeated}
                                           onChange={(e) => setPasswordRepeated(e.target.value)}/>
                             </div>
                             <div className="Register-Text-AreaKW">

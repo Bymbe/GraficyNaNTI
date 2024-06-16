@@ -49,7 +49,7 @@ function Register(props) {
             setZalogowano(true);
             props.handleCallBackZalogowo(true);
             props.handleCallBackLogin(Login);
-            alert(`Kolekcja '${Login}' oraz jej podkolekcje zostały utworzone.`);
+            //alert(`Kolekcja '${Login}' oraz jej podkolekcje zostały utworzone.`);
         }catch (error) {
             console.error("Błąd przy tworzeniu kolekcji: ", error);
             alert('Błąd przy tworzeniu kolekcji');

@@ -1351,21 +1351,21 @@ input[type="text"] {
 
 }
 
-.Koszyk-Produkty .Produkty h1:first-child{
+.Koszyk-Produkty .Produkty-Koszyk h1:first-child{
   color: #5E3A1F;
   position: relative;
   top: 50px;
   right: 200px;
 }
 
-.Produkty ul{
+.Produkty-Koszyk ul{
   list-style: none;
   position: relative;
   margin-top: 100px;
   height: fit-content;
 }
 
-.Produkty li {
+.Produkty-Koszyk li {
   background: #F6F1CB;
   padding: 0px;
   width: 60%;
@@ -1387,7 +1387,7 @@ input[type="text"] {
 
 }
 
-.Produkty li h2{
+.Produkty-Koszyk li h2{
   font-size: calc(26px + var(--additionaltextsize));
   position: relative;
   right: 60px;
@@ -1732,7 +1732,7 @@ input[type="text"] {
   z-index:3;
   margin-left: 2%;
   background:#5E3A1F ;
-  width: 400px;
+  width: 300px;
   height: fit-content;
   border-radius: 20px;
   padding: 10px;
@@ -1870,7 +1870,7 @@ input[type="text"] {
 }
 
 .Karmy-Popup{
-  position: absolute;
+  position: fixed;
   z-index: 5;
   background: #CE9F54;
   margin-left: auto;
@@ -2156,7 +2156,7 @@ padding-right: 20px;
 
 }
 .DodajDoKoszyka-Popup {
-  position: absolute;
+  position: fixed;
   /*padding-left: 10%;*/
   width: auto;
   height: auto;
@@ -2326,7 +2326,7 @@ padding-right: 20px;
 }
 
 .Kwestionariusz-Popup-Dodanie{
-  position: absolute;
+  position: fixed;
   //background-color: #aeff86;
   background-color: #F6F1CB;
   width: 600px;
@@ -2339,7 +2339,7 @@ padding-right: 20px;
 }
 
 .Kwestionariusz-Register-Popup{
-  position: absolute;
+  position: fixed;
 //background-color: #aeff86;
   background-color: #F6F1CB;
   width: 600px;
