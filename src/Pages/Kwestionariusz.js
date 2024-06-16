@@ -43,20 +43,20 @@ function Kwestionariusz(props) {
     const [selectedDolegliwosci, setSelectedDolegliwosci] = useState([]);
     const [karmy, setKarmy] = useState([]);
 
-    const location = useLocation();
+    /*const location = useLocation();*/
 
-    useEffect(() => {
+/*    useEffect(() => {
         const currentPath = location.pathname;
 
         return () => {
             if(props.WTrakcieKwestionariusza === false){
                 console.log("useEffect-> W trakcie = false")
-                /*addPet();*/
+                /!*addPet();*!/
             }
 
             console.log('Opuszczono trasę:', currentPath);
         };
-    }, [location]);
+    }, [location]);*/
 
     const handleCheckboxChange = (meatType) => {
         setSelectedMeatTypes((prevSelected) =>
@@ -116,10 +116,11 @@ function Kwestionariusz(props) {
         return;
     }
 
-    const DodajDoKoszykaFunction = async ()=> {
+    const DodajDoKoszykaFunction = async (karmaID)=> {
         console.log("DodajDoKoszykaFunction")
         setDodajDoKoszyka(true);
         setRejestracja(false);
+        setWybranaKarma(karmaID)
         return;
     }
 
@@ -265,29 +266,30 @@ function Kwestionariusz(props) {
         console.log("addPet")
         setWybranaKarma(karma);
         try{
-            if(props.WTrakcieKwestionariusza === false){
+            if(props.WTrakcieKwestionariusza === false && props.PupilDoZmiany === ""){
                 props.handleCallBackKarma(karma)
                 props.handleCallBackWTrakcie(true);
                 console.log("addPet if PupilWeight: ", PupilWeight)
                 console.log("addPet if Login: ", props.Login)
-                await setDoc(doc(db, props.Login, "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma, DalejFlag: Dalej, FlagiMięso: selectedMeatTypes, FlagiDol: selectedDolegliwosci });
+                await setDoc(doc(db, props.Login, "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: karma, DalejFlag: Dalej, FlagiMięso: selectedMeatTypes, FlagiDol: selectedDolegliwosci });
 
             }
             else{
                 props.handleCallBackWTrakcie(false);
                 if(props.PupilDoZmiany !== ""){
+                    console.log("PupilDoZmiany");
                     const PupilRef = await doc(db, props.Login, 'Dane','Zwierzęta', props.PupilDoZmiany);
                     await updateDoc(PupilRef, {
-                        Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma
+                        Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: karma
                     })
                 }
                 else{
                     console.log("add Pet Pupildozmiany = pusty");
-                    await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma });
+                    await setDoc(doc(db, props.Login, "Dane", "Zwierzęta", PupilName), {Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: karma });
 
                 }
                 //console.log(props.Zalogowano);
-                await setDoc(doc(db, props.Login, "Dane", "Koszyk", WybranaKarma), {Cena: CenaWybranejKarmy, Amount: 1});
+                await setDoc(doc(db, props.Login, "Dane", "Koszyk", karma), {Cena: CenaWybranejKarmy, Amount: 1});
                 setPopupDodanie(true);
             }
 
@@ -321,6 +323,7 @@ function Kwestionariusz(props) {
             setZalogowano(true);
             props.handleCallBackZalogowo(true);
             props.handleCallBackLogin(Login);
+            props.handleCallBackWTrakcie(false);
             //alert(`Kolekcja '${Login}' oraz jej podkolekcje zostały utworzone.`);
         }catch (error) {
             console.error("Błąd przy tworzeniu kolekcji: ", error);
@@ -398,8 +401,8 @@ function Kwestionariusz(props) {
             <div className="SterilizedSelect">
                 <select name="sterylizacja" id="sterylizacja" value={PupilSterylized}
                         onChange={(e) => setPupilSterylized(e.target.value)}>
-                    <option value="no">Nie</option>
-                    <option value="yes">Tak</option>
+                    <option value="Nie">Nie</option>
+                    <option value="Tak">Tak</option>
                 </select>
             </div>
             <div className="Kwestionariusz-question">
@@ -471,86 +474,9 @@ function Kwestionariusz(props) {
                        onChange={() => handleDolegliwoscChange('Sierść')}/>
                 <h10>Problemy z sierścią</h10>
             </div>
-
-            {/*<div>
-                <button onClick={dalejFunction}>Dalej</button>
-                <div className="ProponowanaKarma">
-                    {Dalej ? (
-                        <div className="Karma-popup">
-                            <h1>Proponowana Karma</h1>
-
-                            <h4>"Kwiaciara"</h4>
-                            <img src={Karma}/>
-                            <h3>49,99 zł</h3>
-                            <h2>Super dobra karma z płatków kwiatów</h2>
-                            <Link to="/Kwiaciara">
-                                <button>Czytaj więcej</button>
-                            </Link>
-                            <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
-                            <h1></h1>
-
-
-                            <h2>Możesz teraz przejść do swojego profilu</h2>
-                            <Link to="/Konto">
-                                <button>Przejdź do Profilu</button>
-                            </Link>
-                        </div>
-                    ) : (<div style={{display: "none"}}></div>)}
-                </div>
-
-            </div>
-            <div className="DDK">
-                {DodajDoKoszyka ? (
-                    <div className="DodajDoKoszyka-Popup">
-                        <h1>Czy chcesz założyć konto?</h1>
-                        <h2>Możesz teraz przejść do swojego profilu</h2>
-                        <Link to="/Register">
-                            <button>Załóż konto</button>
-                        </Link>
-                        <Link to="/Koszyk">
-                            <button>Kupuję jednorazowo</button>
-                        </Link>
-                        <h2></h2>
-                    </div>
-                ) : (<div style={{display: "none"}}></div>)}
-            </div>*/}
-
-
-            <div>
+              <div>
                 <button onClick={dalejFunction}>Zaproponuj Karmę</button>
-
-
-            {/*{Dalej ? (
-                    <div className="Karma-popup" id="Dalej">
-                        <h1>Proponowana Karma</h1>
-
-                        <h4>{WybranaKarma}</h4>
-                        <img src={Karma}/>
-                        <h3>{CenaWybranejKarmy} zł</h3>
-                        <h2>Super dobra karma z płatków kwiatów</h2>
-                        <Link to="/Kwiaciara" onClick={() => addPet()}>
-                            <button>Czytaj więcej</button>
-                        </Link>
-                        {props.Zalogowano ? (
-
-                            <button onClick={() => addPet(true)}>Dodaj do koszyka</button>) : (
-
-
-
-
-
-
-
-
-
-                            <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
-                        )}
-
-
-                    </div>
-                ) : (<div style={{display: "none"}} id="Dalej"></div>)}*/}
-
-            <div className="ProponowanaKarma">
+              <div className="ProponowanaKarma">
                     {Dalej === true &&
                             <div className="flex-container">
                                 {console.log(Dalej)}
@@ -566,9 +492,9 @@ function Kwestionariusz(props) {
                                         </Link>
                                         {props.Zalogowano ? (
 
-                                            <button className="KarmyButtons2-Karmy" onClick={() => addPet(true)}>Dodaj do koszyka</button>) : (
+                                            <button className="KarmyButtons2-Karmy" onClick={() => addPet(karma.id)}>Dodaj do koszyka</button>) : (
 
-                                            <button className="KarmyButtons2-Karmy" onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
+                                            <button className="KarmyButtons2-Karmy" onClick={() => DodajDoKoszykaFunction(karma.id)}>Dodaj do koszyka</button>
                                         )}
                                     </div>
                                 ))}
@@ -623,12 +549,12 @@ function Kwestionariusz(props) {
                             </div>
                             <div className="Register-Text-AreaKW">
                                 <label htmlFor="Password">Password:</label>
-                                <textarea rows="1" type="password" value={Password}
+                                <input rows="1" type="password" value={Password}
                                           onChange={(e) => setPassword(e.target.value)}/>
                             </div>
                             <div className="Register-Text-AreaKW">
                                 <label htmlFor="Password">Repeat Password:</label>
-                                <textarea rows="1" type="password" value={PasswordRepeated}
+                                <input rows="1" type="password" value={PasswordRepeated}
                                           onChange={(e) => setPasswordRepeated(e.target.value)}/>
                             </div>
                             <div className="Register-Text-AreaKW">

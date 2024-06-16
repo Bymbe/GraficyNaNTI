@@ -2196,7 +2196,7 @@ padding-right: 20px;
 
 }
 .DodajDoKoszyka-Popup {
-  position: fixed;
+  position: absolute;
   /*padding-left: 10%;*/
   width: auto;
   height: auto;
@@ -2366,7 +2366,7 @@ padding-right: 20px;
 }
 
 .Kwestionariusz-Popup-Dodanie{
-  position: fixed;
+  position: absolute;
   //background-color: #aeff86;
   background-color: #F6F1CB;
   width: 600px;

@@ -106,7 +106,7 @@ function Zamowienia() {
                                             <div className="Produkt" key={index}>
                                                 <div className="Ilosc">{item.Amount}x</div>
                                                 <div className="Nazwa">{item.Nazwa}</div>
-                                                <div className="Cena">{item.Cena}</div>
+                                                <div className="Cena">{item.Cena} zł</div>
                                             </div>
                                         );
                                     }
@@ -117,7 +117,7 @@ function Zamowienia() {
                                         Suma
                                     </div>
                                     <div className="Suma2">
-                                        {order.Suma}
+                                        {order.Suma.toFixed(2)} zł
                                     </div>
 
 

@@ -193,7 +193,7 @@ function Koszyk(props) {
                         Adres: daneRef.data().Adres,
                         KodPocztowy: daneRef.data().KodPocztowy,
                         Imię: daneRef.data().Imię,
-                        EMail: Email,
+                        EMail: daneRef.data().E_Mail,
                         Nazwisko: daneRef.data().Nazwisko,
                         MetodaPłatności: Metoda,
                         Suma: Suma

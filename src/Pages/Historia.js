@@ -109,7 +109,7 @@ function Historia(props) {
                                         return (
                                             <div key={index}>
                                                 <p>Nazwa: {item.Nazwa}</p>
-                                                <p>Cena: {item.Cena}</p>
+                                                <p>Cena: {item.Cena} zł</p>
                                                 <p>Ilość: {item.Amount}</p>
                                             </div>
                                         );
@@ -120,7 +120,7 @@ function Historia(props) {
                             <div className="Kreseczka"></div>
                             <div className="Historia-Podsumowanie">
                                 <h2>Metoda płatności: {order.MetodaPłatności}</h2>
-                                <h2>Suma: {order.Suma}</h2>
+                                <h2>Suma: {order.Suma.toFixed(2)} zł</h2>
                             </div>
                         </div>
                     ))

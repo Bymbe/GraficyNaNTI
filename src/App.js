@@ -52,6 +52,7 @@ function App() {
             });
 
             console.log("Wyczyszczono Temp")
+            setImiePupila("")
         }catch(err){
             console.log(err)
         }
