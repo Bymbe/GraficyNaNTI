@@ -2216,6 +2216,8 @@ padding-right: 20px;
 
 .DDK h1{
   margin: 40px;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorNull);
 }
 
 .DDK button {
@@ -2269,14 +2271,14 @@ padding-right: 20px;
   height: 150%;
 
   font-size: calc(20px + var(--additionaltextsize));
-  color: #5E3A1F;
-  background-color: #F6F1CB;
+  color: var(--textColorBrown);
+  background-color: var(--bgColorCreamy);
   border: 3px solid;
   border-color: var(--textColorBrown);
 }
 
 .Register1 h1{
-  background-color:#e8bc76;
+  background-color:var(--bgColorPeanutButter);
   width: 90%;
   padding: 20px;
   border-radius: 30px;
