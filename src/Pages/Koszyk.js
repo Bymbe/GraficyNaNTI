@@ -309,7 +309,7 @@ function Koszyk(props) {
                         </ul>
                     </div>
                     <div className="Metoda-Płatności">
-                        <h1>Metoda płatności</h1>
+                        <h1>Wybierz metodę płatności</h1>
                         <div className="Koszyk-Ikonki">
                             <img onClick={() => {MP("Blik")}} src={Blik} id="Blik"/>
                             <img onClick={()=> {MP("Przelewy")}} src={Przelewy} id="Przelewy"/>
