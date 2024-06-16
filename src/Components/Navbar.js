@@ -139,6 +139,7 @@ function highContrast() {
         isHighContrast = true;
         root.style.setProperty('--textColorCreamy', "#F0F00F");
         root.style.setProperty('--textColorBrown', "#F0F00F");
+        root.style.setProperty('--textColorPeanutButter', "#F0F00F");
         root.style.setProperty('--bgColorNull', "#000000");
         root.style.setProperty('--bgColorCreamy', "#000000");
         root.style.setProperty('--bgColorBrown', "#000000");
@@ -147,6 +148,7 @@ function highContrast() {
         isHighContrast = false;
         root.style.setProperty('--textColorCreamy', "#F6F1CB");
         root.style.setProperty('--textColorBrown', "#5E3A1F");
+        root.style.setProperty('--textColorPeanutButter', "#E8BC76");
         root.style.setProperty('--bgColorNull', "null");
         root.style.setProperty('--bgColorCreamy', "#F6F1CB");
         root.style.setProperty('--bgColorBrown', "#5E3A1F");
