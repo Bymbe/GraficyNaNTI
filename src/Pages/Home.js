@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Pies from "../Assets/piesek.png";
 import Kot from "../Assets/kotek.png";
 import Karma from "../Assets/karma.png";
@@ -12,10 +12,20 @@ import {Link} from "react-router-dom";
 function Home(props) {
 
 
-    const CookieFunction = async ()=> {
+    const CookieFunction = ()=> {
         props.handleCallBackCookies(false);
 
     }
+
+    const [ImiePupila, setImiePupila] = useState(props.ImiePupila);
+
+    const handleImiePupila = async (imie) => {
+        console.log(imie);
+        props.handleCallBackImiePupila(imie);
+    }
+
+
+
 
     return (
 
@@ -51,11 +61,11 @@ function Home(props) {
                 <h3 id="Header-Home">Odpowiedz na kilka pytań na temat swojego pupila aby dostać propozycje dopasowanej
                     do jego potrzeb karmy </h3>
                 <div>
-                    <input type="text" id="PetNameInput-Home" placeholder="Wpisz imię Twojego pupila"/>
+                    <input type="text" id="PetNameInput-Home" placeholder="Wpisz imię Twojego pupila" value={ImiePupila} onChange={(e) => setImiePupila(e.target.value)}/>
                 </div>
 
                 <div>
-                    <Link to="/Kwestionariusz">
+                    <Link to="/Kwestionariusz" onClick={() => handleImiePupila(ImiePupila)}>
                         <button>Zaczynamy!</button>
                     </Link>
                 </div>

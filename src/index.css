@@ -95,6 +95,8 @@ button {
   position: absolute;
   right: 30px;
   top: 40px;
+  display: flex;
+  flex-direction: row;
 }
 
 .navbar-right img{
@@ -2153,7 +2155,7 @@ padding-right: 20px;
 
 
   height: auto;
-  width: auto;
+  width: 450px;
   flex-direction: column;
   display: flex;
   flex-wrap: wrap;
@@ -2167,6 +2169,14 @@ padding-right: 20px;
   border-width: 3px;
   border-color: #5E3A1F;
   top: 200px;
+}
+
+.Kwestionariusz-Karmy-Kontener{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 

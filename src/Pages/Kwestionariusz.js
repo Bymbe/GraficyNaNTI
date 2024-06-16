@@ -1,11 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {Link, useLocation} from "react-router-dom";
 import Karma from "../Assets/karma.png";
-import {addDoc, collection, doc, getDoc, setDoc, updateDoc} from "firebase/firestore";
+import {addDoc, collection, doc, getDoc, getDocs, query, setDoc, updateDoc, where} from "firebase/firestore";
 import {db} from "../DataBase/init-firebase";
 
 function Kwestionariusz(props) {
-        /*Flagi*/
+    /*Flagi*/
     const [Dalej, setDalej] = useState(false);
     const [DodajDoKoszyka, setDodajDoKoszyka] = useState(false);
     const [Rejestracja, setRejestracja] = useState(false);
@@ -32,28 +32,52 @@ function Kwestionariusz(props) {
     const [PupilGender, setPupilGender] = useState("Pies");
     const [PupilSterylized, setPupilSterylized] = useState("Nie");
     const [PupilActif, setPupilActif] = useState("Mała aktywność");
-    const [WybranaKarma, setWybranaKarma] = useState("Kwiaciara");
+    const [WybranaKarma, setWybranaKarma] = useState("");
     const [CenaWybranejKarmy, setCenaWybranejKarmy] = useState(49.99);
 
     /*Updatowanie Pupila*/
     const [DanePupila, setDanePupila] = useState([]);
     const firstRender = useRef(true);
-
+    /*Filtry*/
+    const [selectedMeatTypes, setSelectedMeatTypes] = useState([]);
+    const [selectedDolegliwosci, setSelectedDolegliwosci] = useState([]);
+    const [karmy, setKarmy] = useState([]);
 
     const location = useLocation();
-
-    useEffect(() => {
-        console.log(PupilName)
-    }, [PupilName]);
 
     useEffect(() => {
         const currentPath = location.pathname;
 
         return () => {
-            //updateTemp();
+            if(props.WTrakcieKwestionariusza === false){
+                console.log("useEffect-> W trakcie = false")
+                /*addPet();*/
+            }
+
             console.log('Opuszczono trasę:', currentPath);
         };
     }, [location]);
+
+    const handleCheckboxChange = (meatType) => {
+        setSelectedMeatTypes((prevSelected) =>
+            prevSelected.includes(meatType)
+                ? prevSelected.filter((type) => type !== meatType)
+                : [...prevSelected, meatType]
+        );
+    };
+
+    const handleDolegliwoscChange = (dolegliwosc) => {
+        setSelectedDolegliwosci((prevSelected) =>
+            prevSelected.includes(dolegliwosc)
+                ? prevSelected.filter((item) => item !== dolegliwosc)
+                : [...prevSelected, dolegliwosc]
+        );
+    };
+
+    useEffect(() => {
+        setPupilName(props.ImiePupila)
+    }, []);
+
 
 
     const dalejFunction = async ()=> {
@@ -62,10 +86,36 @@ function Kwestionariusz(props) {
         setDalej(true);
         setRejestracja(false);
 
-        const element = document.getElementById("Dalej");
-        element.scrollIntoView({behavior: "smooth"});
+        try {
+            const karmyCollection = collection(db, 'Karmy');
+
+            let meatTypesQuery;
+            if (selectedMeatTypes.length > 0) {
+                meatTypesQuery = query(
+                    karmyCollection,
+                    where('MeatType', 'not-in', selectedMeatTypes)
+                );
+            } else {
+                meatTypesQuery = query(karmyCollection);
+            }
+
+            const querySnapshot = await getDocs(meatTypesQuery);
+            let result = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+            if (selectedDolegliwosci.length > 0) {
+                result = result.filter(item => selectedDolegliwosci.includes(item.Dolegliwość));
+            }
+
+            setKarmy(result);
+        } catch (error) {
+            console.error('Error fetching data: ', error);
+        }
+
+        /*const element = document.getElementById("Dalej");
+        element.scrollIntoView({behavior: "smooth"});*/
         return;
     }
+
     const DodajDoKoszykaFunction = async ()=> {
         console.log("DodajDoKoszykaFunction")
         setDodajDoKoszyka(true);
@@ -79,17 +129,18 @@ function Kwestionariusz(props) {
         setDalej(false);
         setDodajDoKoszyka(false);
 
-        const element = document.getElementById("Register");
-        element.scrollIntoView({behavior: "smooth"});
+        /*const element = document.getElementById("Register");
+        element.scrollIntoView({behavior: "smooth"});*/
         return;
     }
 
+
     useEffect(() => {
-        //console.log(props.Zalogowano);
-        //console.log(props.PupilDoZmiany);
+
         console.log(props.WTrakcieKwestionariusza)
         if(props.WTrakcieKwestionariusza === true){
             console.log("UseEffect -> getTemp")
+
             getTemp();
             return;
         }
@@ -99,15 +150,15 @@ function Kwestionariusz(props) {
             getPet();
             return;
         }
-
-
-
-
-
     }, [props.Zalogowano, props.PupilDoZmiany]);
 
-    useEffect(() => {
+    /*useEffect(() => {
+        if(props.ImiePupila !== ""){
+            setPupilName(props.ImiePupila);
+        }
+    },[])*/
 
+    useEffect(() => {
         if (firstRender.current) {
             firstRender.current = false; // Ustawiamy flagę na false po pierwszym renderze
             return;
@@ -138,16 +189,23 @@ function Kwestionariusz(props) {
             setPupilSterylized(DanePupila.Sterylizacja);
             setPupilActif(DanePupila.Aktywność);
             setDalej(DanePupila.DalejFlag)
+            setSelectedMeatTypes(DanePupila.FlagiMięso || [])
+            setSelectedDolegliwosci(DanePupila.FlagiDol || [])
             props.handleCallBackWTrakcie(false);
+            console.log("Dalej falg", DanePupila.DalejFlag);
         }
 
 
     }, [DanePupila]);
 
+    /*useEffect(() => {
+        console.log(PupilWeight)
+    }, [PupilWeight]);*/
+
 
     const getPet = async () => {
         console.log("getPet")
-                try{
+        try{
             const PupilRef = await doc(db, props.Login,'Dane', 'Zwierzęta', props.PupilDoZmiany);
             const snapShot = await getDoc(PupilRef);
             setDanePupila(snapShot.data());
@@ -203,15 +261,16 @@ function Kwestionariusz(props) {
     }
 
 
-    const addPet = async () => {
-        console.log("addPet PupilName: ", PupilName)
+    const addPet = async (karma) => {
+        console.log("addPet")
+        setWybranaKarma(karma);
         try{
             if(props.WTrakcieKwestionariusza === false){
-                props.handleCallBackKarma(WybranaKarma)
+                props.handleCallBackKarma(karma)
                 props.handleCallBackWTrakcie(true);
-                console.log("addPet if PupilName: ", PupilName)
+                console.log("addPet if PupilWeight: ", PupilWeight)
                 console.log("addPet if Login: ", props.Login)
-                await setDoc(doc(db, props.Login, "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma, DalejFlag: Dalej });
+                await setDoc(doc(db, props.Login, "Temp"), {Nazwa: PupilName, Typ: PupilType, Rasa: PupilBreed, Wiek: PupilAge, Miesiące: PupilMonth, Waga: PupilWeight, Płeć: PupilGender, Sterylizacja: PupilSterylized,  Aktywność: PupilActif, PrzypisanaKarma: WybranaKarma, DalejFlag: Dalej, FlagiMięso: selectedMeatTypes, FlagiDol: selectedDolegliwosci });
 
             }
             else{
@@ -284,7 +343,8 @@ function Kwestionariusz(props) {
             </div>
             <div>
                 <input type="text" value={PupilName} placeholder="Imię pupila"
-                       id="PetNameInput" onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
+                       id="PetNameInput"
+                       onChange={(e) => setPupilName(e.target.value)}/> {/*value={Zalogowano ? {pupil.id} : ""}*/}
             </div>
             <div className="Kwestionariusz-question">
                 Jakiej rasy jest twój pupil?
@@ -320,7 +380,7 @@ function Kwestionariusz(props) {
             </div>
             <div className="WeightSelect">
                 <input type="text" placeholder="Waga pupila w kg"
-                       id="PetWeightInput"  value={PupilWeight}
+                       id="PetWeightInput" value={PupilWeight}
                        onChange={(e) => setPupilWeight(e.target.value)}/>
             </div>
             <div className="Kwestionariusz-question">
@@ -362,62 +422,158 @@ function Kwestionariusz(props) {
                 </h11>
             </div>
             <div className="BannedIngredientsCheck">
-                <input type="checkbox" id="ingredient1" name="kaczka" value="Kaczka"/>
+                <input type="checkbox" id="ingredient1" name="kaczka" value="Kaczka"
+                       checked={selectedMeatTypes.includes("Kaczka")} onChange={() => handleCheckboxChange('Kaczka')}/>
                 <h10>Kaczka</h10>
             </div>
             <div className="BannedIngredientsCheck">
-                <input type="checkbox" id="ingredient2" name="kurczak" value="Kurczak"/>
+                <input type="checkbox" id="ingredient2" name="kurczak" value="Kurczak"
+                       checked={selectedMeatTypes.includes("Kurczak")}
+                       onChange={() => handleCheckboxChange('Kurczak')}/>
                 <h10>Kurczak</h10>
             </div>
             <div className="BannedIngredientsCheck">
-                <input type="checkbox" id="ingredient3" name="wieprzowina" value="Wieprzowina"/>
+                <input type="checkbox" id="ingredient3" name="wieprzowina" value="Wieprzowina"
+                       checked={selectedMeatTypes.includes("Wieprzowina")}
+                       onChange={() => handleCheckboxChange('Wieprzowina')}/>
                 <h10>Wieprzowina</h10>
             </div>
             <div className="BannedIngredientsCheck">
-                <input type="checkbox" id="ingredient4" name="wolowina" value="Wołowina"/>
+                <input type="checkbox" id="ingredient4" name="wolowina" value="Wołowina"
+                       checked={selectedMeatTypes.includes("Wołowina")}
+                       onChange={() => handleCheckboxChange('Wołowina')}/>
                 <h10>Wołowina</h10>
             </div>
-            <div>
-                <h11>
-                    Inne:
-                </h11>
+            <div className="BannedIngredientsCheck">
+                <input type="checkbox" id="ingredient5" name="vege" value="Vege"
+                       checked={selectedMeatTypes.includes("Vege")} onChange={() => handleCheckboxChange('Vege')}/>
+                <h10>Vege</h10>
+            </div>
+
+            <div className="Kwestionariusz-question">
+                Wybierz dolegliwość Twojego Pupila?
             </div>
             <div className="BannedIngredientsCheck">
-                <input type="checkbox" id="ingredient5" name="gluten" value="Gluten"/>
-                <h10>Gluten</h10>
+                <input type="checkbox" id="dole1" name="Odporność" value="Odporność"
+                       checked={selectedDolegliwosci.includes("Odporność")}
+                       onChange={() => handleDolegliwoscChange('Odporność')}/>
+                <h10>Słaba odporność</h10>
             </div>
             <div className="BannedIngredientsCheck">
-                <input type="checkbox" id="ingredient6" name="kukurydza" value="Kukurydza"/>
-                <h10>Kukurydza</h10>
+                <input type="checkbox" id="dole2" name="Trawienie" value="Trawienie"
+                       checked={selectedDolegliwosci.includes("Trawienie")}
+                       onChange={() => handleDolegliwoscChange('Trawienie')}/>
+                <h10>Problemy z trawieniem</h10>
             </div>
             <div className="BannedIngredientsCheck">
-                <input type="checkbox" id="ingredient7" name="zboza" value="Zboża"/>
-                <h10>Zboża</h10>
+                <input type="checkbox" id="dole3" name="Sierść" value="Sierść"
+                       checked={selectedDolegliwosci.includes("Sierść")}
+                       onChange={() => handleDolegliwoscChange('Sierść')}/>
+                <h10>Problemy z sierścią</h10>
             </div>
-            <div>
-                <button onClick={dalejFunction}>Zaproponuj Karmę</button>
+
+            {/*<div>
+                <button onClick={dalejFunction}>Dalej</button>
                 <div className="ProponowanaKarma">
                     {Dalej ? (
-                        <div className="Karma-popup" id="Dalej">
+                        <div className="Karma-popup">
                             <h1>Proponowana Karma</h1>
 
-                            <h4>{WybranaKarma}</h4>
+                            <h4>"Kwiaciara"</h4>
                             <img src={Karma}/>
-                            <h3>{CenaWybranejKarmy} zł</h3>
+                            <h3>49,99 zł</h3>
                             <h2>Super dobra karma z płatków kwiatów</h2>
-                            <Link to="/Kwiaciara" onClick={() => addPet()}>
+                            <Link to="/Kwiaciara">
                                 <button>Czytaj więcej</button>
                             </Link>
-                            {props.Zalogowano ? (
-
-                                <button onClick={() => addPet(true)}>Dodaj do koszyka</button>) : (
-
-                                <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
-                            )}
+                            <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
+                            <h1></h1>
 
 
+                            <h2>Możesz teraz przejść do swojego profilu</h2>
+                            <Link to="/Konto">
+                                <button>Przejdź do Profilu</button>
+                            </Link>
                         </div>
-                    ) : (<div style={{display: "none"}} id="Dalej"></div>)}
+                    ) : (<div style={{display: "none"}}></div>)}
+                </div>
+
+            </div>
+            <div className="DDK">
+                {DodajDoKoszyka ? (
+                    <div className="DodajDoKoszyka-Popup">
+                        <h1>Czy chcesz założyć konto?</h1>
+                        <h2>Możesz teraz przejść do swojego profilu</h2>
+                        <Link to="/Register">
+                            <button>Załóż konto</button>
+                        </Link>
+                        <Link to="/Koszyk">
+                            <button>Kupuję jednorazowo</button>
+                        </Link>
+                        <h2></h2>
+                    </div>
+                ) : (<div style={{display: "none"}}></div>)}
+            </div>*/}
+
+
+            <div>
+                <button onClick={dalejFunction}>Zaproponuj Karmę</button>
+
+
+            {/*{Dalej ? (
+                    <div className="Karma-popup" id="Dalej">
+                        <h1>Proponowana Karma</h1>
+
+                        <h4>{WybranaKarma}</h4>
+                        <img src={Karma}/>
+                        <h3>{CenaWybranejKarmy} zł</h3>
+                        <h2>Super dobra karma z płatków kwiatów</h2>
+                        <Link to="/Kwiaciara" onClick={() => addPet()}>
+                            <button>Czytaj więcej</button>
+                        </Link>
+                        {props.Zalogowano ? (
+
+                            <button onClick={() => addPet(true)}>Dodaj do koszyka</button>) : (
+
+
+
+
+
+
+
+
+
+                            <button onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
+                        )}
+
+
+                    </div>
+                ) : (<div style={{display: "none"}} id="Dalej"></div>)}*/}
+
+            <div className="ProponowanaKarma">
+                    {Dalej === true &&
+                            <div className="flex-container">
+                                {console.log(Dalej)}
+                                {karmy.map(karma => (
+                                    <div className="FlexBoxy-Karmy" key={karma.id}>
+                                        {/*//<h1>Proponowana Karma</h1>*/}
+                                        <h4>{karma.id}</h4>
+                                        <img src={Karma} alt={karma.KrótkiOpis}/>
+                                        <h3>{karma.Cena} zł</h3>
+                                        <h2>{karma.KrótkiOpis}</h2>
+                                        <Link to="/Kwiaciara" onClick={() => addPet(karma.id)}>
+                                            <button className="KarmyButtons2-Karmy">Czytaj więcej</button>
+                                        </Link>
+                                        {props.Zalogowano ? (
+
+                                            <button className="KarmyButtons2-Karmy" onClick={() => addPet(true)}>Dodaj do koszyka</button>) : (
+
+                                            <button className="KarmyButtons2-Karmy" onClick={DodajDoKoszykaFunction}>Dodaj do koszyka</button>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>}
+
 
                     {PopupDodanie ? (
                         <div className="Kwestionariusz-Popup-Dodanie">
@@ -429,12 +585,12 @@ function Kwestionariusz(props) {
                         </div>
                     ) : (<div style={{display: "none"}} id="Dalej"></div>)}
                 </div>
-                {props.Zalogowano ? (<button onClick={() => addOnlyPet()}>Dodaj Pupila</button>): (<div style={{display: "none"}} id="Dalej"></div>)}
-
-
+            {props.Zalogowano ? (<button onClick={() => addOnlyPet()}>Dodaj Pupila</button>) : (
+                    <div style={{display: "none"}} id="Dalej"></div>)}
             </div>
 
             <div className="DDK">
+                {console.log(DodajDoKoszyka)}
                 {DodajDoKoszyka ? (
                     <div className="DodajDoKoszyka-Popup">
                         <h1>Czy chcesz założyć konto?</h1>
@@ -466,7 +622,7 @@ function Kwestionariusz(props) {
                                           onChange={(e) => setLogin(e.target.value)}/>
                             </div>
                             <div className="Register-Text-AreaKW">
-                                <label htmlFor="Password" >Password:</label>
+                                <label htmlFor="Password">Password:</label>
                                 <textarea rows="1" type="password" value={Password}
                                           onChange={(e) => setPassword(e.target.value)}/>
                             </div>

@@ -71,11 +71,15 @@ const Navbar = (props) => {
                 {/*<li><Link to="KarmyAdmina" className="Link">KarmyAdmina</Link></li>*/}
             </div>
             <div className="navbar-right">
+
                 {props.Zalogowano ? (
 
-                    <Popup trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">
+                    <Popup trigger={<img className="Navbar-icons" src={Konto}/>} position="bottom center">
+
                         <div className="navbar-popup">
+                            <h1>{Login}</h1>
                             <div className="navbar-popup-konto">
+
                                 <Link to="Konto">
                                     <button>Profil</button>
                                 </Link>
@@ -89,7 +93,8 @@ const Navbar = (props) => {
                         </div>
                     </Popup>
                 ) : (
-                    <Popup clasName="Popup" trigger={<img className="Navbar-icons" src={Konto} />} position="bottom center">
+                    <Popup clasName="Popup" trigger={<img className="Navbar-icons" src={Konto}/>}
+                           position="bottom center">
                         <div className="navbar-popup">
 
                             <h1>Logowanie</h1>
@@ -97,12 +102,12 @@ const Navbar = (props) => {
                                 <textarea rows="1" type="text" value={Login} placeholder="Login"
                                           onChange={(e) => setLogin(e.target.value)}/>
                                 <input rows="1" type="password" value={Password} placeholder="Hasło"
-                                          onChange={(e) => setPassword(e.target.value)}/>
+                                       onChange={(e) => setPassword(e.target.value)}/>
                                 <button onClick={Logowanie}>Zaloguj</button>
                             </div>
                             <div className="navbar-popup-rejestracja">
                                 <div></div>
-                                <h2>Zarejestruj się <Link to="Register" id="Popup-Register-Link">tutaj</Link> </h2>
+                                <h2>Zarejestruj się <Link to="Register" id="Popup-Register-Link">tutaj</Link></h2>
                             </div>
                         </div>
                     </Popup>
@@ -110,7 +115,7 @@ const Navbar = (props) => {
                 }
                 <Link to="Koszyk"><img className="Navbar-icons" src={Koszyk}/></Link>
 
-                <Popup trigger={<img className="Navbar-icons" src={Oczko} />} position="bottom center">
+                <Popup trigger={<img className="Navbar-icons" src={Oczko}/>} position="bottom center">
                     <div className="navbar-popup2">
                         <h1>Ustawienia dostępności</h1>
                         <div>

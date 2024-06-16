@@ -14,7 +14,7 @@ import PayPal from "../Assets/PayPal.svg";
 function Koszyk(props) {
 
     const [Suma, setSuma] = React.useState(0);
-    const [Payout, setPayout] = React.useState(0);
+    //const [Payout, setPayout] = React.useState(0);
     const [UzupełnioneDane, setUzupełnioneDane] = React.useState(false);
     const [Adress, setAdress] = useState("");
     const [Town, setTown] = useState("");
@@ -88,16 +88,28 @@ function Koszyk(props) {
     }
 
     const setAmaount = async (znak, id, aktualnaIlość) => {
+        console.log("Zmiana ilości")
         const KarmaRef = await doc(db, props.Login, 'Dane','Koszyk', id);
+
+        // Sprawdzenie, czy dokument istnieje
+        const docSnapshot = await getDoc(KarmaRef);
+        if (!docSnapshot.exists()) {
+            console.error("Dokument nie istnieje:", id);
+            return; // Zakończ funkcję, jeśli dokument nie istnieje
+        }
+
         if(znak === '+'){
             updateDoc(KarmaRef, {
                 Amount: aktualnaIlość+1
             });
         }
         else{
-            updateDoc(KarmaRef, {
-                Amount: aktualnaIlość-1
-            });
+            if(aktualnaIlość > 1){
+                updateDoc(KarmaRef, {
+                    Amount: aktualnaIlość-1
+                });
+            }
+
         }
         getKoszyk();
     }
@@ -121,9 +133,6 @@ function Koszyk(props) {
 
     }, [Karmy]);
 
-    useEffect(()=>{
-        setPayout(Suma);
-    }, [Suma])
 
 
 
@@ -320,7 +329,7 @@ function Koszyk(props) {
                         <h1>Podsumowanie</h1>
                         <div className="Koszyk-Podsumowanie-Pole">
                             <h2>Suma</h2>
-                            <div id="Koszyk-Suma">{Suma} zł</div>
+                            <div id="Koszyk-Suma">{Suma.toFixed(2)} zł</div>
                             {/*trzeba mieć zmienną suma którą raz sie będzie ustawiać */}
                         </div>
                         <div className="Koszyk-Podsumowanie-Pole">
@@ -337,7 +346,7 @@ function Koszyk(props) {
                         <br/>
                         <div className="Koszyk-Podsumowanie-Pole">
                             <h2>Do zapłaty</h2>
-                            <div id="Koszyk-DoZapłaty">{Payout} zł</div>
+                            <div id="Koszyk-DoZapłaty">{Suma.toFixed(2)} zł</div>
                         </div>
                         <div className="Koszyk-Kreska"></div>
                         {props.Zalogowano !== true ? (

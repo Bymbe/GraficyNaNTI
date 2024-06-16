@@ -29,6 +29,7 @@ function App() {
     const [PupilDoZmiany, setPupilDoZmiany] = useState("");
     const [Cookies, setCookies] = useState(true);
     const [WTrakcieKwestionariusza, setWTrakcieKwestionariusza] = useState(false);
+    const [ImiePupila, setImiePupila] = useState("");
 
     const handlePupilDoZmiany = (data) => {
         setPupilDoZmiany(data);
@@ -71,7 +72,7 @@ function App() {
 
         <Routes>
             <Route path="/" element={<Navigate to="/Home" replace={true} />} />
-            <Route path="/Home" element={<Home Cookies={Cookies} handleCallBackCookies={setCookies} />} />
+            <Route path="/Home" element={<Home Cookies={Cookies} handleCallBackCookies={setCookies} ImiePupila={ImiePupila} handleCallBackImiePupila={setImiePupila} />} />
             <Route path="/Karmy" element={<Karmy Login={Login} handleCallBackKarma={setKarma}/>} />
             <Route path="/Konto" element={<Konto Login={Login} Zalogowano={Zalogowano} handleCallBackPupilDoZmiany={handlePupilDoZmiany} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} /> } />
             <Route path="/Koszyk" element={<Koszyk Login={Login} Zalogowano={Zalogowano}/>} />
@@ -82,8 +83,8 @@ function App() {
             <Route path="/Zamowienia" element={<Zamowienia />} />
             <Route path="/ONas" element={<ONas />} />
             <Route path="/Historia" element={<Historia Login={Login}/>} />
-            <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma}/>} />
-            <Route path="/Kwestionariusz" element={<Kwestionariusz Zalogowano={Zalogowano} PupilDoZmiany={PupilDoZmiany} Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} WTrakcieKwestionariusza={WTrakcieKwestionariusza} handleCallBackWTrakcie={setWTrakcieKwestionariusza}/>} />
+            <Route path="/Kwiaciara" element={<Kwiaciara Karma={Karma} Login={Login}/>} />
+            <Route path="/Kwestionariusz" element={<Kwestionariusz Zalogowano={Zalogowano} PupilDoZmiany={PupilDoZmiany} Login={Login} handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin} handleCallBackKarma={setKarma} WTrakcieKwestionariusza={WTrakcieKwestionariusza} handleCallBackWTrakcie={setWTrakcieKwestionariusza} ImiePupila={ImiePupila}/>} />
             <Route path="/Register" element={<Register handleCallBackZalogowo={setZalogowano} handleCallBackLogin={setLogin}/>} />
             <Route path="/Regulamin" element={<Regulamin />} />
         </Routes>
