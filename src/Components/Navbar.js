@@ -76,13 +76,13 @@ const Navbar = (props) => {
                 {/*<li><Link to="KarmyAdmina" className="Link">KarmyAdmina</Link></li>*/}
             </div>
             <div className="navbar-right">
-
+                <h1>{Login}</h1>
                 {props.Zalogowano ? (
 
                     <Popup trigger={<img className="Navbar-icons" src={Konto}/>} position="bottom center">
 
                         <div className="navbar-popup">
-                            <h1>{Login}</h1>
+
                             <div className="navbar-popup-konto">
 
                                 <Link to="Konto">

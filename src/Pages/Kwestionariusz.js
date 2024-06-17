@@ -43,6 +43,13 @@ function Kwestionariusz(props) {
     const [selectedDolegliwosci, setSelectedDolegliwosci] = useState([]);
     const [karmy, setKarmy] = useState([]);
 
+    useEffect(() => {
+        console.log("UseEffect Dalej Function", Dalej, props.WTrakcieKwestionariusza)
+        if(Dalej === true){
+            dalejFunction()
+        }
+    }, [Dalej]);
+
     /*const location = useLocation();*/
 
 /*    useEffect(() => {

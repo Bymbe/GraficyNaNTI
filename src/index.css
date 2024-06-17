@@ -99,6 +99,13 @@ button {
   flex-direction: row;
 }
 
+.navbar-right h1 {
+  position: absolute;
+  right: 270px;
+  top: -10px;
+  color: var(--textColorCreamy);
+}
+
 .navbar-right img{
   display: inline-block;
   padding: 0px 10px 0px 10px;
